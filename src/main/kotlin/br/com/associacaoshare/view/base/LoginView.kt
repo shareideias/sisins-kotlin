@@ -35,29 +35,34 @@ class LoginView(val dao: MainDao) : HtmlBuilderView() {
                 }
             }
             div("center col s12 m12 l3"){
-                a("edicao 1.html", classes = "center atualizar waves-effect waves-light btn"){
-                    +"Atualizar perfil"
-                }
-                h5 { +"Seus cursos:" }
-                ul("collection with-header"){
-                    li("collection-item"){
-                        span("title") {
-                            b { +"Violão" }
-                            a("inscricoes.html", classes = "secondary-content") {
-                                i("material-icons") { +"delete" }
+                div("caixa_login"){
+                    div("lighten-4 row geral_login"){
+                        form(classes = "col s12", method = "post"){
+                            div("row"){
+                                div("input-field col s12") {
+                                    input(InputType.email, classes = 'validate', name = 'email', ) {
+                                        id = "email"
+                                    }
+                                    label(for = 'email'){+"Email"}
+                                }
                             }
-                            p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
+
+                            div("row"){
+                                div("input-field col s12") {
+                                    input(InputType.password, classes = 'validate', name = 'password', ) {
+                                        id = "password"
+                                    }
+                                    label(for = 'password'){+"Senha"}
+                                }
+                            }
+
+                            div("row"){
+                                a("inscricoes.html", classes = "center entrar waves-effect waves-light btn"){+"Entrar"}
+                            }
                         }
                     }
-                    li("collection-item"){
-                        div {
-                            i { +"Curso não selecionado" }
-                            a("#!", classes = "secondary-content") {
-                                i("material-icons") { +"add" }
-                            }
-                        }
-                    }
                 }
+
             }
             div("col s12 m0 l3")
         }
