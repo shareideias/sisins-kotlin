@@ -1,9 +1,10 @@
-package br.com.associacaoshare.view.base
+package br.com.associacaoshare.view.adm
 
+import br.com.associacaoshare.view.base.HtmlBuilderView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class Inscricoes3View (val dao: MainDao) : HtmlBuilderView() {
+class Inscricoes3View  : HtmlBuilderView() {
     override fun HTML.render(ctx: Context) {
         head {
             title("Inscrição Share")

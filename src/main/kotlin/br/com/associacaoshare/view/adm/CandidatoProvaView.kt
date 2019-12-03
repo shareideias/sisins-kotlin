@@ -1,9 +1,10 @@
-package br.com.associacaoshare.view.base
+package br.com.associacaoshare.view.adm
 
+import br.com.associacaoshare.view.base.HtmlBuilderView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class CandidatoView(val dao: MainDao) : HtmlBuilderView() {
+class CandidatoProvaView : HtmlBuilderView() {
     override fun HTML.render(ctx: Context) {
         head {
             title("Inscrição Share")
@@ -13,7 +14,7 @@ class CandidatoView(val dao: MainDao) : HtmlBuilderView() {
 
             link("https://fonts.googleapis.com/icon?family=Material+Icons", rel = "stylesheet")
             link(type = "text/css", rel = "stylesheet", href = "/css/materialize.min.css")
-            link(type = "text/css", rel = "stylesheet", href = "../css/candidato.css")
+            link(type = "text/css", rel = "stylesheet", href = "../css/candidato_prova.css")
 
             meta("viewport", "width=device-width, initial-scale=1.0")
 
@@ -62,11 +63,11 @@ class CandidatoView(val dao: MainDao) : HtmlBuilderView() {
         h4{+"Aluno"}
         article {
             p{
-                b { +"Categoria:" }
+                b{+"Categoria:"}
                 br { +" Pessoas com vínculo com a UFSCar." }
             }
             p{
-                b { +"Vínculo:" }
+                b{+"Vínculo:"}
                 br { +" Aluno da Graduação" }
             }
             p{
@@ -112,10 +113,10 @@ class CandidatoView(val dao: MainDao) : HtmlBuilderView() {
             p{
                 b { +"Texte de por quê gostaria de fazer um curso na Share:" }
                 br {
-                    +"Lorem, ipsum dolor sit amet consectetur adipisicing elit. "
-                    +"Dolores quibusdam soluta nam veniam qui voluptate eveniet "
-                    +"inventore eos sint magnam non nemo, exercitationem, impedit "
-                    +"magni tempora eum est dolorem enim."
+                            +"Lorem, ipsum dolor sit amet consectetur adipisicing elit. "
+                            +"Dolores quibusdam soluta nam veniam qui voluptate eveniet "
+                            +"inventore eos sint magnam non nemo, exercitationem, impedit "
+                            +"magni tempora eum est dolorem enim."
                 }
             }
             p{
@@ -125,6 +126,35 @@ class CandidatoView(val dao: MainDao) : HtmlBuilderView() {
             p{
                 b { +"Por onde conheceu a Share:" }
                 br { +" Recomendação" }
+            }
+        }
+
+        h4{+"Prova"}
+
+        article {
+            p{
+                b { +"1-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }
+                br { +" Alternativa" }
+            }
+            p{
+                b { +"2-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }
+                br { +" Alternativa" }
+            }
+            p{
+                b { +"3-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }
+                br { +" Alternativa" }
+            }
+            p{
+                b { +"4-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }
+                br { +" Alternativa" }
+            }
+            p{
+                b { +"5-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }
+                br { +" Alternativa" }
+            }
+            p{
+                b { +"6-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }
+                br { +" Alternativa" }
             }
         }
 
@@ -162,4 +192,5 @@ class CandidatoView(val dao: MainDao) : HtmlBuilderView() {
             }
         }
     }
+
 }

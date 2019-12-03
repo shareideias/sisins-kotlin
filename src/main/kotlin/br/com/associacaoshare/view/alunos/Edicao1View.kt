@@ -1,12 +1,13 @@
-package br.com.associacaoshare.view.base
+package br.com.associacaoshare.view.alunos
 
+import br.com.associacaoshare.view.base.HtmlBuilderView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class Cadastro1View(val dao: MainDao) : HtmlBuilderView() {
+class Edicao1View : HtmlBuilderView() {
     override fun HTML.render(ctx: Context) {
         head {
-            title("Cadastro Share")
+            title("Inscrição Share")
 
             meta(charset = "utf-8")
             link(rel = "icon", href = "/img/globo.png")
@@ -21,7 +22,7 @@ class Cadastro1View(val dao: MainDao) : HtmlBuilderView() {
         body {
 
             img("Logo da Share", "../img/share-logo.png", "logo")
-            h3{ +"Cadastro" }
+            h3{ +"Edição" }
             div("row"){
                 div("col s12 m4 l3")
                 div("input-field col s12 m4 l6"){
@@ -46,7 +47,7 @@ class Cadastro1View(val dao: MainDao) : HtmlBuilderView() {
                 div("col s12 m4 l3")
             }
             div("row"){
-                a("cadastro 2.1.html", "entrar waves-effect waves-light btn"){
+                a("edicao 2.1.html", "entrar waves-effect waves-light btn"){
                     +"Próximo"
                 }
             }

@@ -1,10 +1,10 @@
-package br.com.associacaoshare.view.base.Cadastro2
+package br.com.associacaoshare.view.alunos
 
 import br.com.associacaoshare.view.base.HtmlBuilderView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class `3View`(val dao: MainDao) : HtmlBuilderView() {
+class Cadastro2_3View : HtmlBuilderView() {
     override fun HTML.render(ctx: Context) {
         head {
             title("Cadastro Share")

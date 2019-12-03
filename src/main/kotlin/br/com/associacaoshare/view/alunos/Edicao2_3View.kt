@@ -1,13 +1,13 @@
-package br.com.associacaoshare.view.base.Edicao2
+package br.com.associacaoshare.view.alunos
 
 import br.com.associacaoshare.view.base.HtmlBuilderView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class `2View` (val dao: MainDao) : HtmlBuilderView() {
+class Edicao2_3View : HtmlBuilderView() {
     override fun HTML.render(ctx: Context) {
         head {
-            title("Cadastro Share")
+            title("Inscrição Share")
 
             meta(charset = "utf-8")
             link(rel = "icon", href = "/img/globo.png")
@@ -46,25 +46,22 @@ class `2View` (val dao: MainDao) : HtmlBuilderView() {
                         div("input-field col s12 m4 l6") {
                             container {
                                 label {
-                                    +"Qual o seu vínculo com a UFSCAR?"
+                                    +"Você é estudante? E/ou trabalha?"
                                 }
                             }
                             select {
                                 option(value = "", disabled selected)
-                                option(value = "Professor") {
-                                    +"Professor"
+                                option(value = "Trabalho e não estudo") {
+                                    +"Trabalho e não estudo"
                                 }
-                                option(value = "Técnico-Administrativo (TAs)") {
-                                    +"Técnico-Administrativo (TAs)"
+                                option(value = "Não trabalho e estudo") {
+                                    +"Não trabalho e estudo"
                                 }
-                                option(value = "Aluno da Graduação") {
-                                    +"Aluno da Graduação"
+                                option(value = "Não estudo e não trabalho") {
+                                    +"Não estudo e não trabalho"
                                 }
-                                option(value = "Aluno da Pós Graduação") {
-                                    +"Aluno da Pós Graduação"
-                                }
-                                option(value = "Outro") {
-                                    +"Outro"
+                                option(value = "Estudo e trabalho") {
+                                    +"Estudo e trabalho"
                                 }
                             }
                         }
@@ -77,7 +74,7 @@ class `2View` (val dao: MainDao) : HtmlBuilderView() {
                         div("input-field col s12 m2 l3") {
                             container {
                                 label(for = "text") {
-                                    +"Data de nascimento"
+                                    +"Data de nascimento (idade mínima: 18 anos)"
                                 }
                             }
                             input(InputType.text, classes = "text") {

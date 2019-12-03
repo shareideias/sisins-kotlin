@@ -1,13 +1,13 @@
-package br.com.associacaoshare.view.base.Edicao2
+package br.com.associacaoshare.view.alunos
 
 import br.com.associacaoshare.view.base.HtmlBuilderView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class `3View`(val dao: MainDao) : HtmlBuilderView() {
+class Cadastro2_1View  : HtmlBuilderView() {
     override fun HTML.render(ctx: Context) {
         head {
-            title("Inscrição Share")
+            title("Cadastro Share")
 
             meta(charset = "utf-8")
             link(rel = "icon", href = "/img/globo.png")
@@ -22,7 +22,7 @@ class `3View`(val dao: MainDao) : HtmlBuilderView() {
         body {
 
             img("Logo da Share", "../img/share-logo.png", "logo")
-            h3{ +"Edição" }
+            h3{ +"Cadastro" }
             div("row") {
                 form(classes = "col s12") {
                     div("row"){
@@ -46,22 +46,25 @@ class `3View`(val dao: MainDao) : HtmlBuilderView() {
                         div("input-field col s12 m4 l6") {
                             container {
                                 label {
-                                    +"Você é estudante? E/ou trabalha?"
+                                    +"Qual o seu vínculo com a UFSCAR?"
                                 }
                             }
                             select {
                                 option(value = "", disabled selected)
-                                option(value = "Trabalho e não estudo") {
-                                    +"Trabalho e não estudo"
+                                option(value = "Professor") {
+                                    +"Professor"
                                 }
-                                option(value = "Não trabalho e estudo") {
-                                    +"Não trabalho e estudo"
+                                option(value = "Técnico-Administrativo (TAs)") {
+                                    +"Técnico-Administrativo (TAs)"
                                 }
-                                option(value = "Não estudo e não trabalho") {
-                                    +"Não estudo e não trabalho"
+                                option(value = "Aluno da Graduação") {
+                                    +"Aluno da Graduação"
                                 }
-                                option(value = "Estudo e trabalho") {
-                                    +"Estudo e trabalho"
+                                option(value = "Aluno da Pós Graduação") {
+                                    +"Aluno da Pós Graduação"
+                                }
+                                option(value = "Outro") {
+                                    +"Outro"
                                 }
                             }
                         }
@@ -74,7 +77,7 @@ class `3View`(val dao: MainDao) : HtmlBuilderView() {
                         div("input-field col s12 m2 l3") {
                             container {
                                 label(for = "text") {
-                                    +"Data de nascimento (idade mínima: 18 anos)"
+                                    +"Data de nascimento"
                                 }
                             }
                             input(InputType.text, classes = "text") {
@@ -125,7 +128,7 @@ class `3View`(val dao: MainDao) : HtmlBuilderView() {
                 }
             }
             div("row"){
-                a("edicao 3.html", "entrar waves-effect waves-light btn"){
+                a("cadastro 3.html", "entrar waves-effect waves-light btn"){
                     +"Próximo"
                 }
             }
