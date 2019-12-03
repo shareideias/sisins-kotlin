@@ -1,5 +1,6 @@
 package br.com.associacaoshare
 
+import br.com.associacaoshare.controller.StubController
 import com.auth0.jwt.JWT
 import com.auth0.jwt.JWTVerifier
 import com.auth0.jwt.algorithms.Algorithm
@@ -31,5 +32,6 @@ fun main() {
         cfg.addStaticFiles("public")
     }
 
-    app.start(port)
+
+    app.routes(StubController()).start(port)
 }
