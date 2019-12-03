@@ -14,6 +14,7 @@ abstract class SisInsAdmView : HtmlBuilderView() {
             title("Sistema de Inscrições · $pageTitle")
 
             link(rel = "icon", href = "/img/globo.png")
+            link(href = "https://fonts.googleapis.com/icon?family=Material+Icons", rel = "stylesheet")
             link(type = "text/css", rel = "stylesheet", href = "/css/materialize.min.css")
             link(type = "text/css", rel = "stylesheet", href = "/css/sisins_adm.css")
 
@@ -21,9 +22,54 @@ abstract class SisInsAdmView : HtmlBuilderView() {
         }
 
         body {
-            renderBody(ctx)
+            header { renderHeader() }
+            main { renderMain(ctx) }
+            renderScripts()
         }
     }
 
-    abstract fun BODY.renderBody(ctx: Context)
+    private fun HEADER.renderHeader() {
+        nav(classes = "nav-wrapper transparent") {
+            div(classes = "container") {
+                a(href = "cursos.html", classes = "brand-logo") {
+                    img(classes = "imagem_logo", alt = "Logo da Share", src = "/img/globo.png")
+                }
+                a(href = "", classes = "sidenav-trigger") {
+                    attributes["data-target"] = "mobile-menu"
+                    i(classes = "material-icons") { +"menu" }
+                }
+
+                class L(val nome: String, val href: String)
+                val links = emptyArray<L>() //TODO Change
+
+                ul(classes = "right hide-on-med-and-down") {
+                    for (link in links) {
+                        li { a(classes = "link_menu", href = link.href) { +link.nome } }
+                    }
+                }
+                ul(classes = "sidenav lighten-2") {
+                    id = "mobile-menu"
+
+                    for (link in links) {
+                        li { a(href = link.href) { +link.nome } }
+                    }
+                }
+            }
+        }
+    }
+
+    abstract fun MAIN.renderMain(ctx: Context)
+
+    private fun BODY.renderScripts() {
+        script(src = "/js/materialize.min.js") {}
+        script {
+            unsafe {
+                +"""
+                document.addEventListener('DOMContentLoaded', function() {
+                    var instances = M.Sidenav.init(document.querySelectorAll('.sidenav'), {});
+                });
+            """.trimIndent()
+            }
+        }
+    }
 }

@@ -1,0 +1,46 @@
+
+h3, h4, h5{
+    text-align: center;
+}
+p{
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin: 0;
+    padding-left: 2em;
+}
+
+b{
+    margin: 0;
+}
+
+article{
+    border: .1em solid #FAFAFA;
+    background: #FBEFF2;
+    margin: 0;
+}
+
+.botoes{
+    margin-bottom: 150px;
+    margin-top: 10px;
+}
+
+.botao{
+    float: left;
+    margin: 5px;
+
+}
+
+.check{
+    float: left;
+    margin: 5px;
+}
+
+h3{
+    text-align: center;
+}
+
+.mais{
+    font-size: 103px;
+    text-align: center;
+    margin-bottom: 50px;
+}
