@@ -28,11 +28,9 @@ class Cadastro3View : HtmlBuilderView() {
                     div("row"){
                         div("col s12 m4 l3")
                         div("input-field col s12 m4 l6") {
-                            container {
                                 label {
                                     +"Você já esteve na UFSCar antes?"
                                 }
-                            }
                             select {
                                 option(value = "", disabled selected)
                                 option(value = "Sim") {
@@ -49,12 +47,10 @@ class Cadastro3View : HtmlBuilderView() {
                     div("row"){
                         div("col s12 m4 l3")
                         div("input-field col s12 m4 l6") {
-                            container {
                                 label {
                                     +"Você está ciente de que as aulas da Share "
                                     +"acontecem na UFSCar Sorocaba, próximo à Salto de Pirapora?"
                                 }
-                            }
                             select {
                                 option(value = "", disabled selected)
                                 option(value = "Sim") {
@@ -72,11 +68,9 @@ class Cadastro3View : HtmlBuilderView() {
                     div("row"){
                         div("col s12 m4 l3")
                         div("input-field col s12 m2 l3") {
-                            container {
                                 label(for = "textarea1") {
                                     +"Como voce descreveria a sua disponibilidade de tempo atualmente?"
                                 }
-                            }
                             textArea(classes = "materialize-textarea", id = "textarea1")
                         }
                         div("col s12 m4 l3")
@@ -85,11 +79,9 @@ class Cadastro3View : HtmlBuilderView() {
                     div("row") {
                         div("col s12 m4 l3")
                         div("input-field col s12 m4 l6") {
-                            container {
                                 label {
                                     +"Seu principal objetivo com o curso é:"
                                 }
-                            }
                             select {
                                 option(value = "", disabled selected)
                                 option(value = "Aprender algo novo") {
@@ -123,11 +115,9 @@ class Cadastro3View : HtmlBuilderView() {
                     div("row") {
                         div("col s12 m4 l3")
                         div("input-field col s12 m4 l6") {
-                            container {
                                 label {
                                     +"Voce já se inscreveu em algum curso da share?"
                                 }
-                            }
                             select {
                                 option(value = "", disabled selected)
                                 option(value = "Sim, e fui chamado") {
@@ -150,14 +140,12 @@ class Cadastro3View : HtmlBuilderView() {
                     div("row"){
                         div("col s12 m4 l3")
                         div("input-field col s12 m4 l6") {
-                            container {
                                 label {
                                     +"Você está ciente de que desistir do curso, sem explicação "
                                     +"plausível, impossibilitará o candidato de se inscrever para "
                                     +"qualquer outro curso da Share, além de prejudicar sua turma?"
 
                                 }
-                            }
                             select {
                                 option(value = "", disabled selected)
                                 option(value = "Sim") {

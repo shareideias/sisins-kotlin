@@ -31,8 +31,12 @@ class Edicao4View : HtmlBuilderView() {
                                 +"linhas por que gostaria de fazer um curso na Share. Lembre-se, esse é um "
                                 +"dos critérios mais importantes para ser selecionado (exceto: curso português)."
                             }
-                            textArea(classes = "materialize-textarea", id = "textarea1")
-                            label(for= "textarea1")
+                            textArea(classes = "materialize-textarea"){
+                                id = "textarea1"
+                            }
+                            label(){
+                                htmlFor = "textarea1"
+                            }
                         }
                         div("col s12 m4 l3")
                     }
@@ -40,17 +44,22 @@ class Edicao4View : HtmlBuilderView() {
                     div("row") {
                         div("col s12 m4 l3")
                         div("input-field col s12 m4 l6") {
-                            container {
                                 label {
                                     +"Você leu atentamente o edital?"
                                 }
-                            }
                             select {
-                                option(value = "", disabled selected)
-                                option(value = "Sim, e fui chamado") {
+                                option(){
+                                    value="1"
+                                    disabled = true
+                                    selected = true
+                                }
+
+                                option() {
+                                    value="2"
                                     +"Sim, li e estou ciente dos termos do processo seletivo."
                                 }
-                                option(value = "Não") {
+                                option() {
+                                    value="3"
                                     +"Não"
                                 }
                             }
@@ -61,23 +70,30 @@ class Edicao4View : HtmlBuilderView() {
                     div("row") {
                         div("col s12 m4 l3")
                         div("input-field col s12 m4 l6") {
-                            container {
                                 label {
                                     +"Por onde conheceu a Share?"
                                 }
-                            }
                             select {
-                                option(value = "", disabled selected)
-                                option(value = "Mídias Sociais (Facebook, Whatsapp, etc)") {
+                                option(){
+                                    value="1"
+                                    disabled = true
+                                    selected = true
+                                }
+
+                                option() {
+                                    value="2"
                                     +"Mídias Sociais (Facebook, Whatsapp, etc)"
                                 }
-                                option(value = "Recomendação") {
+                                option() {
+                                    value="3"
                                     +"Recomendação"
                                 }
-                                option(value = "Outras Mídias (Jornais, Revistas, Televisão)") {
+                                option() {
+                                    value="4"
                                     +"Outras Mídias (Jornais, Revistas, Televisão)"
                                 }
-                                option(value = "Outro") {
+                                option() {
+                                    value="5"
                                     +"Outro"
                                 }
                             }

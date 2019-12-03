@@ -75,21 +75,18 @@ class Cadastro2_1View  : HtmlBuilderView() {
                     div("row"){
                         div("col s12 m4 l3")
                         div("input-field col s12 m2 l3") {
-                            container {
                                 label(for = "text") {
                                     +"Data de nascimento"
                                 }
-                            }
+
                             input(InputType.text, classes = "text") {
                                 id = "text"
                             }
                         }
                         div("input-field col s12 m2 l3"){
-                            container{
                                 label(for= "icon_telephone"){
                                     +"DDD + telefone"
                                 }
-                            }
                             input(InputType.tel, classes = "validate"){
                                 id = "icon_telephone"
                             }
@@ -100,7 +97,6 @@ class Cadastro2_1View  : HtmlBuilderView() {
                     div("row") {
                         div("col s12 m4 l3")
                         div("input-field col s12 m4 l6") {
-                            container {
                                 label(for = "email") {
                                     +"Email"
                                 }
@@ -114,11 +110,9 @@ class Cadastro2_1View  : HtmlBuilderView() {
                     div("row") {
                         div("col s12 m4 l3")
                         div("input-field col s12 m4 l6") {
-                            container {
                                 label(for = "password") {
                                     +"Senha"
                                 }
-                            }
                             input(InputType.password, classes = "validate") {
                                 id = "password"
                             }
@@ -126,7 +120,6 @@ class Cadastro2_1View  : HtmlBuilderView() {
                         div("col s12 m4 l3")
                     }
                 }
-            }
             div("row"){
                 a("cadastro 3.html", "entrar waves-effect waves-light btn"){
                     +"Próximo"

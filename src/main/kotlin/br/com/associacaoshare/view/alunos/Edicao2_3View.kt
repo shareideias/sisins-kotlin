@@ -16,7 +16,7 @@ class Edicao2_3View : HtmlBuilderView() {
 
             meta("viewport", "width=device-width, initial-scale=1.0")
 
-            script("text/javascript", "../js/materialize.min.js")
+            script("text/javascript", "../js/materialize.min.js"){}
         }
 
         body {
@@ -28,11 +28,9 @@ class Edicao2_3View : HtmlBuilderView() {
                     div("row"){
                         div("col s12 m4 l3")
                         div("input-field col s12 m4 l6") {
-                            container {
                                 label {
                                     +"Nome completo"
                                 }
-                            }
                             input(InputType.text, classes = "validate"){
                                 id ="name"
                             }
@@ -44,23 +42,30 @@ class Edicao2_3View : HtmlBuilderView() {
                     div("row"){
                         div("col s12 m4 l3")
                         div("input-field col s12 m4 l6") {
-                            container {
                                 label {
                                     +"Você é estudante? E/ou trabalha?"
                                 }
-                            }
                             select {
-                                option(value = "", disabled selected)
-                                option(value = "Trabalho e não estudo") {
+                                option(){
+                                    value="1"
+                                    disabled = true
+                                    selected = true
+                                }
+
+                                option() {
+                                    value = "2"
                                     +"Trabalho e não estudo"
                                 }
-                                option(value = "Não trabalho e estudo") {
+                                option() {
+                                    value = "3"
                                     +"Não trabalho e estudo"
                                 }
-                                option(value = "Não estudo e não trabalho") {
+                                option() {
+                                    value = "4"
                                     +"Não estudo e não trabalho"
                                 }
-                                option(value = "Estudo e trabalho") {
+                                option() {
+                                    value = "5"
                                     +"Estudo e trabalho"
                                 }
                             }
@@ -72,21 +77,19 @@ class Edicao2_3View : HtmlBuilderView() {
                     div("row"){
                         div("col s12 m4 l3")
                         div("input-field col s12 m2 l3") {
-                            container {
-                                label(for = "text") {
+                                label() {
+                                    htmlFor = "text"
                                     +"Data de nascimento (idade mínima: 18 anos)"
                                 }
-                            }
                             input(InputType.text, classes = "text") {
                                 id = "text"
                             }
                         }
                         div("input-field col s12 m2 l3"){
-                            container{
-                                label(for= "icon_telephone"){
+                                label(){
+                                    htmlFor ="icon_telephone"
                                     +"DDD + telefone"
                                 }
-                            }
                             input(InputType.tel, classes = "validate"){
                                 id = "icon_telephone"
                             }
@@ -97,11 +100,10 @@ class Edicao2_3View : HtmlBuilderView() {
                     div("row") {
                         div("col s12 m4 l3")
                         div("input-field col s12 m4 l6") {
-                            container {
-                                label(for = "email") {
+                                label() {
+                                    htmlFor ="email"
                                     +"Email"
                                 }
-                            }
                             input(InputType.email, classes = "validate") {
                                 id = "email"
                             }
@@ -111,11 +113,10 @@ class Edicao2_3View : HtmlBuilderView() {
                     div("row") {
                         div("col s12 m4 l3")
                         div("input-field col s12 m4 l6") {
-                            container {
-                                label(for = "password") {
+                                label() {
+                                    htmlFor = "password"
                                     +"Senha"
                                 }
-                            }
                             input(InputType.password, classes = "validate") {
                                 id = "password"
                             }

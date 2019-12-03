@@ -40,11 +40,9 @@ class Cadastro4View : HtmlBuilderView() {
                     div("row") {
                         div("col s12 m4 l3")
                         div("input-field col s12 m4 l6") {
-                            container {
                                 label {
                                     +"Você leu atentamente o edital?"
                                 }
-                            }
                             select {
                                 option(value = "", disabled selected)
                                 option(value = "Sim, e fui chamado") {
@@ -61,11 +59,9 @@ class Cadastro4View : HtmlBuilderView() {
                     div("row") {
                         div("col s12 m4 l3")
                         div("input-field col s12 m4 l6") {
-                            container {
                                 label {
                                     +"Por onde conheceu a Share?"
                                 }
-                            }
                             select {
                                 option(value = "", disabled selected)
                                 option(value = "Mídias Sociais (Facebook, Whatsapp, etc)") {

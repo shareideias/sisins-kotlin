@@ -16,7 +16,7 @@ class Edicao1View : HtmlBuilderView() {
 
             meta("viewport", "width=device-width, initial-scale=1.0")
 
-            script("text/javascript", "../js/materialize.min.js")
+            script("text/javascript", "../js/materialize.min.js") {}
         }
 
         body {
@@ -26,20 +26,25 @@ class Edicao1View : HtmlBuilderView() {
             div("row"){
                 div("col s12 m4 l3")
                 div("input-field col s12 m4 l6"){
-                    container{
                         label{
                             +"Responda em qual categoria se encaixa"
                         }
-                    }
                     select {
-                        option(value="", disabled selected)
-                        option(value="Pessoas com vínculo com a UFSCar."){
+                        option(){
+                            value="1"
+                            disabled = true
+                            selected = true
+                        }
+                        option(){
+                            value= "2"
                             +"Pessoas com vínculo com a UFSCar."
                         }
-                        option(value = "Alunos do terceiro ano do ensino médio (tendo no mínimo 16 anos)"){
+                        option(){
+                            value = "3"
                             +"Alunos do terceiro ano do ensino médio (tendo no mínimo 16 anos)"
                         }
-                        option(value = "Pessoas que não possuem vínculo com a UFSCar"){
+                        option(){
+                            value = "4"
                             +"Pessoas que não possuem vínculo com a UFSCar"
                         }
                     }

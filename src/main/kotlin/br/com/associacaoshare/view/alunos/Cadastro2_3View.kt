@@ -28,11 +28,9 @@ class Cadastro2_3View : HtmlBuilderView() {
                     div("row"){
                         div("col s12 m4 l3")
                         div("input-field col s12 m4 l6") {
-                            container {
                                 label {
                                     +"Nome completo"
                                 }
-                            }
                             input(InputType.text, classes = "validate"){
                                 id ="name"
                             }
@@ -44,11 +42,9 @@ class Cadastro2_3View : HtmlBuilderView() {
                     div("row"){
                         div("col s12 m4 l3")
                         div("input-field col s12 m4 l6") {
-                            container {
                                 label {
                                     +"Você é estudante? E/ou trabalha?"
                                 }
-                            }
                             select {
                                 option(value = "", disabled selected)
                                 option(value = "Trabalho e não estudo") {
@@ -72,21 +68,17 @@ class Cadastro2_3View : HtmlBuilderView() {
                     div("row"){
                         div("col s12 m4 l3")
                         div("input-field col s12 m2 l3") {
-                            container {
                                 label(for = "text") {
                                     +"Data de nascimento (idade mínima: 18 anos)"
                                 }
-                            }
                             input(InputType.text, classes = "text") {
                                 id = "text"
                             }
                         }
                         div("input-field col s12 m2 l3"){
-                            container{
                                 label(for= "icon_telephone"){
                                     +"DDD + telefone"
                                 }
-                            }
                             input(InputType.tel, classes = "validate"){
                                 id = "icon_telephone"
                             }
@@ -97,11 +89,9 @@ class Cadastro2_3View : HtmlBuilderView() {
                     div("row") {
                         div("col s12 m4 l3")
                         div("input-field col s12 m4 l6") {
-                            container {
                                 label(for = "email") {
                                     +"Email"
                                 }
-                            }
                             input(InputType.email, classes = "validate") {
                                 id = "email"
                             }
@@ -111,11 +101,9 @@ class Cadastro2_3View : HtmlBuilderView() {
                     div("row") {
                         div("col s12 m4 l3")
                         div("input-field col s12 m4 l6") {
-                            container {
                                 label(for = "password") {
                                     +"Senha"
                                 }
-                            }
                             input(InputType.password, classes = "validate") {
                                 id = "password"
                             }
