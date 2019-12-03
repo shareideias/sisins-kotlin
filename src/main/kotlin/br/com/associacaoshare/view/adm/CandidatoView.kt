@@ -60,57 +60,49 @@ class CandidatoView : HtmlBuilderView() {
     private fun MAIN.main() {
         h3("João Victor Montefusco")
 
-        h4{+"Aluno"}
+        h4 { +"Aluno" }
         article {
-            p{
+            p {
                 b { +"Categoria:" }
                 br { +" Pessoas com vínculo com a UFSCar." }
             }
-            p{
+            p {
                 b { +"Vínculo:" }
                 br { +" Aluno da Graduação" }
             }
-            p{
+            p {
                 b { +"Data de nascimento:" }
                 br { +" 20/10/1997" }
             }
-            p{
+            p {
                 b { +"Telefone:" }
                 br { +" 15)996073387" }
             }
-            p{
+            p {
                 b { +"Email:" }
                 br { +" joaovmontefusco@gmail.com" }
             }
         }
 
-        h4{+"Inscrição"}
+        h4 { +"Inscrição" }
         article {
-            p{
+            p {
                 b { +"Esteve antes na UFSCar:" }
                 br { +" Sim" }
             }
-            p{
-                b { +"Ciente de que as aulas acontecem na UFSCar Sorocaba:" }
-                br { +" Sim" }
-            }
-            p{
+            p {
                 b { +"Disponibilidade de tempo:" }
                 br { +" Tranquilo" }
             }
-            p{
+            p {
                 b { +"Objetivo com o curso:" }
                 br { +" Aprender algo novo" }
             }
-            p{
+            p {
                 b { +"Inscrição e outros cursos da Share:" }
                 br { +" Sim, e fui chamado." }
             }
-            p{
-                b { +"Ciência das consequências da desistências do curso:" }
-                br { +" Sim" }
-            }
-            p{
+            p {
                 b { +"Texte de por quê gostaria de fazer um curso na Share:" }
                 br {
                     +"Lorem, ipsum dolor sit amet consectetur adipisicing elit. "
@@ -119,33 +111,29 @@ class CandidatoView : HtmlBuilderView() {
                     +"magni tempora eum est dolorem enim."
                 }
             }
-            p{
-                b { +"Leitura do edital:" }
-                br { +" Sim" }
-            }
-            p{
+            p {
                 b { +"Por onde conheceu a Share:" }
                 br { +" Recomendação" }
             }
         }
 
-        form( classes = "botoes"){
-            a( classes = "botao waves-effect waves-light green btn-large"){
+        form(classes = "botoes") {
+            a(classes = "botao waves-effect waves-light green btn-large") {
                 +"Aprovar"
             }
-            a( classes = "botao waves-effect waves-light yellow btn-large"){
+            a(classes = "botao waves-effect waves-light yellow btn-large") {
                 +"Lista de espera"
             }
-            a( classes = "botao waves-effect waves-light blue btn-large"){
+            a(classes = "botao waves-effect waves-light blue btn-large") {
                 +"Desistência"
             }
-            a( classes = "botao waves-effect waves-light red btn-large"){
+            a(classes = "botao waves-effect waves-light red btn-large") {
                 +"Reprovar"
             }
 
-            label("check"){
-                input("checkbox")
-                span{+"Continuar avaliando"}
+            label("check") {
+                checkBoxInput(name = "continuar")
+                span { +"Continuar avaliando" }
             }
         }
     }

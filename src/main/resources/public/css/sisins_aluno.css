@@ -1,7 +1,6 @@
 body{
     background-color: #FAFAFA;
 }
-
 .logo{
     height: 10em;
     display: block;
@@ -9,11 +8,24 @@ body{
     margin-right: auto;
     margin-top: 2em;
 }
-
+/*
 
 h3{
     text-align: center;
     margin-top: 0;
+}
+
+h5 {
+    margin-top: 2em;
+}
+
+h6 {
+    min-width: 339px;
+    max-width: 600px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
 }
 
 .entrar{
@@ -39,3 +51,133 @@ h3{
 .pular option{
     margin-top: 80px;
 }
+
+.logo{
+    height: 10em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+}
+
+.row{
+    width: 80ch;
+}
+
+.cadastrar{
+    border: 20px solid #04B404;
+    background-color: #04B404;
+    width: 26ch;
+    height: 4em;
+    text-align: center;
+    border-radius: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2em;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.card{
+    background-color: #FAFAFA;
+    border: 0 solid #FAFAFA;
+    box-shadow: 0px 0px 0px 0px;
+}
+
+.logo{
+    max-height: 20em;
+    max-width: 20em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.cadastro{
+    background-color: #FF8000;
+    color: white;
+    font-weight: bold;
+    margin-top: 4em;
+    padding-top: 0.75em;
+}
+
+.login{
+    background-color: #04B404;
+    color: white;
+    font-weight: bold;
+    margin-top: 4em;
+    padding-top: 0.75em;
+}
+
+.btn{
+    width: 26ch;
+    height: 4em;
+}
+
+.card{
+    background-color: #FAFAFA;
+    border: 0 solid #FAFAFA;
+    box-shadow: 0px 0px 0px 0px;
+}
+
+
+.logo{
+    max-height: 20em;
+    max-width: 20em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.atualizar{
+    background-color: #04B404;
+    color: white;
+    font-weight: bold;
+    padding-top: 0.75em;
+    margin-top: 3em;
+}
+
+.btn{
+    width: 26ch;
+    height: 4em;
+}
+.collection{
+    max-width: 381px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logo{
+    height: 10em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+}
+
+
+.entrar{
+    background-color: #04B404;
+    color: white;
+    font-weight: bold;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 0.75em;
+}
+
+.btn{
+    width: 26ch;
+    height: 4em;
+}
+
+.input-field label {
+    color: black;
+    font-size: 15px;
+}
+
+.pular option {
+    margin-top: 80px;
+}
+*/
