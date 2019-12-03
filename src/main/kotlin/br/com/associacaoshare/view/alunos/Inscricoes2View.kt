@@ -1,31 +1,14 @@
 package br.com.associacaoshare.view.alunos
 
 import br.com.associacaoshare.view.base.HtmlBuilderView
+import br.com.associacaoshare.view.base.SisInsAlunoView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class Inscricoes2View  : HtmlBuilderView() {
-    override fun HTML.render(ctx: Context) {
-        head {
-            title("Inscrição Share")
-
-            link(rel = "icon", href = "/img/globo.png")
-            meta(charset = "utf-8")
-
-            link("https://fonts.googleapis.com/icon?family=Material+Icons", rel = "stylesheet")
-            link(type = "text/css", rel = "stylesheet", href = "/css/materialize.min.css")
-            link(type = "text/css", rel = "stylesheet", href = "../css/inscricoes.css")
-
-            meta("viewport", "width=device-width, initial-scale=1.0")
-        }
-
-        body {
-            main { main() }
-            scripts()
-        }
-    }
-
-    private fun MAIN.main() {
+class Inscricoes2View  : SisInsAlunoView() {
+    override val pageTitle: String
+        get() = "Inscrição Share"
+    override fun BODY.renderBody(ctx: Context) {
         div("row"){
             div("col s12 m0 l3")
             div("col s12 m12 l3"){
@@ -63,10 +46,4 @@ class Inscricoes2View  : HtmlBuilderView() {
             div("col s12 m0 l3")
         }
     }
-
-    //JavaScript para animação e validação de email e senha
-    private fun BODY.scripts() {
-        script("text/javascript", "../js/materialize.min.js"){}
-    }
-
 }
