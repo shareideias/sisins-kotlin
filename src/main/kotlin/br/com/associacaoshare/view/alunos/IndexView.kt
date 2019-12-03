@@ -1,30 +1,14 @@
 package br.com.associacaoshare.view.alunos
 
 import br.com.associacaoshare.view.base.HtmlBuilderView
+import br.com.associacaoshare.view.base.SisInsAlunoView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class IndexView : HtmlBuilderView() {
-    override fun HTML.render(ctx: Context) {
-        head {
-            title("Inscrição Share")
-
-            link(rel = "icon", href = "/img/globo.png")
-            meta(charset = "utf-8")
-
-            link("https://fonts.googleapis.com/icon?family=Material+Icons", rel = "stylesheet")
-            link(type = "text/css", rel = "stylesheet", href = "/css/materialize.min.css")
-            link(type = "text/css", rel = "stylesheet", href = "../css/index.css")
-
-            meta("viewport", "width=device-width, initial-scale=1.0")
-        }
-
-        body {
-            main { main() }
-        }
-    }
-
-    private fun MAIN.main() {
+class IndexView : SisInsAlunoView() {
+    override val pageTitle: String
+        get() = "Início"
+    override fun BODY.renderBody(ctx: Context) {
         div("row"){
             div("col s12 m0 l3")
             div("col s12 m12 l3"){
