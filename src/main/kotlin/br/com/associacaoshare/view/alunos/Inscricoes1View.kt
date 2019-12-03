@@ -65,7 +65,7 @@ class Inscricoes1View : HtmlBuilderView() {
 
     //JavaScript para animação e validação de email e senha
     private fun BODY.scripts() {
-        script("text/javascript", "../js/materialize.min.js")
+        script("text/javascript", "../js/materialize.min.js"){}
     }
 
 }

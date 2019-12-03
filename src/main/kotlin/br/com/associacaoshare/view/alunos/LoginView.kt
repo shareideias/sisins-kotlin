@@ -26,39 +26,45 @@ class LoginView : HtmlBuilderView() {
     }
 
     private fun MAIN.main() {
-        div("row"){
+        div("row") {
             div("col s12 m0 l3")
-            div("col s12 m12 l3"){
-                div("card"){
-                    div("card-image"){
+            div("col s12 m12 l3") {
+                div("card") {
+                    div("card-image") {
                         img("Logo da Share", "../img/share-logo.png", "logo")
                     }
                 }
             }
-            div("center col s12 m12 l3"){
-                div("caixa_login"){
-                    div("lighten-4 row geral_login"){
-                        form(classes = "col s12", method = "post"){
-                            div("row"){
+            div("center col s12 m12 l3") {
+                div("caixa_login") {
+                    div("lighten-4 row geral_login") {
+                        form(classes = "col s12", method = FormMethod.post) {
+                            div("row") {
                                 div("input-field col s12") {
-                                    input(InputType.email, classes = 'validate', name = 'email', ) {
+                                    input(InputType.email, classes = "validate", name = "email") {
                                         id = "email"
                                     }
-                                    label(for = 'email'){+"Email"}
+                                    label() {
+                                        htmlFor = "email"
+                                        +"Email"
+                                    }
                                 }
                             }
 
-                            div("row"){
+                            div("row") {
                                 div("input-field col s12") {
-                                    input(InputType.password, classes = 'validate', name = 'password', ) {
+                                    input(InputType.password, classes = "validate", name = "password") {
                                         id = "password"
                                     }
-                                    label(for = 'password'){+"Senha"}
+                                    label() {
+                                        htmlFor = "password"
+                                        +"Senha"
+                                    }
                                 }
                             }
 
-                            div("row"){
-                                a("inscricoes.html", classes = "center entrar waves-effect waves-light btn"){+"Entrar"}
+                            div("row") {
+                                a("inscricoes.html", classes = "center entrar waves-effect waves-light btn") { +"Entrar" }
                             }
                         }
                     }
@@ -71,7 +77,7 @@ class LoginView : HtmlBuilderView() {
 
     //JavaScript para animação e validação de email e senha
     private fun BODY.scripts() {
-        script("text/javascript", "../js/materialize.min.js")
+        script("text/javascript", "../js/materialize.min.js"){}
     }
 
 }
