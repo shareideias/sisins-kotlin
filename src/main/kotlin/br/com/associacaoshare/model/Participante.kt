@@ -1,15 +1,16 @@
 package br.com.associacaoshare.model
 
+import br.com.associacaoshare.model.dao.DataAccessObject
 import java.time.LocalDate
 
 data class Participante(
-    val id: String?,
+    val id: Int,
     var categoria: Int?,
     var nome: String,
     var data_nascimento: LocalDate,
     var telefone: String,
     var email: String,
-    var senha: String,
+    var hash: String,
     var vinculo_ufscar: Int? = -1,
     var escola: String?,
     var tipo_sem_vinculo: Int? = -1,
@@ -29,7 +30,6 @@ data class Participante(
     var resposta5_c1: Int?,
     var resposta6_c1: Int?,
     var avaliador_id_c1: Int?,
-    var data_avaliacao_c1: LocalDate?,
     var resultado_c1: Int? = -1,
 
     var curso2_id: Int?,
@@ -41,6 +41,9 @@ data class Participante(
     var resposta5_c2: Int?,
     var resposta6_c2: Int?,
     var avaliador_id_c2: Int?,
-    var data_avaliacao_c2: LocalDate?,
     var resultado_c2: Int? = -1
-);
+) {
+    fun hashPassword(password: String) {
+        hash = DataAccessObject.hashPassword(password)
+    }
+}

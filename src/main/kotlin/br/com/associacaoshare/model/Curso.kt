@@ -1,7 +1,7 @@
 package br.com.associacaoshare.model
 
 data class Curso(
-    val id: String?,
+    val id: Int,
     var nome: String,
     var categoria: String,
     var horario: String,
