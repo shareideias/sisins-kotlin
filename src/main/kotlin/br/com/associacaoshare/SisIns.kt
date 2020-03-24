@@ -17,7 +17,6 @@ fun main() {
 
     val kodein = Kodein {
         bind<ObjectMapper>() with singleton { jacksonObjectMapper() }
-        bind<DataAccessObject>() with eagerSingleton { JdbiDataAccessObject("jdbc:postgresql:shareideias") }
         bind<Algorithm>() with provider {
             Algorithm.HMAC256(System.getenv("secret") ?: "shareinstituto_is_very_secret")
         }

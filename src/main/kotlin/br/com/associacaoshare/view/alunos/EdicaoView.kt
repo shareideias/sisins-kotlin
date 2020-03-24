@@ -10,42 +10,615 @@ class EdicaoView : SisInsAlunoView() {
     override fun BODY.renderBody(ctx: Context) {
         img("Logo da Share", "../img/share-logo.png", "logo")
         h3 { +"Edição" }
-        form(method = FormMethod.post) {
-            div("container") {
-                div {
-                    id = "parte1"
-                    parte1()
+        div("row") {
+            form(classes = "col s12", method = FormMethod.post) {
+
+                div("input-field col s12 mb-0") {
+                    p {
+                        label("perguntas") {
+                            htmlFor = "inputCategoria"
+                            +"Responda em qual categoria se encaixa"
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputCategoria"
+                            name = "categoria"
+                            value = "1"
+                            label {
+                                radioInput(name = "categoria")
+                                span { +"Pessoas com vínculo com a UFSCar." }
+                            }
+                        }
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputCategoria"
+                            name = "categoria"
+                            value = "2"
+                            label {
+                                radioInput(name = "categoria")
+                                span("alternativas") { +"Alunos do terceiro ano do ensino médio (tendo no mínimo 16 anos)" }
+                            }
+                        }
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputCategoria"
+                            name = "categoria"
+                            value = "3"
+                            label {
+                                radioInput(name = "categoria")
+                                span { +"Pessoas que não possuem vínculo com a UFSCar" }
+                            }
+                        }
+                    }
                 }
-                div("hide") {
-                    id = "parte2"
-                    parte2()
+
+
+                div("input-field col s12 mb-0") {
+                    label("perguntas"){
+                        htmlFor = "inputNome"
+                        +"Nome completo"
+                    }
+                    input(InputType.text, classes = "validate") {
+                        id = "inputNome"
+                        name = "nome"
+                    }
                 }
-                div("hide") {
-                    id = "parte21"
-                    parte21()
+
+                div("input-field col s12 mb-0 perguntas") {
+                    +"Data de nascimento(idade mínima: 16 anos)"
+                    label{
+                        htmlFor = "inputData_nascimento"
+
+                    }
+                    input(InputType.date , classes = "validate") {
+                        id = "inputData_nascimento"
+                        name = "data_nascimento"
+                    }
                 }
-                div("hide") {
-                    id = "parte22"
-                    parte22()
+
+                div("input-field col s12 mb-0") {
+                    label("perguntas"){
+                        htmlFor = "inputTelefone"
+                        +"DDD + telefone"
+                    }
+                    input(InputType.tel, classes = "validate") {
+                        id = "inputTelefone"
+                        name = "telefone"
+                    }
                 }
-                div("hide") {
-                    id = "parte23"
-                    parte23()
+
+                div("input-field col s12 mb-0") {
+                    label("perguntas"){
+                        htmlFor = "inputEmail"
+                        +"Email"
+                    }
+                    input(InputType.email , classes = "validate") {
+                        id = "inputEmail"
+                        name = "email"
+                    }
                 }
-                div("hide") {
-                    id = "parte2F"
-                    parte2F()
+
+                div("input-field col s12 mb-0") {
+                    label("perguntas"){
+                        htmlFor = "inputPassword"
+                        +"Senha"
+                    }
+                    input(InputType.password, classes = "validate") {
+                        id = "inputPassword"
+                        name = "password"
+                    }
                 }
-                div("hide") {
-                    id = "parte3"
-                    parte3()
+
+                div("input-field col s12 mb-0") {
+                    p {
+                        label("perguntas") {
+                            htmlFor = "inputTipo_sem_vinculo"
+                            +"Você é estudante? E/ou trabalha?"
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputTipo_sem_vinculo"
+                            name = "tipo_sem_vinculo"
+                            value = "1"
+                            label {
+                                radioInput(name = "tipo_sem_vinculo")
+                                span { +"Trabalho e não estudo" }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputTipo_sem_vinculo"
+                            name = "tipo_sem_vinculo"
+                            value = "2"
+                            label {
+                                radioInput(name = "tipo_sem_vinculo")
+                                span{ +"Não trabalho e estudo" }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputTipo_sem_vinculo"
+                            name = "tipo_sem_vinculo"
+                            value = "3"
+                            label {
+                                radioInput(name = "tipo_sem_vinculo")
+                                span { +"Não estudo e não trabalho" }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputTipo_sem_vinculo"
+                            name = "tipo_sem_vinculo"
+                            value = "4"
+                            label {
+                                radioInput(name = "tipo_sem_vinculo")
+                                span { +"Estudo e trabalho" }
+                            }
+                        }
+                    }
                 }
-                div("hide") {
-                    id = "parte4"
-                    parte4()
+
+                div("input-field col s12 mb-0") {
+                    p {
+                        label("perguntas") {
+                            htmlFor = "inputVinculoUfscar"
+                            +"Qual o seu vínculo com a UFSCAR?"
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputVinculoUfscar"
+                            name = "vinculo_ufscar"
+                            value = "1"
+                            label {
+                                radioInput(name = "vinculo_ufscar")
+                                span { +"Professor" }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputVinculoUfscar"
+                            name = "vinculo_ufscar"
+                            value = "2"
+                            label {
+                                radioInput(name = "vinculo_ufscar")
+                                span { +"Técnico-Administrativo (TAs)" }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputVinculoUfscar"
+                            name = "vinculo_ufscar"
+                            value = "3"
+                            label {
+                                radioInput(name = "vinculo_ufscar")
+                                span { +"Aluno da Graduação" }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputVinculoUfscar"
+                            name = "vinculo_ufscar"
+                            value = "4"
+                            label {
+                                radioInput(name = "vinculo_ufscar")
+                                span { +"Aluno da Pós Graduação" }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputVinculoUfscar"
+                            name = "vinculo_ufscar"
+                            value = "5"
+                            label {
+                                radioInput(name = "vinculo_ufscar")
+                                span { +"Outro" }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputVinculoUfscar"
+                            name = "vinculo_ufscar"
+                            value = "6"
+                            label {
+                                radioInput(name = "vinculo_ufscar")
+                                span { +"Nenhum" }
+                            }
+                        }
+                        br
+                    }
+                }
+
+                div("input-field col s12 mb-0 perguntas") {
+                    +"Escola em que estuda e cidade (Se for aluno do ensino médio) "
+                    label{
+                        htmlFor = "inputEscola"
+
+                    }
+                    input(InputType.text , classes = "validate") {
+                        id = "inputEscola"
+                        name = "escola"
+                    }
+                }
+
+                div("input-field col s12 mb-0") {
+                    p {
+                        label("perguntas") {
+                            htmlFor = "inputEdital"
+                            +"Você leu atentamento o edital?"
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputEdital"
+                            name = "edital"
+                            value = "1"
+                            label {
+                                radioInput(name = "edital")
+                                span("alternativas") { +"Sim, li e estou ciente dos termos do processo seletivo." }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputEdital"
+                            name = "Edital"
+                            value = "2"
+                            label {
+                                radioInput(name = "edital")
+                                span{ +"Não" }
+                            }
+                        }
+                        br
+                    }
+                }
+
+                div("input-field col s12 mb-0") {
+                    p {
+                        label("perguntas") {
+                            htmlFor = "inputOnde_conheceu"
+                            +"Por onde conheceu a share?"
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputOnde_conheceu"
+                            name = "onde_conheceu"
+                            value = "1"
+                            label {
+                                radioInput(name = "onde_conheceu")
+                                span { +"Mídias sociais (Facebook, Whatsapp, etc)" }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputOnde_conheceu"
+                            name = "onde_conheceu"
+                            value = "2"
+                            label {
+                                radioInput(name = "onde_conheceu")
+                                span { +"Recomendação" }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputOnde_conheceu"
+                            name = "onde_conheceu"
+                            value = "3"
+                            label {
+                                radioInput(name = "onde_conheceu")
+                                span { +"Outras mídias (jornais, revistas, televisão)" }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputOnde_conheceu"
+                            name = "onde_conheceu"
+                            value = "4"
+                            label {
+                                radioInput(name = "onde_conheceu")
+                                span { +"Outros" }
+                            }
+                        }
+                        br
+                    }
+                }
+
+                div("input-field col s12 mb-0") {
+                    p {
+                        label("perguntas") {
+                            htmlFor = "inputEsteve_ufscar"
+                            +"Você já esteve na UFSCar antes?"
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputEsteve_ufscar"
+                            name = "esteve_ufscar"
+                            value = "1"
+                            label {
+                                radioInput(name = "esteve_ufscar")
+                                span { +"Sim" }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputEsteve_ufscar"
+                            name = "esteve_ufscar"
+                            value = "2"
+                            label {
+                                radioInput(name = "esteve_ufscar")
+                                span { +"Não" }
+                            }
+                        }
+                        br
+
+                    }
+                }
+
+                div("input-field col s12 mb-0") {
+                    p {
+                        label("perguntas") {
+                            htmlFor = "inputLocal_aulas"
+                            +"Você está ciente de que as aulas da Share acontecem na UFSCar Sorocaba, próximo à Salto de Pirapora?"
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputLocal_aulas"
+                            name = "local_aulas"
+                            value = "1"
+                            label {
+                                radioInput(name = "local_aulas")
+                                span { +"Sim" }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputLocal_aulas"
+                            name = "local_aulas"
+                            value = "2"
+                            label {
+                                radioInput(name = "local_aulas")
+                                span { +"Não" }
+                            }
+                        }
+                        br
+                    }
+                }
+
+                div("input-field col s12 mb-0 perguntas") {
+                    +"Como voce descreveria a sua disponibilidade de tempo atualmente?"
+                    label{
+                        htmlFor = "inputDisponibilidade"
+
+                    }
+                    input(InputType.text , classes = "validate") {
+                        id = "inputDisponibilidade"
+                        name = "disponibilidade"
+                    }
+                }
+
+                div("input-field col s12 mb-0") {
+                    p {
+                        label("perguntas") {
+                            htmlFor = "inputObjetivo"
+                            +"Seu principal objetivo com o curso é:"
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputObjetivo"
+                            name = "objetivo"
+                            value = "1"
+                            label {
+                                radioInput(name = "objetivo")
+                                span { +"Aprender algo novo" }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputObjetivo"
+                            name = "objetivo"
+                            value = "2"
+                            label {
+                                radioInput(name = "objetivo")
+                                span { +"Ter um hobby/me distrair" }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputObjetivo"
+                            name = "objetivo"
+                            value = "3"
+                            label {
+                                radioInput(name = "objetivo")
+                                span { +"Me atualizar para o mercado de trabalho" }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputObjetivo"
+                            name = "objetivo"
+                            value = "4"
+                            label {
+                                radioInput(name = "objetivo")
+                                span { +"Conhecer pessoas novas" }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputObjetivo"
+                            name = "objetivo"
+                            value = "5"
+                            label {
+                                radioInput(name = "objetivo")
+                                span("alternativas") { +"Conhecer mais sobre a área/ sanar minha curiosidade" }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputObjetivo"
+                            name = "objetivo"
+                            value = "6"
+                            label {
+                                radioInput(name = "objetivo")
+                                span("alternativas") { +"Me preparar para provas (vestibulares, provas da faculdade)" }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputObjetivo"
+                            name = "objetivo"
+                            value = "7"
+                            label {
+                                radioInput(name = "objetivo")
+                                span { +"Me preparar para um intercâmbio" }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputObjetivo"
+                            name = "objetivo"
+                            value = "8"
+                            label {
+                                radioInput(name = "objetivo")
+                                span { +"Outro" }
+                            }
+                        }
+                        br
+
+
+                    }
+                }
+
+                div("input-field col s12 mb-0") {
+                    p {
+                        label("perguntas") {
+                            htmlFor = "inputCursou_share"
+                            +"Voce já se inscreveu em algum curso da share?"
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputCursou_share"
+                            name = "cursou_share"
+                            value = "1"
+                            label {
+                                radioInput(name = "cursou_share")
+                                span { +"Sim e fui chamado" }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputCursou_share"
+                            name = "cursou_share"
+                            value = "2"
+                            label {
+                                radioInput(name = "cursou_share")
+                                span { +"Não" }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputCursou_share"
+                            name = "cursou_share"
+                            value = "3"
+                            label {
+                                radioInput(name = "cursou_share")
+                                span { +"Uma vez, e não fui chamado" }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputCursou_share"
+                            name = "cursou_share"
+                            value = "4"
+                            label {
+                                radioInput(name = "cursou_share")
+                                span { +"Mais de uma vez, e nunca fui chamado" }
+                            }
+                        }
+                        br
+                    }
+                }
+
+                div("input-field col s12 mb-0") {
+                    p {
+                        label("perguntas") {
+                            htmlFor = "inputDesistencia"
+                            +"Você está ciente de que desistir do curso, sem explicação plausível, impossibilitará o candidato de se inscrever para qualquer outro curso da Share, além de prejudicar sua turma?"
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputDesistencia"
+                            name = "desistencia"
+                            value = "1"
+                            label {
+                                radioInput(name = "desistencia")
+                                span { +"Sim" }
+                            }
+                        }
+                        br
+
+                        input(InputType.radio, classes = "validate") {
+                            id = "inputDesistencia"
+                            name = "desistencia"
+                            value = "2"
+                            label {
+                                radioInput(name = "desistencia")
+                                span { +"Não" }
+                            }
+                        }
+                        br
+                    }
+                }
+
+                div("input-field col s12 mb-0 perguntas") {
+                    +"Para finalizar, pedimos para que você escreva entre 5 e 10 linhas por que gostaria de fazer um curso na Share. Lembre-se, esse é um dos critérios mais importantes para ser selecionado (exceto: curso português)."
+                    label{
+                        htmlFor = "inputRedacao_entrada"
+
+                    }
+                    input(InputType.text , classes = "validate") {
+                        id = "inputRedacao_entrada"
+                        name = "redacao_entrada"
+                    }
+                }
+                button(type = ButtonType.submit, classes = "entrar waves-effect waves-light btn") {
+                    id = "btnParte4Cadastrar"
+                    +"Editar"
                 }
             }
         }
+
+
         script {
             unsafe {
                 +"""
@@ -54,397 +627,6 @@ class EdicaoView : SisInsAlunoView() {
                 });
                 """.trimIndent()
             }
-        }
-    }
-
-    private fun DIV.parte1() {
-        div("input-field") {
-            label {
-                htmlFor = "selectCategoria"
-                +"Responda em qual categoria se encaixa"
-            }
-            select {
-                id = "selectCategoria"
-                name = "categoria"
-                option {
-                    disabled = true
-                    selected = true
-                    value = ""
-                }
-                option {
-                    value = "1"
-                    +"Pessoas com vínculo com a UFSCar."
-                }
-                option {
-                    value = "2"
-                    +"Alunos do terceiro ano do ensino médio (tendo no mínimo 16 anos)"
-                }
-                option {
-                    value = "3"
-                    +"Pessoas que não possuem vínculo com a UFSCar"
-                }
-            }
-        }
-        button(type = ButtonType.button, classes = "waves-effect waves-light btn") {
-            id = "btnParte1Proximo"
-            +"Próximo"
-        }
-    }
-
-    private fun DIV.parte2() {
-        div("input-field") {
-            label {
-                htmlFor = "inputNome"
-                +"Nome completo"
-            }
-            input(InputType.text, classes = "validate") {
-                id = "inputNome"
-                name = "nome"
-            }
-        }
-        div("input-field") {
-            label {
-                htmlFor = "inputDataNasc"
-                +"Data de nascimento"
-            }
-            input(InputType.text, classes = "datepicker") {
-                id = "inputDataNasc"
-            }
-        }
-        div("input-field") {
-            label {
-                htmlFor = "inputTelefone"
-                +"DDD + telefone"
-            }
-            input(InputType.tel, classes = "validate") {
-                id = "inputTelefone"
-            }
-        }
-        div("input-field") {
-            label {
-                htmlFor = "inputEmail"
-                +"Email"
-            }
-            input(InputType.email, classes = "validate") {
-                id = "inputEmail"
-            }
-        }
-        div("input-field") {
-            label {
-                htmlFor = "inputPassword"
-                +"Senha"
-            }
-            input(InputType.password, classes = "validate") {
-                id = "inputPassword"
-            }
-        }
-    }
-
-    private fun DIV.parte21() {
-        div("input-field") {
-            label {
-                htmlFor = "selectVinculoUfscar"
-                +"Qual o seu vínculo com a UFSCAR?"
-            }
-            select {
-                id = "selectVinculoUfscar"
-                name = "vinculo_ufscar"
-                option {
-                    disabled = true
-                    selected = true
-                    value = ""
-                }
-                option {
-                    value = "1"
-                    +"Professor"
-                }
-                option {
-                    value = "2"
-                    +"Técnico-Administrativo (TAs)"
-                }
-                option {
-                    value = "3"
-                    +"Aluno da Graduação"
-                }
-                option {
-                    value = "4"
-                    +"Aluno da Pós Graduação"
-                }
-                option {
-                    value = "5"
-                    +"Outro"
-                }
-            }
-        }
-    }
-
-    private fun DIV.parte22() {
-        div("input-field") {
-            label {
-                +"Escola em que estuda e cidade"
-                htmlFor = "inputEscola"
-            }
-            input(InputType.text, classes = "validate") {
-                id = "inputEscola"
-                name = "escola"
-            }
-        }
-    }
-
-    private fun DIV.parte23() {
-        div("input-field") {
-            label {
-                htmlFor = "selectTipoSemVinculo"
-                +"Você é estudante? E/ou trabalha?"
-            }
-            select {
-                id = "selectTipoSemVinculo"
-                name = "tipo_sem_vinculo"
-                option {
-                    disabled = true
-                    selected = true
-                    value = ""
-                }
-                option {
-                    value = "1"
-                    +"Trabalho e não estudo"
-                }
-                option {
-                    value = "2"
-                    +"Não trabalho e estudo"
-                }
-                option {
-                    value = "3"
-                    +"Não estudo e não trabalho"
-                }
-                option {
-                    value = "4"
-                    +"Estudo e trabalho"
-                }
-            }
-        }
-    }
-
-    private fun DIV.parte2F() {
-        button(type = ButtonType.button, classes = "waves-effect waves-light btn") {
-            id = "btnParte2Voltar"
-            +"Voltar"
-        }
-        button(type = ButtonType.button, classes = "waves-effect waves-light btn") {
-            id = "btnParte2Proximo"
-            +"Próximo"
-        }
-    }
-
-    private fun DIV.parte3() {
-        div("input-field") {
-            label {
-                htmlFor = "selectEsteveUfscar"
-                +"Você já esteve na UFSCar antes?"
-            }
-            select {
-                id = "selectEsteveUfscar"
-                name = "esteve_ufscar"
-                option {
-                    disabled = true
-                    selected = true
-                    value = ""
-                }
-                option {
-                    value = "1"
-                    +"Sim"
-                }
-                option {
-                    value = "2"
-                    +"Não"
-                }
-            }
-        }
-
-        div("input-field") {
-            label {
-                htmlFor = "inputDisponibilidade"
-                +"Como voce descreveria a sua disponibilidade de tempo atualmente?"
-            }
-            textArea(classes = "materialize-textarea") {
-                id = "inputDisponibilidade"
-                name = "disponibilidade"
-            }
-        }
-
-        div("input-field") {
-            label {
-                htmlFor = "selectObjetivo"
-                +"Seu principal objetivo com o curso é:"
-            }
-            select {
-                id = "selectObjetivo"
-                name = "objetivo"
-                option {
-                    disabled = true
-                    selected = true
-                    value = ""
-                }
-                option {
-                    value = "1"
-                    +"Aprender algo novo"
-                }
-                option {
-                    value = "2"
-                    +"Ter um hobby/me distrair"
-                }
-                option {
-                    value = "3"
-                    +"Me atualizar para o mercado de trabalho"
-                }
-                option {
-                    value = "4"
-                    +"Conhecer pessoas novas"
-                }
-                option {
-                    value = "5"
-                    +"Conhecer mais sobre a área/ sanar minha curiosidade"
-                }
-                option {
-                    value = "6"
-                    +"Me preparar para provas (vestibulares,  provas da faculdade)"
-                }
-                option {
-                    value = "7"
-                    +"Me preparar para um intercâmbio"
-                }
-                option {
-                    value = "8"
-                    +"Outro"
-                }
-            }
-        }
-
-        div("input-field") {
-            label {
-                htmlFor = "selectCursouShare"
-                +"Voce já se inscreveu em algum curso da share?"
-            }
-            select {
-                id = "selectCursouShare"
-                name = "cursou_share"
-                option {
-                    disabled = true
-                    selected = true
-                    value = ""
-                }
-                option {
-                    value = "1"
-                    +"Sim, e fui chamado"
-                }
-                option {
-                    value = "2"
-                    +"Não"
-                }
-                option {
-                    value = "3"
-                    +"Uma vez, e não fui chamado"
-                }
-                option {
-                    value = "4"
-                    +"Mais de uma vez, e nunca fui chamado."
-                }
-            }
-        }
-
-        label {
-            htmlFor = "checkboxLocalAulas"
-            checkBoxInput {
-                id = "checkboxLocalAulas"
-                name = "checkLocalAulas"
-                required = true
-            }
-            +"Eu estou ciente de que as aulas da Share acontecem na UFSCar Sorocaba, próximo à Salto de Pirapora."
-        }
-
-        label {
-            htmlFor = "checkboxDesistencia"
-            checkBoxInput {
-                id = "checkboxDesistencia"
-                name = "checkDesistencia"
-                required = true
-            }
-
-            +"Eu estou ciente de que desistir do curso, sem explicação plausível, "
-            +"me impossibilitará de se inscrever para qualquer outro curso da Share, além de prejudicar minha turma."
-        }
-
-        button(type = ButtonType.button, classes = "waves-effect waves-light btn") {
-            id = "btnParte3Voltar"
-            +"Voltar"
-        }
-        button(type = ButtonType.button, classes = "waves-effect waves-light btn") {
-            id = "btnParte3Proximo"
-            +"Próximo"
-        }
-    }
-
-    private fun DIV.parte4() {
-        div("input-field") {
-            label {
-                +"Por onde conheceu a Share?"
-            }
-            select {
-                id = "selectOndeConheceu"
-                name = "onde_conheceu"
-                option {
-                    disabled = true
-                    selected = true
-                    value = ""
-                }
-                option {
-                    value = "1"
-                    +"Mídias Sociais (Facebook, Whatsapp, etc)"
-                }
-                option {
-                    value = "2"
-                    +"Recomendação"
-                }
-                option {
-                    value = "3"
-                    +"Outras Mídias (Jornais, Revistas, Televisão)"
-                }
-                option {
-                    value = "4"
-                    +"Outro"
-                }
-            }
-        }
-
-        div("input-field") {
-            h6 {
-                +"Para finalizar, pedimos para que você escreva entre 5 e 10 "
-                +"linhas por que gostaria de fazer um curso na Share. Lembre-se, esse é um "
-                +"dos critérios mais importantes para ser selecionado (exceto: curso português)."
-            }
-            textArea(classes = "materialize-textarea") {
-                name = "redacao_entrada"
-            }
-        }
-
-        label {
-            htmlFor = "checkboxEdital"
-            checkBoxInput {
-                id = "checkboxEdital"
-                name = "checkEdital"
-                required = true
-            }
-
-            +"Li o edital e estou ciente dos termos do processo seletivo."
-        }
-
-        button(type = ButtonType.button, classes = "waves-effect waves-light btn") {
-            id = "btnParte4Voltar"
-            +"Voltar"
-        }
-        button(type = ButtonType.button, classes = "waves-effect waves-light btn") {
-            id = "btnParte4Cadastrar"
-            +"Cadastrar"
         }
     }
 }

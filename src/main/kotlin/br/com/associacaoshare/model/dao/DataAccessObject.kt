@@ -27,7 +27,7 @@ interface DataAccessObject {
                     alternativa51: String, alternativa52: String, alternativa53: String, alternativa54: String, alternativa55: String,
                     alternativa61: String, alternativa62: String, alternativa63: String, alternativa64: String, alternativa65: String): Curso
 
-    fun insertParticipante(categoria: Int, nome: String, data_nascimento: LocalDate, telefone: String, email: String, password: String, vinculo_ufscar: Int, escola: String, tipo_sem_vinculo: Int, esteve_ufscar: Int, disponibilidade: String, objetivo: Int, cursou_share: Int, redacao_entrada: String, onde_conheceu: Int,
+    fun insertParticipante(categoria: Int, nome: String, data_nascimento: LocalDate, telefone: String, email: String, password: String, tipo_sem_vinculo: Int, vinculo_ufscar: Int, escola: String, edital: Int, onde_conheceu: Int, esteve_ufscar: Int, local_aula: Int, disponibilidade: String, objetivo: Int, cursou_share: Int, desistencia: Int, redacao_entrada: String,
                            curso1_id: Int, data_inscricao_c1: LocalDate, resposta1_c1: Int, resposta2_c1: Int, resposta3_c1: Int, resposta4_c1: Int, resposta5_c1: Int, resposta6_c1: Int, avaliador_id_c1: Int, resultado_c1: Int,
                            curso2_id: Int, data_inscricao_c2: LocalDate, resposta1_c2: Int, resposta2_c2: Int, resposta3_c2: Int, resposta4_c2: Int, resposta5_c2: Int, resposta6_c2: Int, avaliador_id_c2: Int, resultado_c2: Int): Participante
 
