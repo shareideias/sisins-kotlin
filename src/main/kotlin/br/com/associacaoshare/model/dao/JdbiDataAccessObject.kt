@@ -25,7 +25,7 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
                 CREATE TABLE IF NOT EXISTS sisins_avaliador(
                     id SERIAL PRIMARY KEY,
                     username TEXT NOT NULL,
-                    senha TEXT NOT NULL,
+                    hash TEXT NOT NULL,
                     nome TEXT NOT NULL
                 )
                 """.trimIndent())
@@ -105,10 +105,10 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
                     resposta4_c1 INT,
                     resposta5_c1 INT,
                     resposta6_c1 INT,
-                    avaliador_id_c1 INT INT REFERENCES sisins_avaliador(id),
+                    avaliador_id_c1 INT REFERENCES sisins_avaliador(id),
                     resultado_c1 INT,
                     
-                    curso2_id INT INT REFERENCES sisins_curso(id),
+                    curso2_id INT REFERENCES sisins_curso(id),
                     data_inscricao_c2 TIMESTAMP,
                     resposta1_c2 INT,
                     resposta2_c2 INT,
@@ -116,7 +116,7 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
                     resposta4_c2 INT,
                     resposta5_c2 INT,
                     resposta6_c2 INT,
-                    avaliador_id_c2 INT INT REFERENCES sisins_avaliador(id),
+                    avaliador_id_c2 INT REFERENCES sisins_avaliador(id),
                     resultado_c2 INT
                 )
                 """.trimIndent())
@@ -186,7 +186,7 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
         val hash = DataAccessObject.hashPassword(password)
 
         val id = jdbi.withHandleUnchecked {
-            it.createUpdate("INSERT INTO sisins_curso (username, hash, nome) VALUES (:u, :h, :nome)")
+            it.createUpdate("INSERT INTO sisins_avaliador (username, hash, nome) VALUES (:u, :h, :nome)")
                     .bind("u", username)
                     .bind("h", hash)
                     .bind("nome", nome)
