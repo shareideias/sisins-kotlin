@@ -10,9 +10,10 @@ class LoginView : SisInsAlunoView() {
         get() = "Login"
 
     override fun BODY.renderBody(ctx: Context) {
+        link(type = "text/css", rel = "stylesheet", href = "/css/sisins_login.css")
         div("row") {
-            div("col s12 m0 l3")
-            div("col s12 m12 l3") {
+
+            div("col s12 m12 l3 offset-l3") {
                 div("card") {
                     div("card-image") {
                         img("Logo da Share", "../img/share-logo.png", "logo")
@@ -55,7 +56,7 @@ class LoginView : SisInsAlunoView() {
                 }
 
             }
-            div("col s12 m0 l3")
+
         }
     }
 }

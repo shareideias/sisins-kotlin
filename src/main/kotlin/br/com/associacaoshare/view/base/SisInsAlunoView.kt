@@ -16,7 +16,6 @@ abstract class SisInsAlunoView : HtmlBuilderView() {
             link(rel = "icon", href = "/img/globo.png")
             link(href = "https://fonts.googleapis.com/icon?family=Material+Icons", rel = "stylesheet")
             link(type = "text/css", rel = "stylesheet", href = "/css/materialize.min.css")
-            link(type = "text/css", rel = "stylesheet", href = "/css/sisins_aluno.css")
 
             script("text/javascript", "/js/materialize.min.js") {}
         }

@@ -10,10 +10,11 @@ class ProvaView : SisInsAlunoView() {
         get() = "Prova"
 
     override fun BODY.renderBody(ctx: Context) {
+        link(type = "text/css", rel = "stylesheet", href = "/css/sisins_prova.css")
         img("Logo da Share", "../img/share-logo.png", "logo")
         h3 { +"Prova de nivelamento" }
 
-        h6("justify") {
+        h6("justify flow-text") {
             +">A partir de agora você responderá um breve questionário que servirá para identificarmos "
             +"se você realmente possui o  conhecimento necessário para ingressar no nível intermediário ou avançado. "
             +"Fique tranquilo, pois mesmo que você não saiba responder a maioria das perguntas você ainda terá a vaga "

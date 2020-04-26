@@ -10,9 +10,10 @@ class Inscricoes1View : SisInsAlunoView() {
         get() = "Inscrição Share"
 
     override fun BODY.renderBody(ctx: Context) {
+        link(type = "text/css", rel = "stylesheet", href = "/css/sisins_inscricoes.css")
         div("row"){
-            div("col s12 m0 l3")
-            div("col s12 m12 l3"){
+
+            div("col s12 m12 l3 offset-l3"){
                 div("card"){
                     div("card-image"){
                         img("Logo da Share", "../img/share-logo.png", "logo")
@@ -43,7 +44,7 @@ class Inscricoes1View : SisInsAlunoView() {
                     }
                 }
             }
-            div("col s12 m0 l3")
+
         }
     }
 }

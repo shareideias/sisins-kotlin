@@ -8,8 +8,11 @@ class EdicaoView : SisInsAlunoView() {
     override val pageTitle = "Edição"
 
     override fun BODY.renderBody(ctx: Context) {
+        link(type = "text/css", rel = "stylesheet", href = "/css/sisins_edicao.css")
+
         img("Logo da Share", "../img/share-logo.png", "logo")
         h3 { +"Edição" }
+
         div("row") {
             form(classes = "col s12", method = FormMethod.post) {
 

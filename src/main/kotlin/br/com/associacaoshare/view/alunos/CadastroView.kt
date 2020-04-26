@@ -8,6 +8,7 @@ class CadastroView : SisInsAlunoView() {
     override val pageTitle = "Cadastro"
 
     override fun BODY.renderBody(ctx: Context) {
+        link(type = "text/css", rel = "stylesheet", href = "/css/sisins_cadastro.css")
         img("Logo da Share", "../img/share-logo.png", "logo")
         h3 { +"Cadastro" }
 

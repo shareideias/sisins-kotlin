@@ -8,9 +8,9 @@ class ListaView : SisInsAlunoView() {
     override val pageTitle = "Lista de Inscrições"
 
     override fun BODY.renderBody(ctx: Context) {
+        link(type = "text/css", rel = "stylesheet", href = "/css/sisins_lista.css")
         div("row") {
-            div("col s12 m0 l3")
-            div("col s12 m12 l3") {
+            div("col s12 m12 l3 offset-l3") {
                 div("card") {
                     div("card-image") {
                         img("Logo da Share", "../img/share-logo.png", "logo")
@@ -19,7 +19,7 @@ class ListaView : SisInsAlunoView() {
             }
             div("center col s12 m12 l3") {
 
-                a("edicao 1.html", classes = "center atualizar waves-effect waves-light btn") {
+                a("edicao1.html", classes = "center atualizar waves-effect waves-light btn") {
                     +"Atualizar perfil"
                 }
                 h5 { +"Seus cursos:" }
@@ -306,6 +306,6 @@ class ListaView : SisInsAlunoView() {
                 }
             }
         }
-        div("col s12 m0 l3")
+
     }
 }

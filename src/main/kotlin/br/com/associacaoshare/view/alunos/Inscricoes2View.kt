@@ -9,6 +9,7 @@ class Inscricoes2View  : SisInsAlunoView() {
     override val pageTitle: String
         get() = "Inscrição Share"
     override fun BODY.renderBody(ctx: Context) {
+        link(type = "text/css", rel = "stylesheet", href = "/css/sisins_inscricoes.css")
         div("row"){
             div("col s12 m0 l3")
             div("col s12 m12 l3"){
