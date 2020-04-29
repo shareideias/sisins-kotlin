@@ -13,7 +13,7 @@ class CadastroView : SisInsAlunoView() {
         h3 { +"Cadastro" }
 
         div("row") {
-            form(classes = "col s12", method = FormMethod.post) {
+            form("CadastroProc", classes = "col s12", method = FormMethod.post) {
 
                 div("input-field col s12 mb-0") {
                     label {
