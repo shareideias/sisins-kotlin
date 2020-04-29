@@ -36,11 +36,7 @@ h3{
 }
 
 @media screen and (max-width: 661px){
-    .logo{
-        margin-left: 30ch;
-    }
-    h3{
-        margin-left: 11ch;
-        margin-right: 11ch;
+    .row{
+        width: 40ch;
     }
 }

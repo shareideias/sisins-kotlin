@@ -10,6 +10,7 @@ body{
     margin-top: 2em;
 }
 
+
 h3{
     text-align: center;
     margin-top: 0;
@@ -30,25 +31,21 @@ h3{
     height: 4em;
 }
 
-.input-field.col label{
+/*.input-field.col label{
     color: black;
     font-size: 15px;
-}
+}*/
 
-.pular option{
+option{
     margin-top: 80px;
 }
-.row {
+
+.row{
     width: 80ch;
 }
-@media screen and (max-width: 800px){
-    .logo{
-        margin-left: 30ch;
-        margin-right: 30ch;
-    }
-    h3{
-        margin-left: 10ch;
-        margin-right: 11ch;
+
+@media screen and (max-width: 676px){
+    .row{
+        width: 40ch;
     }
 }
-

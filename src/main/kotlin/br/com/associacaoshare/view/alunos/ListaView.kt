@@ -15,14 +15,16 @@ class ListaView : SisInsAlunoView() {
                     div("card-image") {
                         img("Logo da Share", "../img/share-logo.png", "logo")
                     }
+                    a("edicao1.html", classes = "center atualizar waves-effect waves-light btn") {
+                        +"Atualizar perfil"
+                    }
                 }
             }
             div("center col s12 m12 l3") {
 
-                a("edicao1.html", classes = "center atualizar waves-effect waves-light btn") {
-                    +"Atualizar perfil"
-                }
                 h5 { +"Seus cursos:" }
+
+                div(classes="board"){
                 ul("collection with-header") {
                     li("collection-item") {
                         span("title") {
@@ -304,6 +306,7 @@ class ListaView : SisInsAlunoView() {
                         p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
                     }
                 }
+            }
             }
         }
 

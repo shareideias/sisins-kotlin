@@ -102,9 +102,9 @@ class EdicaoView : SisInsAlunoView() {
                 }
 
                 div("input-field col s12 mb-0") {
+                    +"Você é estudante? E/ou trabalha?"
                     label {
                         htmlFor = "selectTipoSemVinculo"
-                        +"Você é estudante? E/ou trabalha?"
                     }
                     select {
                         id = "selectTipoSemVinculo"
@@ -134,9 +134,9 @@ class EdicaoView : SisInsAlunoView() {
                 }
 
                 div("input-field col s12 mb-0") {
+                    +"Qual o seu vínculo com a UFSCAR?"
                     label {
                         htmlFor = "selectVinculoUfscar"
-                        +"Qual o seu vínculo com a UFSCAR?"
                     }
                     select {
                         id = "selectVinculoUfscar"
@@ -182,9 +182,9 @@ class EdicaoView : SisInsAlunoView() {
                 }
 
                 div("input-field col s12 mb-0") {
+                    +"Você leu atentamento o edital?"
                     label("perguntas") {
                         htmlFor = "inputEdital"
-                        +"Você leu atentamento o edital?"
                     }
 
                     select {
@@ -207,9 +207,9 @@ class EdicaoView : SisInsAlunoView() {
                 }
 
                 div("input-field col s12 mb-0") {
+                    +"Por onde conheceu a share?"
                     label("perguntas") {
                         htmlFor = "inputOnde_conheceu"
-                        +"Por onde conheceu a share?"
                     }
                     select {
                         id = "selectOndeConheceu"
@@ -239,9 +239,9 @@ class EdicaoView : SisInsAlunoView() {
                 }
 
                 div("input-field col s12 mb-0") {
+                    +"Você já esteve na UFSCar antes?"
                     label("perguntas") {
                         htmlFor = "inputEsteve_ufscar"
-                        +"Você já esteve na UFSCar antes?"
                     }
                     select {
                         id = "selectEsteveUfscar"
@@ -263,9 +263,9 @@ class EdicaoView : SisInsAlunoView() {
                 }
 
                 div("input-field col s12 mb-0") {
+                    +"Você está ciente de que as aulas da Share acontecem na UFSCar Sorocaba, próximo à Salto de Pirapora?"
                     label("perguntas") {
                         htmlFor = "inputLocal_aulas"
-                        +"Você está ciente de que as aulas da Share acontecem na UFSCar Sorocaba, próximo à Salto de Pirapora?"
                     }
 
                     select {
@@ -300,9 +300,9 @@ class EdicaoView : SisInsAlunoView() {
                 }
 
                 div("input-field col s12 mb-0") {
+                    +"Seu principal objetivo com o curso é:"
                     label("perguntas") {
                         htmlFor = "inputObjetivo"
-                        +"Seu principal objetivo com o curso é:"
                     }
                     select {
                         id = "selectObjetivo"
@@ -348,9 +348,9 @@ class EdicaoView : SisInsAlunoView() {
                 }
 
                 div("input-field col s12 mb-0") {
+                    +"Voce já se inscreveu em algum curso da share?"
                     label("perguntas") {
                         htmlFor = "inputCursou_share"
-                        +"Voce já se inscreveu em algum curso da share?"
                     }
                     select {
                         id = "selectCursouShare"
@@ -380,9 +380,9 @@ class EdicaoView : SisInsAlunoView() {
                 }
 
                 div("input-field col s12 mb-0") {
+                    +"Você está ciente de que desistir do curso, sem explicação plausível, impossibilitará o candidato de se inscrever para qualquer outro curso da Share, além de prejudicar sua turma?"
                     label("perguntas") {
                         htmlFor = "selectDesistencia"
-                        +"Você está ciente de que desistir do curso, sem explicação plausível, impossibilitará o candidato de se inscrever para qualquer outro curso da Share, além de prejudicar sua turma?"
                     }
 
                     select {
