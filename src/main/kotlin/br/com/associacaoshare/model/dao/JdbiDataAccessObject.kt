@@ -252,13 +252,13 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
         val hash = DataAccessObject.hashPassword(password)
 
         val id = jdbi.withHandleUnchecked {
-            it.createUpdate("INSERT INTO sisins_participante (categoria, nome, data_nascimento, telefone, email, hash, tipo_sem_vinculo, vinculo_ufscar, escola, edital, onde_conheceu, esteve_ufscar, local_aulas, disponibilidade, objetivo, cursou_share, desistencia, redacao_entrada, curso1_id, data_inscricao_c1, resposta1_c1, resposta2_c1, resposta3_c1, resposta4_c1, resposta5_c1, resposta6_c1, avaliador_id_c1, resultado_c1, curso2_id, data_inscricao_c2, resposta1_c2, resposta2_c2, resposta3_c2, resposta4_c2, resposta5_c2, resposta6_c2, avaliador_id_c2, resultado_c2) VALUES (:c, :nome, :d, :tel, :email, :h, :tipo_sem_vinculo, :vinculo_ufscar, :escola, :edital, :onde_conheceu, :esteve_ufscar, :local_aulas, :disponibilidade, :objetivo, :cursou_share, :desistencia, :redacao_entrada, :curso1_id, :data_inscricao_c1, :resposta1_c1, :resposta2_c1, :resposta3_c1, :resposta4_c1, :resposta5_c1, :resposta6_c1, :avaliador_id_c1, :resultado_c1, :curso2_id, :data_inscricao_c2, :resposta1_c2, :resposta2_c2, :resposta3_c2, :resposta4_c2, :resposta5_c2, :resposta6_c2, :avaliador_id_c2, :resultado_c2)")
+            it.createUpdate("INSERT INTO sisins_participante (categoria, nome, data_nascimento, telefone, email, senha, tipo_sem_vinculo, vinculo_ufscar, escola, edital, onde_conheceu, esteve_ufscar, local_aulas, disponibilidade, objetivo, cursou_share, desistencia, redacao_entrada, curso1_id, data_inscricao_c1, resposta1_c1, resposta2_c1, resposta3_c1, resposta4_c1, resposta5_c1, resposta6_c1, avaliador_id_c1, resultado_c1, curso2_id, data_inscricao_c2, resposta1_c2, resposta2_c2, resposta3_c2, resposta4_c2, resposta5_c2, resposta6_c2, avaliador_id_c2, resultado_c2) VALUES (:c, :nome, :d, :tel, :email, :senha, :tipo_sem_vinculo, :vinculo_ufscar, :escola, :edital, :onde_conheceu, :esteve_ufscar, :local_aulas, :disponibilidade, :objetivo, :cursou_share, :desistencia, :redacao_entrada, :curso1_id, :data_inscricao_c1, :resposta1_c1, :resposta2_c1, :resposta3_c1, :resposta4_c1, :resposta5_c1, :resposta6_c1, :avaliador_id_c1, :resultado_c1, :curso2_id, :data_inscricao_c2, :resposta1_c2, :resposta2_c2, :resposta3_c2, :resposta4_c2, :resposta5_c2, :resposta6_c2, :avaliador_id_c2, :resultado_c2)")
                     .bind("c", categoria)
                     .bind("nome", nome)
                     .bind("d", data_nascimento)
                     .bind("tel", telefone)
                     .bind("email", email)
-                    .bind("h", hash)
+                    .bind("senha", hash)
                     .bind("tipo_sem_vinculo", tipo_sem_vinculo)
                     .bind("vinculo_ufscar", vinculo_ufscar)
                     .bind("escola", escola)
@@ -297,6 +297,110 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
         }
 
         return Participante(id, categoria, nome, data_nascimento, telefone, email, hash, tipo_sem_vinculo, vinculo_ufscar, escola, edital, onde_conheceu, esteve_ufscar, local_aulas, disponibilidade, objetivo, cursou_share, desistencia, redacao_entrada, curso1_id, data_inscricao_c1, resposta1_c1, resposta2_c1, resposta3_c1, resposta4_c1, resposta5_c1, resposta6_c1, avaliador_id_c1, resultado_c1, curso2_id, data_inscricao_c2, resposta1_c2, resposta2_c2, resposta3_c2, resposta4_c2, resposta5_c2, resposta6_c2, avaliador_id_c2, resultado_c2)
+    }
+    override fun insertParticipante(respostasPack: Map<String, List<String>>) : Participante {
+        val respostas : Map<String, String> = respostasPack.mapValues {(key, value) -> (value[0])}
+        val categoria: String by respostas
+        val categoriaInt: Int = categoria.toInt()
+        val nome: String by respostas
+        val data_nascimento: String by respostas
+        val dataNascimentoLD = LocalDate.parse(data_nascimento)
+        val telefone: String by respostas
+        val email: String by respostas
+        val password: String by respostas
+        val tipo_sem_vinculo: String by respostas
+        val tipoSemVinculoInt: Int = tipo_sem_vinculo.toInt()
+        val vinculo_ufscar: String by respostas
+        val vinculoUfscarInt: Int = vinculo_ufscar.toInt()
+        val escola: String by respostas
+        val edital: String by respostas
+        val editalInt: Int = edital.toInt()
+        val onde_conheceu: String by respostas
+        val ondeConheceuInt: Int = onde_conheceu.toInt()
+        val esteve_ufscar: String by respostas
+        val esteveUfscarInt: Int = esteve_ufscar.toInt()
+        val local_aulas: String by respostas
+        val localAulasInt: Int = local_aulas.toInt()
+        val disponibilidade: String by respostas
+        val objetivo: String by respostas
+        val objetivoInt: Int = objetivo.toInt()
+        val cursou_share: String by respostas
+        val cursouShareInt: Int = cursou_share.toInt()
+        val desistencia: String by respostas
+        val desistenciaInt: Int = desistencia.toInt()
+        val redacao_entrada: String by respostas
+
+        val curso1_id: Int? = null
+        val data_inscricao_c1: LocalDate? = null
+        val resposta1_c1: Int? = null
+        val resposta2_c1: Int? = null
+        val resposta3_c1: Int? = null
+        val resposta4_c1: Int? = null
+        val resposta5_c1: Int? = null
+        val resposta6_c1: Int? = null
+        val avaliador_id_c1: Int? = null
+        val resultado_c1: Int? = -1
+
+        val curso2_id: Int? = null
+        val data_inscricao_c2: LocalDate? = null
+        val resposta1_c2: Int? = null
+        val resposta2_c2: Int? = null
+        val resposta3_c2: Int? = null
+        val resposta4_c2: Int? = null
+        val resposta5_c2: Int? = null
+        val resposta6_c2: Int? = null
+        val avaliador_id_c2: Int? = null
+        val resultado_c2: Int? = -1
+
+
+        val hash = DataAccessObject.hashPassword(password)
+
+        val id = jdbi.withHandleUnchecked {
+            it.createUpdate("INSERT INTO sisins_participante (categoria, nome, data_nascimento, telefone, email, senha, tipo_sem_vinculo, vinculo_ufscar, escola, edital, onde_conheceu, esteve_ufscar, local_aulas, disponibilidade, objetivo, cursou_share, desistencia, redacao_entrada, curso1_id, data_inscricao_c1, resposta1_c1, resposta2_c1, resposta3_c1, resposta4_c1, resposta5_c1, resposta6_c1, avaliador_id_c1, resultado_c1, curso2_id, data_inscricao_c2, resposta1_c2, resposta2_c2, resposta3_c2, resposta4_c2, resposta5_c2, resposta6_c2, avaliador_id_c2, resultado_c2) VALUES (:c, :nome, :d, :tel, :email, :senha, :tipo_sem_vinculo, :vinculo_ufscar, :escola, :edital, :onde_conheceu, :esteve_ufscar, :local_aulas, :disponibilidade, :objetivo, :cursou_share, :desistencia, :redacao_entrada, :curso1_id, :data_inscricao_c1, :resposta1_c1, :resposta2_c1, :resposta3_c1, :resposta4_c1, :resposta5_c1, :resposta6_c1, :avaliador_id_c1, :resultado_c1, :curso2_id, :data_inscricao_c2, :resposta1_c2, :resposta2_c2, :resposta3_c2, :resposta4_c2, :resposta5_c2, :resposta6_c2, :avaliador_id_c2, :resultado_c2)")
+                    .bind("c", categoriaInt)
+                    .bind("nome", nome)
+                    .bind("d", dataNascimentoLD)
+                    .bind("tel", telefone)
+                    .bind("email", email)
+                    .bind("senha", hash)
+                    .bind("tipo_sem_vinculo", tipoSemVinculoInt)
+                    .bind("vinculo_ufscar", vinculoUfscarInt)
+                    .bind("escola", escola)
+                    .bind("edital", editalInt)
+                    .bind("onde_conheceu", ondeConheceuInt)
+                    .bind("esteve_ufscar", esteveUfscarInt)
+                    .bind("local_aulas", localAulasInt)
+                    .bind("disponibilidade", disponibilidade)
+                    .bind("objetivo", objetivoInt)
+                    .bind("cursou_share", cursouShareInt)
+                    .bind("desistencia", desistenciaInt)
+                    .bind("redacao_entrada", redacao_entrada)
+                    .bind("curso1_id", curso1_id)
+                    .bind("data_inscricao_c1", OffsetDateTime.now())
+                    .bind("resposta1_c1", resposta1_c1)
+                    .bind("resposta2_c1", resposta2_c1)
+                    .bind("resposta3_c1", resposta3_c1)
+                    .bind("resposta4_c1", resposta4_c1)
+                    .bind("resposta5_c1", resposta5_c1)
+                    .bind("resposta6_c1", resposta6_c1)
+                    .bind("avaliador_id_c1", avaliador_id_c1)
+                    .bind("resultado_c1", resultado_c1)
+                    .bind("curso2_id", curso2_id)
+                    .bind("data_inscricao_c2", OffsetDateTime.now())
+                    .bind("resposta1_c2", resposta1_c2)
+                    .bind("resposta2_c2", resposta2_c2)
+                    .bind("resposta3_c2", resposta3_c2)
+                    .bind("resposta4_c2", resposta4_c2)
+                    .bind("resposta5_c2", resposta5_c2)
+                    .bind("resposta6_c2", resposta6_c2)
+                    .bind("avaliador_id_c2", avaliador_id_c2)
+                    .bind("resultado_c2", resultado_c2)
+                    .executeAndReturnGeneratedKeys()
+                    .mapTo<Int>()
+                    .one()
+        }
+
+        return Participante(id, categoriaInt, nome, dataNascimentoLD, telefone, email, hash, tipoSemVinculoInt, vinculoUfscarInt, escola, editalInt, ondeConheceuInt, esteveUfscarInt, localAulasInt, disponibilidade, objetivoInt, cursouShareInt, desistenciaInt, redacao_entrada, curso1_id, data_inscricao_c1, resposta1_c1, resposta2_c1, resposta3_c1, resposta4_c1, resposta5_c1, resposta6_c1, avaliador_id_c1, resultado_c1, curso2_id, data_inscricao_c2, resposta1_c2, resposta2_c2, resposta3_c2, resposta4_c2, resposta5_c2, resposta6_c2, avaliador_id_c2, resultado_c2)
     }
 
     override fun updateAvaliador(avaliador: Avaliador) {
