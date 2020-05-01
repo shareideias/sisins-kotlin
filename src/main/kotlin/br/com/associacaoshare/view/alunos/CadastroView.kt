@@ -4,11 +4,24 @@ import br.com.associacaoshare.view.base.SisInsAlunoView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class CadastroView : SisInsAlunoView() {
+class CadastroView (private val errormsg: String?) : SisInsAlunoView() {
     override val pageTitle = "Cadastro"
 
     override fun BODY.renderBody(ctx: Context) {
         link(type = "text/css", rel = "stylesheet", href = "/css/sisins_cadastro.css")
+        link(type = "text/css", rel = "stylesheet", href = "/css/alerts.css")
+        if (errormsg != null) {
+            /*
+            <div class="materialert error">
+                <div class="material-icons">error_outline</div>
+                Oh! What a beautiful alert :)
+            </div>
+             */
+            div("materialert error") {
+                div("material-icons") { +"error_outline" }
+                +"$errormsg"
+            }
+        }
         img("Logo da Share", "../img/share-logo.png", "logo")
         h3 { +"Cadastro" }
 
@@ -56,7 +69,7 @@ class CadastroView : SisInsAlunoView() {
                 }
 
                 div("input-field col s12 mb-0 perguntas") {
-                    +"Data de nascimento(idade mínima: 16 anos)"
+                    +"Data de nascimento (idade mínima: 16 anos)"
                     label{
                         htmlFor = "inputData_nascimento"
 

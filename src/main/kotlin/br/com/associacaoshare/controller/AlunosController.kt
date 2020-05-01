@@ -1,5 +1,6 @@
 package br.com.associacaoshare.controller
 
+import br.com.associacaoshare.model.Participante
 import br.com.associacaoshare.model.dao.DataAccessObject
 import br.com.associacaoshare.view.alunos.*
 import io.javalin.apibuilder.EndpointGroup
@@ -14,7 +15,7 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
     val dao: DataAccessObject by instance()
 
     override fun addEndpoints() {
-        get("CadastroView", CadastroView()::render)
+        get("cadastro", ::cadastro)
         post("CadastroProc", ::cadastroProc)
 
         get("EdicaoView", EdicaoView()::render)
@@ -26,10 +27,18 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
         get("ProvaView", ProvaView()::render)
     }
 
+    private fun cadastro (ctx: Context) {
+        var errormsg = dao.asciitouni(ctx.cookie("errorMsg"))
+        if(errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+        CadastroView(errormsg).render(ctx)
+    }
+
     private fun cadastroProc (ctx: Context) {
         val resp = ctx.formParamMap()
-        println(resp)
-
-        dao.insertParticipante(resp)
+        val novoParticipante: Participante = dao.insertParticipante(resp)
+        ctx.redirect("/alunos/LoginView")
     }
+    
+    
 }
