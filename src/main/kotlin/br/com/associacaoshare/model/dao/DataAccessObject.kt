@@ -40,6 +40,9 @@ interface DataAccessObject {
     fun removeCurso(id: Int)
     fun removeParticipante(id: Int)
 
+    fun asciitouni(ascii: String?) : String?
+    fun unitoascii(uni: String?) : String?
+
     companion object {
         fun hashPassword(password: String): String {
             return Base64.getEncoder().encodeToString(

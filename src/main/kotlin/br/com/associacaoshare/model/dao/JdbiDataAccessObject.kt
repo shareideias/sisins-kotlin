@@ -121,6 +121,22 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
                 )
                 """.trimIndent())
 
+            it.execute("""
+                CREATE OR REPLACE FUNCTION verificaEmail() RETURNS trigger AS ${"\$"}verificaEmail$
+                BEGIN
+                IF EXISTS (SELECT 1 FROM sisins_participante WHERE email = NEW.email) THEN
+                RAISE EXCEPTION 'O e-mail % já está cadastrado', NEW.email;
+                RETURN NULL;
+                END IF;
+    
+                RETURN NEW;
+                END;
+                ${"\$"}verificaEmail$ LANGUAGE plpgsql;
+    
+                DROP TRIGGER IF EXISTS verificaEmail ON sisins_participante;
+                CREATE TRIGGER verificaEmail BEFORE INSERT OR UPDATE ON sisins_participante
+                FOR EACH ROW EXECUTE PROCEDURE verificaEmail();
+            """. trimIndent())
 
             if (it.createQuery("SELECT COUNT(id) FROM sisins_avaliador").mapTo<Int>().one() < 1) {
                 val adminId = insertAvaliador("admin", "admin", "Avaliador1")
@@ -532,5 +548,19 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
         jdbi.useHandleUnchecked {
             it.execute("DELETE FROM sisins_participante WHERE id = ?", id)
         }
+    }
+
+    /**
+     * Formata uma string de modo que seja aceito como um valor de um cookie
+     */
+    override fun asciitouni(ascii: String?) : String? {
+        return ascii?.replace('+', ' ')?.replace('#', 'á')
+    }
+
+    /**
+     * Recupera a formatação original da string
+     */
+    override fun unitoascii(uni: String?) : String? {
+        return uni?.replace(' ', '+')?.replace('á', '#')
     }
 }
