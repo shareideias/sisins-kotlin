@@ -1,5 +1,6 @@
 package br.com.associacaoshare
 
+import br.com.associacaoshare.controller.ErrorHandler
 import br.com.associacaoshare.controller.StubController
 import br.com.associacaoshare.model.dao.DataAccessObject
 import br.com.associacaoshare.model.dao.JdbiDataAccessObject
@@ -32,6 +33,6 @@ fun main() {
         cfg.addStaticFiles("public")
     }
 
-
+    ErrorHandler(kodein).run { app.addErrorHandlers() }
     app.routes(StubController(kodein)).start(port)
 }
