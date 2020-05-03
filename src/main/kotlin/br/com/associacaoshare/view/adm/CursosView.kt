@@ -28,7 +28,17 @@ class CursosView : SisInsAdmView() {
                                 a("inscricoes.html") {
                                     +"Inscrições"
                                 }
+                                br{}
+                                a("#") {
+                                    +"Editar curso"
+                                }
+                                br{}
+                                a("#") {
+                                    +"Excluir curso"
+                                }
                             }
+
+
                         }
                     }
                 }

@@ -13,7 +13,6 @@ body{
     margin-top: 2em;
 }
 
-
 h3{
     text-align: center;
     margin-top: 0;
@@ -39,6 +38,10 @@ h3{
     font-size: 15px;
 }
 
+span{
+    padding-bottom: 3em;
+}
+
 .pular option{
     margin-top: 80px;
 }
@@ -62,5 +65,13 @@ h6, form{
        margin-left: 1em;
        margin-right: 1em;
    }
+
+}
+
+@media screen and (max-width: 620px){
+    form{
+        margin-left: 1em;
+        margin-right: 1em;
+    }
 
 }

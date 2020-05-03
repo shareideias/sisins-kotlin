@@ -103,3 +103,24 @@ header {
 h3, h4, h5 {
     text-align: center;
 }
+
+.par_news{
+    padding-left: 0;
+}
+
+.rowzeras{
+    width: 80ch;
+}
+
+
+@media screen and (max-width: 776px){
+    .rowzeras{
+        width: 40ch;
+    }
+}
+
+@media screen and (max-width: 393px){
+    .rowzeras{
+        width: 30ch;
+    }
+}
