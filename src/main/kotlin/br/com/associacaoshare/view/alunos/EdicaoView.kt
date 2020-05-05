@@ -15,11 +15,10 @@ class EdicaoView : SisInsAlunoView() {
 
         div("row") {
             form(classes = "col s12", method = FormMethod.post) {
-
+                +"Responda em qual categoria se encaixa"
                 div("input-field col s12 mb-0") {
                     label {
                         htmlFor = "selectCategoria"
-                        +"Responda em qual categoria se encaixa"
                     }
                     select {
                         id = "selectCategoria"

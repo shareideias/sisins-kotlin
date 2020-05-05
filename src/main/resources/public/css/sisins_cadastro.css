@@ -44,6 +44,11 @@ option{
     width: 80ch;
 }
 
+.opcaozinha{
+    display: none;
+}
+
+
 @media screen and (max-width: 676px){
     .row{
         width: 40ch;

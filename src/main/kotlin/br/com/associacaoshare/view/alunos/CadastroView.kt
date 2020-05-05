@@ -29,10 +29,9 @@ class CadastroView (private val errormsg: String?) : SisInsAlunoView() {
             form("CadastroProc", classes = "col s12", method = FormMethod.post) {
 
                 div("input-field col s12 mb-0") {
-
+                    +"Responda em qual categoria se encaixa"
                     label {
                         htmlFor = "selectCategoria"
-                        +"Responda em qual categoria se encaixa"
                     }
                     select {
                         id = "selectCategoria"
@@ -41,6 +40,8 @@ class CadastroView (private val errormsg: String?) : SisInsAlunoView() {
                             disabled = true
                             selected = true
                             value = ""
+                            +"""Escolha"""
+
                         }
                         option {
                             value = "1"
@@ -120,7 +121,6 @@ class CadastroView (private val errormsg: String?) : SisInsAlunoView() {
                     +"Você é estudante? E/ou trabalha?"
                     label {
                         htmlFor = "selectTipoSemVinculo"
-
                     }
                     select {
                         id = "selectTipoSemVinculo"
