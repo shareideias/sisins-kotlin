@@ -8,7 +8,7 @@ import org.kodein.di.KodeinAware
 
 class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware {
     override fun addEndpoints() {
-        ApiBuilder.get("CadastrarCursoView", CadastrarCursoView()::render)
+        ApiBuilder.get("CadastroCursoView", CadastroCursoView()::render)
         ApiBuilder.get("CadastrarProvaView", CadastrarProvaView()::render)
         ApiBuilder.get("CandidatoProvaView", CandidatoProvaView()::render)
         ApiBuilder.get("CandidatoView", CandidatoView()::render)

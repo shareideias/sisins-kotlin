@@ -40,7 +40,6 @@ class CadastroView (private val errormsg: String?) : SisInsAlunoView() {
                             disabled = true
                             selected = true
                             value = ""
-                            +"""Escolha"""
 
                         }
                         option {
