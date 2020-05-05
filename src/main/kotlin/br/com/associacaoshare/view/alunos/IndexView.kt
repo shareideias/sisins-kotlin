@@ -20,11 +20,11 @@ class IndexView : SisInsAlunoView() {
                 }
             }
             div("center col s12 m12 l3"){
-                a("cadastro 1.html", classes = "center cadastro waves-effect waves-light btn"){
+                a("alunos/cadastro", classes = "center cadastro waves-effect waves-light btn"){
                     +"Fazer cadastro"
                 }
                 br {
-                    a("login.html", classes = "center login waves-effect waves-light btn"){
+                    a("alunos/login", classes = "center login waves-effect waves-light btn"){
                         +"Já tenho cadastro"
                     }
                 }

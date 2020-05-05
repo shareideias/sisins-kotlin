@@ -15,16 +15,22 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
     val dao: DataAccessObject by instance()
 
     override fun addEndpoints() {
+        get(::index)
+
         get("cadastro", ::cadastro)
         post("CadastroProc", ::cadastroProc)
 
+        get("login", ::login)
+
         get("EdicaoView", EdicaoView()::render)
-        get("IndexView", IndexView()::render)
         get("Inscricoes1View", Inscricoes1View()::render)
         get("Inscricoes2View", Inscricoes2View()::render)
         get("ListaView", ListaView()::render)
-        get("LoginView", LoginView()::render)
         get("ProvaView", ProvaView()::render)
+    }
+
+    private fun index (ctx: Context) {
+        IndexView().render(ctx)
     }
 
     private fun cadastro (ctx: Context) {
@@ -39,6 +45,8 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
         val novoParticipante: Participante = dao.insertParticipante(resp)
         ctx.redirect("/alunos/LoginView")
     }
-    
-    
+
+    private fun login (ctx: Context) {
+        LoginView().render(ctx)
+    }
 }
