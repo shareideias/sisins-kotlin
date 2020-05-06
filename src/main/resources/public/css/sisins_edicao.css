@@ -10,46 +10,25 @@ body{
     margin-top: 2em;
 }
 
-
 h3{
     text-align: center;
     margin-top: 0;
 }
 
-.entrar{
-    background-color: #04B404;
-    color: white;
-    font-weight: bold;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 0.75em;
+.row{
+   width: 80ch;
 }
 
 .btn{
-    width: 26ch;
-    height: 4em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-bottom: 2em;
+    font-weight: bold;
 }
 
-/*.input-field.col label{
-    color: black;
-    font-size: 15px;
-}*/
-
-option{
-    margin-top: 80px;
-}
-
-.row{
-    width: 80ch;
-}
-
-.opcaozinha{
-    display: none;
-}
-
-
-@media screen and (max-width: 676px){
+@media screen and (max-width: 661px){
     .row{
         width: 40ch;
     }

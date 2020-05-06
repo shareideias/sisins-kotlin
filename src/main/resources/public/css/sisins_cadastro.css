@@ -16,19 +16,27 @@ h3{
     margin-top: 0;
 }
 
-.entrar{
+/*.entrar{
+    border: 20px solid #04B404;
     background-color: #04B404;
-    color: white;
-    font-weight: bold;
+    text-align: center;
+    border-radius: 10px;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 0.75em;
-}
+    margin-bottom: 2em;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}*/
 
 .btn{
-    width: 26ch;
-    height: 4em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-bottom: 2em;
+    font-weight: bold;
 }
 
 /*.input-field.col label{
@@ -43,11 +51,6 @@ option{
 .row{
     width: 80ch;
 }
-
-.opcaozinha{
-    display: none;
-}
-
 
 @media screen and (max-width: 676px){
     .row{

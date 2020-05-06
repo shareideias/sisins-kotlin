@@ -27,7 +27,6 @@ class CadastroView (private val errormsg: String?) : SisInsAlunoView() {
 
         div("row") {
             form("CadastroProc", classes = "col s12", method = FormMethod.post) {
-
                 div("input-field col s12 mb-0") {
                     +"Responda em qual categoria se encaixa"
                     label {
