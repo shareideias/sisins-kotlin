@@ -14,9 +14,10 @@ class EdicaoView : SisInsAlunoView() {
         h3 { +"Edição" }
 
         div("row") {
-            form(classes = "col s12", method = FormMethod.post) {
-                +"Responda em qual categoria se encaixa"
+            form("CadastroProc", classes = "col s12", method = FormMethod.post) {
+
                 div("input-field col s12 mb-0") {
+                    +"Responda em qual categoria se encaixa"
                     label {
                         htmlFor = "selectCategoria"
                     }
@@ -27,6 +28,7 @@ class EdicaoView : SisInsAlunoView() {
                             disabled = true
                             selected = true
                             value = ""
+
                         }
                         option {
                             value = "1"
@@ -48,6 +50,7 @@ class EdicaoView : SisInsAlunoView() {
                     label("perguntas"){
                         htmlFor = "inputNome"
                         +"Nome completo"
+
                     }
                     input(InputType.text, classes = "validate") {
                         id = "inputNome"
@@ -56,7 +59,7 @@ class EdicaoView : SisInsAlunoView() {
                 }
 
                 div("input-field col s12 mb-0 perguntas") {
-                    +"Data de nascimento(idade mínima: 16 anos)"
+                    +"Data de nascimento (idade mínima: 16 anos)"
                     label{
                         htmlFor = "inputData_nascimento"
 
@@ -75,28 +78,6 @@ class EdicaoView : SisInsAlunoView() {
                     input(InputType.tel, classes = "validate") {
                         id = "inputTelefone"
                         name = "telefone"
-                    }
-                }
-
-                div("input-field col s12 mb-0") {
-                    label("perguntas"){
-                        htmlFor = "inputEmail"
-                        +"Email"
-                    }
-                    input(InputType.email , classes = "validate") {
-                        id = "inputEmail"
-                        name = "email"
-                    }
-                }
-
-                div("input-field col s12 mb-0") {
-                    label("perguntas"){
-                        htmlFor = "inputPassword"
-                        +"Senha"
-                    }
-                    input(InputType.password, classes = "validate") {
-                        id = "inputPassword"
-                        name = "password"
                     }
                 }
 
@@ -184,6 +165,7 @@ class EdicaoView : SisInsAlunoView() {
                     +"Você leu atentamento o edital?"
                     label("perguntas") {
                         htmlFor = "inputEdital"
+
                     }
 
                     select {
@@ -379,9 +361,12 @@ class EdicaoView : SisInsAlunoView() {
                 }
 
                 div("input-field col s12 mb-0") {
-                    +"Você está ciente de que desistir do curso, sem explicação plausível, impossibilitará o candidato de se inscrever para qualquer outro curso da Share, além de prejudicar sua turma?"
+                    +"Você está ciente de que desistir do curso, sem explicação plausível, "
+                    +"impossibilitará o candidato de se inscrever para qualquer outro curso da Share, "
+                    +"além de prejudicar sua turma?"
                     label("perguntas") {
                         htmlFor = "selectDesistencia"
+
                     }
 
                     select {
@@ -404,19 +389,19 @@ class EdicaoView : SisInsAlunoView() {
                 }
 
                 div("input-field col s12 mb-0 perguntas") {
-                    +"Para finalizar, pedimos para que você escreva entre 5 e 10 linhas por que gostaria de fazer um curso na Share. Lembre-se, esse é um dos critérios mais importantes para ser selecionado (exceto: curso português)."
+                    +"Para finalizar, pedimos para que você escreva entre 5 e 10 linhas por que gostaria de fazer um curso na Share. Lembre-se, esse é um dos critérios mais importantes para ser selecionado (exceto: curso português para estrangeiros)."
                     label{
                         htmlFor = "inputRedacao_entrada"
 
                     }
-                    input(InputType.text , classes = "validate") {
+                    textArea(classes = "validate materialize-textarea") {
                         id = "inputRedacao_entrada"
                         name = "redacao_entrada"
                     }
                 }
                 button(type = ButtonType.submit, classes = "entrar waves-effect waves-light btn") {
                     id = "btnParte4Cadastrar"
-                    +"Cadastrar"
+                    +"Editar"
                 }
             }
         }

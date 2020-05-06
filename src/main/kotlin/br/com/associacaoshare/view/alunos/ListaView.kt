@@ -15,9 +15,6 @@ class ListaView : SisInsAlunoView() {
                     div("card-image") {
                         img("Logo da Share", "../img/share-logo.png", "logo")
                     }
-                    a("edicao1.html", classes = "center atualizar waves-effect waves-light btn") {
-                        +"Atualizar perfil"
-                    }
                 }
             }
             div("center col s12 m12 l3") {

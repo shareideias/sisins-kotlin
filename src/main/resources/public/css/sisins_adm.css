@@ -38,6 +38,10 @@ article {
     margin: 0;
 }
 
+.borda-curso{
+    border: none;
+}
+
 .botoes {
     margin-bottom: 150px;
     margin-top: 10px;

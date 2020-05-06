@@ -13,7 +13,7 @@ class CursosView : SisInsAdmView() {
         div("container cards_recente") {
             div("row") {
                 //Curso1
-                article {
+                article("borda-curso") {
                     div("col m4 s12") {
                         div("card") {
                             div("card-content") {
@@ -43,7 +43,7 @@ class CursosView : SisInsAdmView() {
                     }
                 }
                 //adicionar curso
-                article {
+                article("borda-curso") {
                     div("col m4 s12") {
                         div("card") {
                             div("card-action mais") {

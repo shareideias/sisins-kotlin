@@ -74,7 +74,7 @@ class InscricoesView : SisInsAdmView() {
 
                 ul("collection") {
                     li("collection-item avatar") {
-                        i("material-icons circle green") {
+                        i("material-icons circle yellow") {
                             +"account_circle"
                         }
                         span("title") {
@@ -93,7 +93,7 @@ class InscricoesView : SisInsAdmView() {
 
                 ul("collection") {
                     li("collection-item avatar") {
-                        i("material-icons circle green") {
+                        i("material-icons circle yellow") {
                             +"account_circle"
                         }
                         span("title") {
@@ -112,7 +112,7 @@ class InscricoesView : SisInsAdmView() {
 
                 ul("collection") {
                     li("collection-item avatar") {
-                        i("material-icons circle green") {
+                        i("material-icons circle blue") {
                             +"account_circle"
                         }
                         span("title") {
@@ -131,7 +131,7 @@ class InscricoesView : SisInsAdmView() {
 
                 ul("collection") {
                     li("collection-item avatar") {
-                        i("material-icons circle green") {
+                        i("material-icons circle red") {
                             +"account_circle"
                         }
                         span("title") {
@@ -150,7 +150,7 @@ class InscricoesView : SisInsAdmView() {
 
                 ul("collection") {
                     li("collection-item avatar") {
-                        i("material-icons circle green") {
+                        i("material-icons circle red") {
                             +"account_circle"
                         }
                         span("title") {
@@ -169,7 +169,7 @@ class InscricoesView : SisInsAdmView() {
 
                 ul("collection") {
                     li("collection-item avatar") {
-                        i("material-icons circle green") {
+                        i("material-icons circle gray") {
                             +"account_circle"
                         }
                         span("title") {
@@ -188,7 +188,7 @@ class InscricoesView : SisInsAdmView() {
 
                 ul("collection") {
                     li("collection-item avatar") {
-                        i("material-icons circle green") {
+                        i("material-icons circle gray") {
                             +"account_circle"
                         }
                         span("title") {
@@ -207,7 +207,7 @@ class InscricoesView : SisInsAdmView() {
 
                 ul("collection") {
                     li("collection-item avatar") {
-                        i("material-icons circle green") {
+                        i("material-icons circle gray") {
                             +"account_circle"
                         }
                         span("title") {

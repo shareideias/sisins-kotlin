@@ -19,50 +19,50 @@ class CadastrarProvaView : SisInsAdmView() {
             }
             div(classes = "input-field col s12") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputPergunta1"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputPergunta1"
                     +"Pergunta"
                 }
             }
 
             div(classes = "input-field col s12") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputAlternativa11"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputAlternativa11"
                     +"Alternativa 1"
                 }
             }
 
             div(classes = "input-field col s12") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputAlternativa12"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputAlternativa12"
                     +"Alternativa 2"
                 }
             }
 
             div(classes = "input-field col s12") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputAlternativa13"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputAlternativa13"
                     +"Alternativa 3"
                 }
             }
 
             div(classes = "input-field col s12 ultima_alt") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputAlternativa14"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputAlternativa14"
                     +"Alternativa 4"
                 }
             }
@@ -74,50 +74,50 @@ class CadastrarProvaView : SisInsAdmView() {
             }
             div(classes = "input-field col s12") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputPergunta2"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputPergunta2"
                     +"Pergunta"
                 }
             }
 
             div(classes = "input-field col s12") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputAlternativa21"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputAlternativa21"
                     +"Alternativa 1"
                 }
             }
 
             div(classes = "input-field col s12") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputAlternativa22"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputAlternativa22"
                     +"Alternativa 2"
                 }
             }
 
             div(classes = "input-field col s12") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputAlternativa23"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputAlternativa23"
                     +"Alternativa 3"
                 }
             }
 
             div(classes = "input-field col s12 ultima_alt") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputAlternativa24"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputAlternativa24"
                     +"Alternativa 4"
                 }
             }
@@ -129,50 +129,50 @@ class CadastrarProvaView : SisInsAdmView() {
             }
             div(classes = "input-field col s12") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputPergunta3"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputPergunta3"
                     +"Pergunta"
                 }
             }
 
             div(classes = "input-field col s12") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputAlternativa31"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputAlternativa31"
                     +"Alternativa 1"
                 }
             }
 
             div(classes = "input-field col s12") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputAlternativa32"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputAlternativa32"
                     +"Alternativa 2"
                 }
             }
 
             div(classes = "input-field col s12") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputAlternativa33"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputAlternativa33"
                     +"Alternativa 3"
                 }
             }
 
             div(classes = "input-field col s12 ultima_alt") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputAlternativa34"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputAlternativa34"
                     +"Alternativa 4"
                 }
             }
@@ -184,50 +184,50 @@ class CadastrarProvaView : SisInsAdmView() {
             }
             div(classes = "input-field col s12") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputPergunta4"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputPergunta4"
                     +"Pergunta"
                 }
             }
 
             div(classes = "input-field col s12") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputAlternativa41"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputAlternativa41"
                     +"Alternativa 1"
                 }
             }
 
             div(classes = "input-field col s12") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputAlternativa42"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputAlternativa42"
                     +"Alternativa 2"
                 }
             }
 
             div(classes = "input-field col s12") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputAlternativa43"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputAlternativa43"
                     +"Alternativa 3"
                 }
             }
 
             div(classes = "input-field col s12 ultima_alt") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputAlternativa44"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputAlternativa44"
                     +"Alternativa 4"
                 }
             }
@@ -239,50 +239,50 @@ class CadastrarProvaView : SisInsAdmView() {
             }
             div(classes = "input-field col s12") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputPergunta5"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputPergunta5"
                     +"Pergunta"
                 }
             }
 
             div(classes = "input-field col s12") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputAlternativa51"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputAlternativa51"
                     +"Alternativa 1"
                 }
             }
 
             div(classes = "input-field col s12") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputAlternativa52"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputAlternativa52"
                     +"Alternativa 2"
                 }
             }
 
             div(classes = "input-field col s12") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputAlternativa53"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputAlternativa53"
                     +"Alternativa 3"
                 }
             }
 
             div(classes = "input-field col s12 ultima_alt") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputAlternativa54"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputAlternativa54"
                     +"Alternativa 4"
                 }
             }
@@ -294,50 +294,50 @@ class CadastrarProvaView : SisInsAdmView() {
             }
             div(classes = "input-field col s12") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputPergunta6"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputPergunta6"
                     +"Pergunta"
                 }
             }
 
             div(classes = "input-field col s12") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputAlternativa61"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputAlternativa61"
                     +"Alternativa 1"
                 }
             }
 
             div(classes = "input-field col s12") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputAlternativa62"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputAlternativa62"
                     +"Alternativa 2"
                 }
             }
 
             div(classes = "input-field col s12") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputAlternativa63"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputAlternativa63"
                     +"Alternativa 3"
                 }
             }
 
             div(classes = "input-field col s12 ultima_alt") {
                 input(classes = "validate") {
-                    id = "first_name"
+                    id = "inputAlternativa64"
                 }
                 label {
-                    htmlFor = "first_name"
+                    htmlFor = "inputAlternativa64"
                     +"Alternativa 4"
                 }
             }

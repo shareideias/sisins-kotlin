@@ -424,12 +424,12 @@ class CadastroView (private val errormsg: String?) : SisInsAlunoView() {
                 }
 
                 div("input-field col s12 mb-0 perguntas") {
-                    +"Para finalizar, pedimos para que você escreva entre 5 e 10 linhas por que gostaria de fazer um curso na Share. Lembre-se, esse é um dos critérios mais importantes para ser selecionado (exceto: curso português)."
+                    +"Para finalizar, pedimos para que você escreva entre 5 e 10 linhas por que gostaria de fazer um curso na Share. Lembre-se, esse é um dos critérios mais importantes para ser selecionado (exceto: curso português para estrangeiros)."
                     label{
                         htmlFor = "inputRedacao_entrada"
 
                     }
-                    input(InputType.text , classes = "validate") {
+                    textArea(classes = "validate materialize-textarea") {
                         id = "inputRedacao_entrada"
                         name = "redacao_entrada"
                     }

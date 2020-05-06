@@ -82,10 +82,6 @@ class CandidatoView : SisInsAdmView() {
                 +"Reprovar"
             }
 
-            label("check") {
-                checkBoxInput(name = "continuar")
-                span { +"Continuar avaliando" }
-            }
         }
     }
 }

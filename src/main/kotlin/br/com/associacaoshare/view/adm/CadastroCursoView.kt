@@ -16,10 +16,10 @@ class CadastroCursoView : SisInsAdmView() {
                 div(classes = "row") {
                     div(classes = "input-field col s12") {
                         input(classes = "validate") {
-                            id = "first_name"
+                            id = "inputNome"
                         }
                         label {
-                            htmlFor = "first_name"
+                            htmlFor = "inputNome"
                             +"Nome do curso"
                         }
                     }
@@ -28,10 +28,10 @@ class CadastroCursoView : SisInsAdmView() {
                 div(classes = "row") {
                     div(classes = "input-field col s12") {
                         input(classes = "validate") {
-                            id = "first_name"
+                            id = "inputHorario"
                         }
                         label {
-                            htmlFor = "first_name"
+                            htmlFor = "inputHorario"
                             +"Horário"
                         }
                     }
