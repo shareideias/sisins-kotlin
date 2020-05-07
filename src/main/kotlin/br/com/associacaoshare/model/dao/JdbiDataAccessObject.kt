@@ -374,23 +374,23 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
         val id = jdbi.withHandleUnchecked {
             it.createUpdate("INSERT INTO sisins_participante (categoria, nome, data_nascimento, telefone, email, senha, tipo_sem_vinculo, vinculo_ufscar, escola, edital, onde_conheceu, esteve_ufscar, local_aulas, disponibilidade, objetivo, cursou_share, desistencia, redacao_entrada, curso1_id, data_inscricao_c1, resposta1_c1, resposta2_c1, resposta3_c1, resposta4_c1, resposta5_c1, resposta6_c1, avaliador_id_c1, resultado_c1, curso2_id, data_inscricao_c2, resposta1_c2, resposta2_c2, resposta3_c2, resposta4_c2, resposta5_c2, resposta6_c2, avaliador_id_c2, resultado_c2) VALUES (:c, :nome, :d, :tel, :email, :senha, :tipo_sem_vinculo, :vinculo_ufscar, :escola, :edital, :onde_conheceu, :esteve_ufscar, :local_aulas, :disponibilidade, :objetivo, :cursou_share, :desistencia, :redacao_entrada, :curso1_id, :data_inscricao_c1, :resposta1_c1, :resposta2_c1, :resposta3_c1, :resposta4_c1, :resposta5_c1, :resposta6_c1, :avaliador_id_c1, :resultado_c1, :curso2_id, :data_inscricao_c2, :resposta1_c2, :resposta2_c2, :resposta3_c2, :resposta4_c2, :resposta5_c2, :resposta6_c2, :avaliador_id_c2, :resultado_c2)")
                     .bind("c", categoriaInt)
-                    .bind("nome", nome)
+                    .bind("nome", if(nome.isNullOrEmpty()) null else nome)
                     .bind("d", dataNascimentoLD)
-                    .bind("tel", telefone)
-                    .bind("email", email)
-                    .bind("senha", hash)
+                    .bind("tel", if(telefone.isNullOrEmpty()) null else telefone)
+                    .bind("email", if(email.isNullOrEmpty()) null else email)
+                    .bind("senha", if(password.isNullOrEmpty()) null else hash)
                     .bind("tipo_sem_vinculo", tipoSemVinculoInt)
                     .bind("vinculo_ufscar", vinculoUfscarInt)
-                    .bind("escola", escola)
+                    .bind("escola", if(escola.isNullOrEmpty()) null else escola)
                     .bind("edital", editalInt)
                     .bind("onde_conheceu", ondeConheceuInt)
                     .bind("esteve_ufscar", esteveUfscarInt)
                     .bind("local_aulas", localAulasInt)
-                    .bind("disponibilidade", disponibilidade)
+                    .bind("disponibilidade", if(disponibilidade.isNullOrEmpty()) null else disponibilidade)
                     .bind("objetivo", objetivoInt)
                     .bind("cursou_share", cursouShareInt)
                     .bind("desistencia", desistenciaInt)
-                    .bind("redacao_entrada", redacao_entrada)
+                    .bind("redacao_entrada", if(redacao_entrada.isNullOrEmpty()) null else redacao_entrada)
                     .bind("curso1_id", curso1_id)
                     .bind("data_inscricao_c1", OffsetDateTime.now())
                     .bind("resposta1_c1", resposta1_c1)
@@ -554,13 +554,13 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
      * Formata uma string de modo que seja aceito como um valor de um cookie
      */
     override fun asciitouni(ascii: String?) : String? {
-        return ascii?.replace('+', ' ')?.replace('#', 'á')
+        return ascii?.replace('+', ' ')?.replace('#', 'á')?.replace('&', '"')
     }
 
     /**
      * Recupera a formatação original da string
      */
     override fun unitoascii(uni: String?) : String? {
-        return uni?.replace(' ', '+')?.replace('á', '#')
+        return uni?.replace(' ', '+')?.replace('á', '#')?.replace('"', '&')
     }
 }

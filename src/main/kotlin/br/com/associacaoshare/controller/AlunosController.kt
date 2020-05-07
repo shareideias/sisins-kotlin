@@ -15,16 +15,23 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
     val dao: DataAccessObject by instance()
 
     override fun addEndpoints() {
+        get(::index)
+
         get("cadastro", ::cadastro)
         post("CadastroProc", ::cadastroProc)
 
-        get("EdicaoView", EdicaoView()::render)
-        get("IndexView", IndexView()::render)
+        get("login", ::login)
+
+        get("editar", ::edicao)
+
         get("Inscricoes1View", Inscricoes1View()::render)
         get("Inscricoes2View", Inscricoes2View()::render)
         get("ListaView", ListaView()::render)
-        get("LoginView", LoginView()::render)
         get("ProvaView", ProvaView()::render)
+    }
+
+    private fun index (ctx: Context) {
+        IndexView().render(ctx)
     }
 
     private fun cadastro (ctx: Context) {
@@ -37,8 +44,25 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
     private fun cadastroProc (ctx: Context) {
         val resp = ctx.formParamMap()
         val novoParticipante: Participante = dao.insertParticipante(resp)
-        ctx.redirect("/alunos/LoginView")
+        ctx.redirect("/alunos/login")
     }
-    
-    
+
+    private fun login (ctx: Context) {
+        LoginView().render(ctx)
+    }
+
+    private fun edicao (ctx: Context) {
+        /* TODO: Alterar o redirect baseado no determinado.
+        *        Alterar a obtenção do id do usuario pela implementação do login.
+         */
+        val usuario = ctx.sessionAttribute<Int>("id_usuario")
+        if(usuario != null) {
+            var errormsg = dao.asciitouni(ctx.cookie("errorMsg"))
+            if (errormsg != null)
+                ctx.cookie("errorMsg", "", 0)
+            EdicaoView(errormsg).render(ctx)
+        } else {
+            ctx.redirect("/alunos/login")
+        }
+    }
 }

@@ -4,7 +4,7 @@ import br.com.associacaoshare.view.base.SisInsAlunoView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class EdicaoView : SisInsAlunoView() {
+class EdicaoView(private val errormsg: String?) : SisInsAlunoView() {
     override val pageTitle = "Edição"
 
     override fun BODY.renderBody(ctx: Context) {

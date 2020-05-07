@@ -30,5 +30,13 @@ class ErrorHandler (override val kodein: Kodein) : KodeinAware {
                 ctx.cookie("errorMsg",dao.unitoascii(message) ?: "Um erro desconhecido ocorreu.")
                 ctx.redirect(ctx.header("Referer") ?: "/")
         }
+
+        exception(java.time.format.DateTimeParseException::class.java) {
+            //Erro no parsing, pode não ter sido preenchido
+            e, ctx ->
+            val message = (e.message)
+            ctx.cookie("errorMsg",dao.unitoascii(message) ?: "Um erro desconhecido ocorreu.")
+            ctx.redirect(ctx.header("Referer") ?: "/")
+        }
     }
 }
