@@ -2,6 +2,7 @@ package br.com.associacaoshare.controller
 
 import br.com.associacaoshare.model.dao.DataAccessObject
 import br.com.associacaoshare.model.dao.JdbiDataAccessObject
+import br.com.associacaoshare.model.exception.FalhaSessaoException
 import io.javalin.Javalin
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -37,6 +38,24 @@ class ErrorHandler (override val kodein: Kodein) : KodeinAware {
             val message = (e.message)
             ctx.cookie("errorMsg",dao.unitoascii(message) ?: "Um erro desconhecido ocorreu.")
             ctx.redirect(ctx.header("Referer") ?: "/")
+        }
+
+        exception(FalhaSessaoException::class.java) {
+            //Exception lançado pelo sisins para o usuário refazer a sessão no login
+            e, ctx ->
+            val message = (e.message)
+            ctx.cookie("errorMsg",dao.unitoascii(message) ?: "Um erro desconhecido ocorreu.")
+            ctx.redirect("/alunos/login")
+        }
+
+        exception(Exception::class.java) {
+            //Exception desconhecida
+            e, ctx ->
+            val message = (e.message)
+            println(message)
+            println(e.stackTrace)
+            ctx.cookie("errorMsg",dao.unitoascii(message) ?: "Um erro desconhecido ocorreu.")
+            ctx.redirect("/alunos/")
         }
     }
 }
