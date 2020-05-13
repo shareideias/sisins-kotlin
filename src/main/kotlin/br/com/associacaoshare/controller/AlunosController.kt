@@ -2,6 +2,7 @@ package br.com.associacaoshare.controller
 
 import br.com.associacaoshare.model.Participante
 import br.com.associacaoshare.model.dao.DataAccessObject
+import br.com.associacaoshare.model.exception.FalhaSessaoException
 import br.com.associacaoshare.view.alunos.*
 import io.javalin.apibuilder.EndpointGroup
 import org.kodein.di.Kodein
@@ -23,9 +24,10 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
         get("login", ::login)
 
         get("editar", ::edicao)
+        post("EditaProc", ::edicaoProc)
 
-        get("Inscricoes1View", Inscricoes1View()::render)
-        get("Inscricoes2View", Inscricoes2View()::render)
+        get("inscricoes", ::inscricoes)
+
         get("ListaView", ListaView()::render)
         get("ProvaView", ProvaView()::render)
     }
@@ -55,14 +57,44 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
         /* TODO: Alterar o redirect baseado no determinado.
         *        Alterar a obtenção do id do usuario pela implementação do login.
          */
-        val usuario = ctx.sessionAttribute<Int>("id_usuario")
-        if(usuario != null) {
-            var errormsg = dao.asciitouni(ctx.cookie("errorMsg"))
-            if (errormsg != null)
-                ctx.cookie("errorMsg", "", 0)
-            EdicaoView(errormsg).render(ctx)
+        val participante = ctx.sessionAttribute<Int?>("id_usuario")?.let { dao.getParticipante(it) }
+        val errormsg = dao.asciitouni(ctx.cookie("errorMsg"))
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+        if(participante != null) {
+            EdicaoView(errormsg, participante).render(ctx)
         } else {
+            throw FalhaSessaoException()
             ctx.redirect("/alunos/login")
+        }
+    }
+
+    private fun edicaoProc (ctx: Context) {
+        /* TODO: Alterar o redirect baseado no determinado.
+        *        Alterar a obtenção do id do usuario pela implementação do login.
+         */
+        val resp = ctx.formParamMap()
+        val participante = ctx.sessionAttribute<Int?>("id_usuario")?.let { dao.getParticipante(it) }
+        if(participante != null) {
+            participante.atualizaDados(resp)
+            dao.updateParticipante(participante)
+        }
+        //Onde redirecionar após edição?
+        ctx.redirect("/alunos")
+    }
+
+    private fun inscricoes (ctx: Context) {
+        /* TODO: Alterar o redirect baseado no determinado.
+        *        Alterar a obtenção do id do usuario pela implementação do login.
+         */
+        val participante = ctx.sessionAttribute<Int?>("id_usuario")?.let { dao.getParticipante(it) }
+        val errormsg = dao.asciitouni(ctx.cookie("errorMsg"))
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+        if(participante != null) {
+            InscricoesAlunoView(errormsg).render(ctx)
+        } else {
+            throw FalhaSessaoException()
         }
     }
 }
