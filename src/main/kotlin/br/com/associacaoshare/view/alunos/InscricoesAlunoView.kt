@@ -5,15 +5,23 @@ import br.com.associacaoshare.view.base.SisInsAlunoView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class Inscricoes1View : SisInsAlunoView() {
+class InscricoesAlunoView(private val errormsg: String?)  : SisInsAlunoView() {
     override val pageTitle: String
         get() = "Inscrição Share"
-
     override fun BODY.renderBody(ctx: Context) {
         link(type = "text/css", rel = "stylesheet", href = "/css/sisins_inscricoes.css")
-        div("row"){
 
-            div("col s12 m12 l3 offset-l3"){
+        link(type = "text/css", rel = "stylesheet", href = "/css/alerts.css")
+        if (!errormsg.isNullOrEmpty()) {
+            div("materialert error") {
+                div("material-icons") { +"error_outline" }
+                +"$errormsg"
+            }
+        }
+
+        div("row"){
+            div("col s12 m0 l3")
+            div("col s12 m12 l3"){
                 div("card"){
                     div("card-image"){
                         img("Logo da Share", "../img/share-logo.png", "logo")
@@ -21,17 +29,18 @@ class Inscricoes1View : SisInsAlunoView() {
                 }
             }
             div("center col s12 m12 l3"){
-                a("edicao 1.html", classes = "center atualizar waves-effect waves-light btn"){
+                a("edicao", classes = "center atualizar waves-effect waves-light btn"){
                     +"Atualizar perfil"
                 }
                 h5 { +"Seus cursos:" }
                 ul("collection with-header"){
                     li("collection-item"){
-                        div {
-                            i { +"Curso não selecionado" }
-                            a("lista.html", classes = "secondary-content") {
-                                i("material-icons") { +"add" }
+                        span("title") {
+                            b { +"Violão" }
+                            a("inscricoes.html", classes = "secondary-content") {
+                                i("material-icons") { +"delete" }
                             }
+                            p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
                         }
                     }
                     li("collection-item"){
@@ -44,7 +53,7 @@ class Inscricoes1View : SisInsAlunoView() {
                     }
                 }
             }
-
+            div("col s12 m0 l3")
         }
     }
 }
