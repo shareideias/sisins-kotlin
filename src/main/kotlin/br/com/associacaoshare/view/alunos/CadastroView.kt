@@ -9,19 +9,15 @@ class CadastroView (private val errormsg: String?) : SisInsAlunoView() {
 
     override fun BODY.renderBody(ctx: Context) {
         link(type = "text/css", rel = "stylesheet", href = "/css/sisins_cadastro.css")
+
         link(type = "text/css", rel = "stylesheet", href = "/css/alerts.css")
-        if (errormsg != null) {
-            /*
-            <div class="materialert error">
-                <div class="material-icons">error_outline</div>
-                Oh! What a beautiful alert :)
-            </div>
-             */
+        if (!errormsg.isNullOrEmpty()) {
             div("materialert error") {
                 div("material-icons") { +"error_outline" }
                 +"$errormsg"
             }
         }
+
         img("Logo da Share", "../img/share-logo.png", "logo")
         h3 { +"Cadastro" }
 

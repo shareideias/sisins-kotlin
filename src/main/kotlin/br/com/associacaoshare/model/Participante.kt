@@ -49,4 +49,50 @@ data class Participante(
     fun hashPassword(password: String) {
         hash = DataAccessObject.hashPassword(password)
     }
+
+    fun atualizaDados(respostasPack: Map<String, List<String>>) {
+        val respostas : Map<String, String> = respostasPack.mapValues {(key, value) -> (value[0])}
+        val categoria: String by respostas
+        this.categoria = categoria.toInt()
+        val nome: String by respostas
+        this.nome = nome
+        val data_nascimento: String by respostas
+        val dataNascimentoLD = LocalDate.parse(data_nascimento)
+        this.data_nascimento = dataNascimentoLD
+        val telefone: String by respostas
+        this.telefone = telefone
+        val email: String by respostas
+        this.email = email
+        val tipo_sem_vinculo: String by respostas
+        this.tipo_sem_vinculo = tipo_sem_vinculo.toInt()
+        val vinculo_ufscar: String by respostas
+        this.vinculo_ufscar = vinculo_ufscar.toInt()
+        val escola: String by respostas
+        this.escola = escola
+        val edital: String by respostas
+        val editalInt: Int = edital.toInt()
+        this.edital = editalInt
+        val onde_conheceu: String by respostas
+        val ondeConheceuInt: Int = onde_conheceu.toInt()
+        this.onde_conheceu = ondeConheceuInt
+        val esteve_ufscar: String by respostas
+        val esteveUfscarInt: Int = esteve_ufscar.toInt()
+        this.esteve_ufscar = esteveUfscarInt
+        val local_aulas: String by respostas
+        val localAulasInt: Int = local_aulas.toInt()
+        this.local_aulas = localAulasInt
+        val disponibilidade: String by respostas
+        this.disponibilidade = disponibilidade
+        val objetivo: String by respostas
+        val objetivoInt: Int = objetivo.toInt()
+        this.objetivo = objetivoInt
+        val cursou_share: String by respostas
+        val cursouShareInt: Int = cursou_share.toInt()
+        this.cursou_share = cursouShareInt
+        val desistencia: String by respostas
+        val desistenciaInt: Int = desistencia.toInt()
+        this.desistencia = desistenciaInt
+        val redacao_entrada: String by respostas
+        this.redacao_entrada = redacao_entrada
+    }
 }

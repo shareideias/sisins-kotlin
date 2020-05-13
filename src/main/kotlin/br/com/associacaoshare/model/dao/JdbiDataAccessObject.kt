@@ -554,13 +554,13 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
      * Formata uma string de modo que seja aceito como um valor de um cookie
      */
     override fun asciitouni(ascii: String?) : String? {
-        return ascii?.replace('+', ' ')?.replace('#', 'á')?.replace('&', '"')
+        return ascii?.replace('+', ' ')?.replace('#', 'á')?.replace('&', '"')?.replace('>', 'ç')
     }
 
     /**
      * Recupera a formatação original da string
      */
     override fun unitoascii(uni: String?) : String? {
-        return uni?.replace(' ', '+')?.replace('á', '#')?.replace('"', '&')
+        return uni?.replace(' ', '+')?.replace('á', '#')?.replace('"', '&')?.replace('ç', '>')
     }
 }
