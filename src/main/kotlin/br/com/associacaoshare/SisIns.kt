@@ -1,6 +1,7 @@
 package br.com.associacaoshare
 
 import br.com.associacaoshare.controller.ErrorHandler
+import br.com.associacaoshare.controller.SisinsAccessManager
 import br.com.associacaoshare.controller.StubController
 import br.com.associacaoshare.model.dao.DataAccessObject
 import br.com.associacaoshare.model.dao.JdbiDataAccessObject
@@ -31,6 +32,7 @@ fun main() {
 
     val app = Javalin.create { cfg ->
         cfg.addStaticFiles("public")
+        cfg.accessManager(SisinsAccessManager())
     }
 
     ErrorHandler(kodein).run { app.addErrorHandlers() }
