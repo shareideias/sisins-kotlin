@@ -1,16 +1,24 @@
 package br.com.associacaoshare.view.alunos
 
-import br.com.associacaoshare.view.base.HtmlBuilderView
 import br.com.associacaoshare.view.base.SisInsAlunoView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class ProvaView : SisInsAlunoView() {
+class ProvaView(val errormsg: String?) : SisInsAlunoView() {
     override val pageTitle: String
         get() = "Prova"
 
     override fun BODY.renderBody(ctx: Context) {
         link(type = "text/css", rel = "stylesheet", href = "/css/sisins_prova.css")
+
+        link(type = "text/css", rel = "stylesheet", href = "/css/alerts.css")
+        if (!errormsg.isNullOrEmpty()) {
+            div("materialert error") {
+                div("material-icons") { +"error_outline" }
+                +"$errormsg"
+            }
+        }
+
         img("Logo da Share", "../img/share-logo.png", "logo")
         h3 { +"Prova de nivelamento" }
 

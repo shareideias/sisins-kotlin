@@ -5,12 +5,21 @@ import br.com.associacaoshare.view.base.SisInsAlunoView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class LoginView : SisInsAlunoView() {
+class LoginView(private val errormsg: String?) : SisInsAlunoView() {
     override val pageTitle: String
         get() = "Login"
 
     override fun BODY.renderBody(ctx: Context) {
         link(type = "text/css", rel = "stylesheet", href = "/css/sisins_login.css")
+
+        link(type = "text/css", rel = "stylesheet", href = "/css/alerts.css")
+        if (!errormsg.isNullOrEmpty()) {
+            div("materialert error") {
+                div("material-icons") { +"error_outline" }
+                +"$errormsg"
+            }
+        }
+
         div("row") {
 
             div("col s12 m12 l3 offset-l3") {
@@ -23,14 +32,14 @@ class LoginView : SisInsAlunoView() {
             div("center col s12 m12 l3") {
                 div("caixa_login") {
                     div("lighten-4 row geral_login") {
-                        form(classes = "col s12", method = FormMethod.post) {
+                        form("dologin", classes = "col s12", method = FormMethod.post) {
                             div("row") {
                                 div("input-field col s12") {
-                                    input(InputType.email, classes = "validate", name = "email") {
-                                        id = "email"
+                                    input(InputType.text, classes = "validate", name = "user") {
+                                        id = "user"
                                     }
                                     label() {
-                                        htmlFor = "email"
+                                        htmlFor = "user"
                                         +"Email"
                                     }
                                 }
@@ -48,8 +57,8 @@ class LoginView : SisInsAlunoView() {
                                 }
                             }
 
-                            div("row") {
-                                a("inscricoes.html", classes = "center entrar waves-effect waves-light btn") { +"Entrar" }
+                            button(type = ButtonType.submit, classes = "entrar waves-effect waves-light btn") {
+                                +"Entrar"
                             }
                         }
                     }

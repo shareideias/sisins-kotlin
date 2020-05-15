@@ -29,7 +29,7 @@ class InscricoesAlunoView(private val errormsg: String?)  : SisInsAlunoView() {
                 }
             }
             div("center col s12 m12 l3"){
-                a("edicao", classes = "center atualizar waves-effect waves-light btn"){
+                a("/alunos/editar", classes = "center atualizar waves-effect waves-light btn"){
                     +"Atualizar perfil"
                 }
                 h5 { +"Seus cursos:" }
