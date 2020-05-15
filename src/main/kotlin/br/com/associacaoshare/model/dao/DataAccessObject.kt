@@ -11,6 +11,7 @@ interface DataAccessObject {
     fun getAvaliador(id: Int): Avaliador?
     fun getCurso(id: Int): Curso?
     fun getParticipante(id: Int): Participante?
+    fun getParticipantebyEmail(email: String): Participante?
 
     fun allAvaliador(): List<Avaliador>
     fun allCurso(): List<Curso>
@@ -39,9 +40,6 @@ interface DataAccessObject {
     fun removeAvaliador(id: Int)
     fun removeCurso(id: Int)
     fun removeParticipante(id: Int)
-
-    fun asciitouni(ascii: String?) : String?
-    fun unitoascii(uni: String?) : String?
 
     companion object {
         fun hashPassword(password: String): String {
