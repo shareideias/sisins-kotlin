@@ -124,7 +124,7 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
             it.execute("""
                 CREATE OR REPLACE FUNCTION verificaEmail() RETURNS trigger AS ${"\$"}verificaEmail$
                 BEGIN
-                IF EXISTS (SELECT 1 FROM sisins_participante WHERE email = NEW.email) THEN
+                IF EXISTS (SELECT 1 FROM sisins_participante WHERE email = NEW.email AND id != NEW.id) THEN
                 RAISE EXCEPTION 'O e-mail % já está cadastrado', NEW.email;
                 RETURN NULL;
                 END IF;
@@ -146,8 +146,18 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
 
     override fun getAvaliador(id: Int): Avaliador? {
         return jdbi.withHandleUnchecked {
-            it.createQuery("SELECT * FROM sisins_avaliador WHERE id = :id")
+            it.createQuery("SELECT id, username, hash, nome FROM pagini_usuario JOIN pagini_pessoa ON pagini_usuario.pessoaid = pagini_pessoa.id WHERE id = :id")
                     .bind("id", id)
+                    .mapTo<Avaliador>()
+                    .findOne()
+                    .orElse(null)
+        }
+    }
+
+    override fun getAvaliadorbyUsername(user: String): Avaliador? {
+        return jdbi.withHandleUnchecked {
+            it.createQuery("SELECT id, username, hash, nome FROM pagini_usuario JOIN pagini_pessoa ON pagini_usuario.pessoaid = pagini_pessoa.id WHERE username = :user")
+                    .bind("user", user)
                     .mapTo<Avaliador>()
                     .findOne()
                     .orElse(null)

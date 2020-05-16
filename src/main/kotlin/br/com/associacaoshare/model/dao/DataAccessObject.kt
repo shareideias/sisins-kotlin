@@ -9,6 +9,7 @@ import java.util.*
 
 interface DataAccessObject {
     fun getAvaliador(id: Int): Avaliador?
+    fun getAvaliadorbyUsername(user: String): Avaliador?
     fun getCurso(id: Int): Curso?
     fun getParticipante(id: Int): Participante?
     fun getParticipantebyEmail(email: String): Participante?
