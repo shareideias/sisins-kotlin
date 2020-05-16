@@ -1,20 +1,29 @@
 package br.com.associacaoshare.view.alunos
 
+import br.com.associacaoshare.model.Participante
 import br.com.associacaoshare.view.base.SisInsAlunoView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class EdicaoView(private val errormsg: String?) : SisInsAlunoView() {
+class EdicaoView(private val errormsg: String?, private val participante: Participante) : SisInsAlunoView() {
     override val pageTitle = "Edição"
 
     override fun BODY.renderBody(ctx: Context) {
         link(type = "text/css", rel = "stylesheet", href = "/css/sisins_edicao.css")
 
+        link(type = "text/css", rel = "stylesheet", href = "/css/alerts.css")
+        if (!errormsg.isNullOrEmpty()) {
+            div("materialert error") {
+                div("material-icons") { +"error_outline" }
+                +"$errormsg"
+            }
+        }
+
         img("Logo da Share", "../img/share-logo.png", "logo")
         h3 { +"Edição" }
 
         div("row") {
-            form(classes = "col s12", method = FormMethod.post) {
+            form("EditaProc", classes = "col s12", method = FormMethod.post) {
                 div("input-field col s12 mb-0") {
                     +"Responda em qual categoria se encaixa"
                     label {
@@ -24,20 +33,24 @@ class EdicaoView(private val errormsg: String?) : SisInsAlunoView() {
                         id = "selectCategoria"
                         name = "categoria"
                         option {
-                            disabled = true
-                            selected = true
-                            value = ""
-                        }
-                        option {
                             value = "1"
+                            if(participante.categoria == 1) {
+                                selected = true
+                            }
                             +"Pessoas com vínculo com a UFSCar."
                         }
                         option {
                             value = "2"
+                            if(participante.categoria == 2) {
+                                selected = true
+                            }
                             +"Alunos do terceiro ano do ensino médio (tendo no mínimo 16 anos)"
                         }
                         option {
                             value = "3"
+                            if(participante.categoria == 3) {
+                                selected = true
+                            }
                             +"Pessoas que não possuem vínculo com a UFSCar"
                         }
                     }
@@ -52,6 +65,9 @@ class EdicaoView(private val errormsg: String?) : SisInsAlunoView() {
                     input(InputType.text, classes = "validate") {
                         id = "inputNome"
                         name = "nome"
+                        if(participante.nome.isNotEmpty()) {
+                            value = participante.nome
+                        }
                     }
                 }
 
@@ -64,6 +80,7 @@ class EdicaoView(private val errormsg: String?) : SisInsAlunoView() {
                     input(InputType.date , classes = "validate") {
                         id = "inputData_nascimento"
                         name = "data_nascimento"
+                        value = participante.data_nascimento.toString()
                     }
                 }
 
@@ -75,6 +92,9 @@ class EdicaoView(private val errormsg: String?) : SisInsAlunoView() {
                     input(InputType.tel, classes = "validate") {
                         id = "inputTelefone"
                         name = "telefone"
+                        if(participante.telefone.isNotEmpty()) {
+                            value = participante.telefone
+                        }
                     }
                 }
 
@@ -86,17 +106,9 @@ class EdicaoView(private val errormsg: String?) : SisInsAlunoView() {
                     input(InputType.email , classes = "validate") {
                         id = "inputEmail"
                         name = "email"
-                    }
-                }
-
-                div("input-field col s12 mb-0") {
-                    label("perguntas"){
-                        htmlFor = "inputPassword"
-                        +"Senha"
-                    }
-                    input(InputType.password, classes = "validate") {
-                        id = "inputPassword"
-                        name = "password"
+                        if(participante.email.isNotEmpty()) {
+                            value = participante.email
+                        }
                     }
                 }
 
@@ -109,24 +121,31 @@ class EdicaoView(private val errormsg: String?) : SisInsAlunoView() {
                         id = "selectTipoSemVinculo"
                         name = "tipo_sem_vinculo"
                         option {
-                            disabled = true
-                            selected = true
-                            value = ""
-                        }
-                        option {
                             value = "1"
+                            if(participante.tipo_sem_vinculo == 1) {
+                                selected = true
+                            }
                             +"Trabalho e não estudo"
                         }
                         option {
                             value = "2"
+                            if(participante.tipo_sem_vinculo == 2) {
+                                selected = true
+                            }
                             +"Não trabalho e estudo"
                         }
                         option {
                             value = "3"
+                            if(participante.tipo_sem_vinculo == 3) {
+                                selected = true
+                            }
                             +"Não estudo e não trabalho"
                         }
                         option {
                             value = "4"
+                            if(participante.tipo_sem_vinculo == 4) {
+                                selected = true
+                            }
                             +"Estudo e trabalho"
                         }
                     }
@@ -141,28 +160,38 @@ class EdicaoView(private val errormsg: String?) : SisInsAlunoView() {
                         id = "selectVinculoUfscar"
                         name = "vinculo_ufscar"
                         option {
-                            disabled = true
-                            selected = true
-                            value = ""
-                        }
-                        option {
                             value = "1"
+                            if(participante.vinculo_ufscar == 1) {
+                                selected = true
+                            }
                             +"Professor"
                         }
                         option {
                             value = "2"
+                            if(participante.vinculo_ufscar == 2) {
+                                selected = true
+                            }
                             +"Técnico-Administrativo (TAs)"
                         }
                         option {
                             value = "3"
+                            if(participante.vinculo_ufscar == 3) {
+                                selected = true
+                            }
                             +"Aluno da Graduação"
                         }
                         option {
                             value = "4"
+                            if(participante.vinculo_ufscar == 4) {
+                                selected = true
+                            }
                             +"Aluno da Pós Graduação"
                         }
                         option {
                             value = "5"
+                            if(participante.vinculo_ufscar == 5) {
+                                selected = true
+                            }
                             +"Outro"
                         }
                     }
@@ -177,6 +206,9 @@ class EdicaoView(private val errormsg: String?) : SisInsAlunoView() {
                     input(InputType.text , classes = "validate") {
                         id = "inputEscola"
                         name = "escola"
+                        if(participante.escola.isNotEmpty()) {
+                            value = participante.escola
+                        }
                     }
                 }
 
@@ -190,16 +222,17 @@ class EdicaoView(private val errormsg: String?) : SisInsAlunoView() {
                         id = "selectEdital"
                         name = "edital"
                         option {
-                            disabled = true
-                            selected = true
-                            value = ""
-                        }
-                        option {
                             value = "1"
+                            if(participante.edital == 1) {
+                                selected = true
+                            }
                             +"Sim, li e estou ciente dos termos do processo seletivo."
                         }
                         option {
                             value = "2"
+                            if(participante.edital == 2) {
+                                selected = true
+                            }
                             +"Não"
                         }
                     }
@@ -214,24 +247,31 @@ class EdicaoView(private val errormsg: String?) : SisInsAlunoView() {
                         id = "selectOndeConheceu"
                         name = "onde_conheceu"
                         option {
-                            disabled = true
-                            selected = true
-                            value = ""
-                        }
-                        option {
                             value = "1"
+                            if(participante.onde_conheceu == 1) {
+                                selected = true
+                            }
                             +"Mídias Sociais (Facebook, Whatsapp, etc)"
                         }
                         option {
                             value = "2"
+                            if(participante.onde_conheceu == 2) {
+                                selected = true
+                            }
                             +"Recomendação"
                         }
                         option {
                             value = "3"
+                            if(participante.onde_conheceu == 3) {
+                                selected = true
+                            }
                             +"Outras Mídias (Jornais, Revistas, Televisão)"
                         }
                         option {
                             value = "4"
+                            if(participante.onde_conheceu == 4) {
+                                selected = true
+                            }
                             +"Outro"
                         }
                     }
@@ -246,16 +286,17 @@ class EdicaoView(private val errormsg: String?) : SisInsAlunoView() {
                         id = "selectEsteveUfscar"
                         name = "esteve_ufscar"
                         option {
-                            disabled = true
-                            selected = true
-                            value = ""
-                        }
-                        option {
                             value = "1"
+                            if(participante.esteve_ufscar == 1) {
+                                selected = true
+                            }
                             +"Sim"
                         }
                         option {
                             value = "2"
+                            if(participante.esteve_ufscar == 2) {
+                                selected = true
+                            }
                             +"Não"
                         }
                     }
@@ -271,16 +312,17 @@ class EdicaoView(private val errormsg: String?) : SisInsAlunoView() {
                         id = "selectLocal_aulas"
                         name = "local_aulas"
                         option {
-                            disabled = true
-                            selected = true
-                            value = ""
-                        }
-                        option {
                             value = "1"
+                            if(participante.esteve_ufscar == 1) {
+                                selected = true
+                            }
                             +"Sim"
                         }
                         option {
                             value = "2"
+                            if(participante.esteve_ufscar == 2) {
+                                selected = true
+                            }
                             +"Não"
                         }
                     }
@@ -295,6 +337,9 @@ class EdicaoView(private val errormsg: String?) : SisInsAlunoView() {
                     input(InputType.text , classes = "validate") {
                         id = "inputDisponibilidade"
                         name = "disponibilidade"
+                        if(participante.disponibilidade.isNotEmpty()) {
+                            value = participante.disponibilidade
+                        }
                     }
                 }
 
@@ -307,40 +352,59 @@ class EdicaoView(private val errormsg: String?) : SisInsAlunoView() {
                         id = "selectObjetivo"
                         name = "objetivo"
                         option {
-                            disabled = true
-                            selected = true
-                            value = ""
-                        }
-                        option {
                             value = "1"
+                            if(participante.objetivo == 1) {
+                                selected = true
+                            }
                             +"Aprender algo novo"
                         }
                         option {
                             value = "2"
+                            if(participante.objetivo == 2) {
+                                selected = true
+                            }
                             +"Ter um hobby/me distrair"
                         }
                         option {
                             value = "3"
+                            if(participante.objetivo == 3) {
+                                selected = true
+                            }
                             +"Me atualizar para o mercado de trabalho"
                         }
                         option {
                             value = "4"
+                            if(participante.objetivo == 4) {
+                                selected = true
+                            }
                             +"Conhecer pessoas novas"
                         }
                         option {
                             value = "5"
+                            if(participante.objetivo == 5) {
+                                selected = true
+                            }
                             +"Conhecer mais sobre a área/ sanar minha curiosidade"
                         }
                         option {
                             value = "6"
+                            if(participante.objetivo == 6) {
+                                selected = true
+                            }
                             +"Me preparar para provas (vestibulares,  provas da faculdade)"
                         }
                         option {
                             value = "7"
+                            if(participante.objetivo == 7) {
+                                selected = true
+                            }
                             +"Me preparar para um intercâmbio"
                         }
                         option {
                             value = "8"
+                            if(participante.objetivo == 8) {
+                                selected = true
+                            }
                             +"Outro"
                         }
                     }
@@ -355,24 +419,31 @@ class EdicaoView(private val errormsg: String?) : SisInsAlunoView() {
                         id = "selectCursouShare"
                         name = "cursou_share"
                         option {
-                            disabled = true
-                            selected = true
-                            value = ""
-                        }
-                        option {
                             value = "1"
+                            if(participante.cursou_share == 1) {
+                                selected = true
+                            }
                             +"Sim, e fui chamado"
                         }
                         option {
                             value = "2"
+                            if(participante.cursou_share == 2) {
+                                selected = true
+                            }
                             +"Não"
                         }
                         option {
                             value = "3"
+                            if(participante.cursou_share == 3) {
+                                selected = true
+                            }
                             +"Uma vez, e não fui chamado"
                         }
                         option {
                             value = "4"
+                            if(participante.cursou_share == 4) {
+                                selected = true
+                            }
                             +"Mais de uma vez, e nunca fui chamado."
                         }
                     }
@@ -383,21 +454,21 @@ class EdicaoView(private val errormsg: String?) : SisInsAlunoView() {
                     label("perguntas") {
                         htmlFor = "selectDesistencia"
                     }
-
                     select {
                         id = "selectDesistencia"
                         name = "desistencia"
                         option {
-                            disabled = true
-                            selected = true
-                            value = ""
-                        }
-                        option {
                             value = "1"
+                            if(participante.desistencia == 1) {
+                                selected = true
+                            }
                             +"Sim"
                         }
                         option {
                             value = "2"
+                            if(participante.desistencia == 2) {
+                                selected = true
+                            }
                             +"Não"
                         }
                     }
@@ -412,6 +483,9 @@ class EdicaoView(private val errormsg: String?) : SisInsAlunoView() {
                     input(InputType.text , classes = "validate") {
                         id = "inputRedacao_entrada"
                         name = "redacao_entrada"
+                        if(participante.redacao_entrada.isNotEmpty()) {
+                            value = participante.redacao_entrada
+                        }
                     }
                 }
                 button(type = ButtonType.submit, classes = "entrar waves-effect waves-light btn") {

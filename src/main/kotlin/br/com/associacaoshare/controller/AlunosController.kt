@@ -1,68 +1,78 @@
 package br.com.associacaoshare.controller
 
-import br.com.associacaoshare.model.Participante
+import br.com.associacaoshare.controller.SisinsAccessManager.Roles.*
 import br.com.associacaoshare.model.dao.DataAccessObject
+import br.com.associacaoshare.model.exception.FalhaSessaoException
 import br.com.associacaoshare.view.alunos.*
 import io.javalin.apibuilder.EndpointGroup
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import io.javalin.apibuilder.ApiBuilder.get
 import io.javalin.apibuilder.ApiBuilder.post
+import io.javalin.core.security.SecurityUtil.roles
 import io.javalin.http.Context
 import org.kodein.di.generic.instance
+import java.net.URLDecoder.decode
+import kotlin.text.Charsets.UTF_8
 
 class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAware {
     val dao: DataAccessObject by instance()
 
     override fun addEndpoints() {
-        get(::index)
+        get("editar", ::edicao, roles(PARTICIPANTE))
+        post("EditaProc", ::edicaoProc, roles(PARTICIPANTE))
 
-        get("cadastro", ::cadastro)
-        post("CadastroProc", ::cadastroProc)
+        get(::inscricoes, roles(PARTICIPANTE))
 
-        get("login", ::login)
-
-        get("editar", ::edicao)
-
-        get("Inscricoes1View", Inscricoes1View()::render)
-        get("Inscricoes2View", Inscricoes2View()::render)
-        get("ListaView", ListaView()::render)
-        get("ProvaView", ProvaView()::render)
-    }
-
-    private fun index (ctx: Context) {
-        IndexView().render(ctx)
-    }
-
-    private fun cadastro (ctx: Context) {
-        var errormsg = dao.asciitouni(ctx.cookie("errorMsg"))
-        if(errormsg != null)
-            ctx.cookie("errorMsg", "", 0)
-        CadastroView(errormsg).render(ctx)
-    }
-
-    private fun cadastroProc (ctx: Context) {
-        val resp = ctx.formParamMap()
-        val novoParticipante: Participante = dao.insertParticipante(resp)
-        ctx.redirect("/alunos/login")
-    }
-
-    private fun login (ctx: Context) {
-        LoginView().render(ctx)
+        get("ListaView", ::lista, roles(PARTICIPANTE))
+        get("ProvaView", ::prova, roles(PARTICIPANTE))
     }
 
     private fun edicao (ctx: Context) {
-        /* TODO: Alterar o redirect baseado no determinado.
-        *        Alterar a obtenção do id do usuario pela implementação do login.
-         */
-        val usuario = ctx.sessionAttribute<Int>("id_usuario")
-        if(usuario != null) {
-            var errormsg = dao.asciitouni(ctx.cookie("errorMsg"))
-            if (errormsg != null)
-                ctx.cookie("errorMsg", "", 0)
-            EdicaoView(errormsg).render(ctx)
+        val participante = ctx.sessionAttribute<Int?>("ID")?.let { dao.getParticipante(it) }
+        val errormsg = ctx.cookie("errorMsg")?.let{decode(it , UTF_8)}
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+        if(participante != null) {
+            EdicaoView(errormsg, participante).render(ctx)
         } else {
-            ctx.redirect("/alunos/login")
+            throw FalhaSessaoException()
         }
+    }
+
+    private fun edicaoProc (ctx: Context) {
+        val resp = ctx.formParamMap()
+        val participante = ctx.sessionAttribute<Int?>("ID")?.let { dao.getParticipante(it) }
+        if(participante != null) {
+            participante.atualizaDados(resp)
+            dao.updateParticipante(participante)
+        }
+        ctx.redirect("/alunos")
+    }
+
+    private fun inscricoes (ctx: Context) {
+        val participante = ctx.sessionAttribute<Int?>("ID")?.let { dao.getParticipante(it) }
+        val errormsg = ctx.cookie("errorMsg")?.let{decode(it , UTF_8)}
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+        if(participante != null) {
+            InscricoesAlunoView(errormsg).render(ctx)
+        } else {
+            throw FalhaSessaoException()
+        }
+    }
+
+    private fun lista (ctx: Context) {
+        val errormsg = ctx.cookie("errorMsg")?.let{decode(it , UTF_8)}
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+        ListaView(errormsg)
+    }
+
+    private fun prova (ctx: Context) {
+        val errormsg = ctx.cookie("errorMsg")?.let{decode(it , UTF_8)}
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+        ProvaView(errormsg)
     }
 }

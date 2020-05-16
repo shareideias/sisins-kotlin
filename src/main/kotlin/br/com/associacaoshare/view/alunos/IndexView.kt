@@ -5,11 +5,19 @@ import br.com.associacaoshare.view.base.SisInsAlunoView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class IndexView : SisInsAlunoView() {
+class IndexView(private val errormsg: String?) : SisInsAlunoView() {
     override val pageTitle: String
         get() = "Início"
     override fun BODY.renderBody(ctx: Context){
         link(type = "text/css", rel = "stylesheet", href = "/css/sisins_index.css")
+
+        link(type = "text/css", rel = "stylesheet", href = "/css/alerts.css")
+        if (!errormsg.isNullOrEmpty()) {
+            div("materialert error") {
+                div("material-icons") { +"error_outline" }
+                +"$errormsg"
+            }
+        }
 
         div("row"){
             div("col s12 m12 l3 offset-l3"){
@@ -20,11 +28,11 @@ class IndexView : SisInsAlunoView() {
                 }
             }
             div("center col s12 m12 l3"){
-                a("alunos/cadastro", classes = "center cadastro waves-effect waves-light btn"){
+                a("cadastro", classes = "center cadastro waves-effect waves-light btn"){
                     +"Fazer cadastro"
                 }
                 br {
-                    a("alunos/login", classes = "center login waves-effect waves-light btn"){
+                    a("login", classes = "center login waves-effect waves-light btn"){
                         +"Já tenho cadastro"
                     }
                 }

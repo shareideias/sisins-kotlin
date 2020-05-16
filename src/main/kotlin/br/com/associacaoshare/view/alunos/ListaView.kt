@@ -4,11 +4,20 @@ import br.com.associacaoshare.view.base.SisInsAlunoView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class ListaView : SisInsAlunoView() {
+class ListaView(private val errormsg: String?) : SisInsAlunoView() {
     override val pageTitle = "Lista de Inscrições"
 
     override fun BODY.renderBody(ctx: Context) {
         link(type = "text/css", rel = "stylesheet", href = "/css/sisins_lista.css")
+
+        link(type = "text/css", rel = "stylesheet", href = "/css/alerts.css")
+        if (!errormsg.isNullOrEmpty()) {
+            div("materialert error") {
+                div("material-icons") { +"error_outline" }
+                +"$errormsg"
+            }
+        }
+
         div("row") {
             div("col s12 m12 l3 offset-l3") {
                 div("card") {

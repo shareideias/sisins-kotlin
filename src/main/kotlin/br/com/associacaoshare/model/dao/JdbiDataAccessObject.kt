@@ -83,7 +83,7 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
                     data_nascimento TIMESTAMP NOT NULL,
                     telefone TEXT NOT NULL,
                     email TEXT NOT NULL,
-                    senha TEXT NOT NULL,
+                    hash TEXT NOT NULL,
                     tipo_sem_vinculo INT NOT NULL,
                     vinculo_ufscar INT NOT NULL,
                     escola TEXT NOT NULL,
@@ -124,7 +124,7 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
             it.execute("""
                 CREATE OR REPLACE FUNCTION verificaEmail() RETURNS trigger AS ${"\$"}verificaEmail$
                 BEGIN
-                IF EXISTS (SELECT 1 FROM sisins_participante WHERE email = NEW.email) THEN
+                IF EXISTS (SELECT 1 FROM sisins_participante WHERE email = NEW.email AND id != NEW.id) THEN
                 RAISE EXCEPTION 'O e-mail % já está cadastrado', NEW.email;
                 RETURN NULL;
                 END IF;
@@ -146,8 +146,18 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
 
     override fun getAvaliador(id: Int): Avaliador? {
         return jdbi.withHandleUnchecked {
-            it.createQuery("SELECT * FROM sisins_avaliador WHERE id = :id")
+            it.createQuery("SELECT id, username, hash, nome FROM pagini_usuario JOIN pagini_pessoa ON pagini_usuario.pessoaid = pagini_pessoa.id WHERE id = :id")
                     .bind("id", id)
+                    .mapTo<Avaliador>()
+                    .findOne()
+                    .orElse(null)
+        }
+    }
+
+    override fun getAvaliadorbyUsername(user: String): Avaliador? {
+        return jdbi.withHandleUnchecked {
+            it.createQuery("SELECT id, username, hash, nome FROM pagini_usuario JOIN pagini_pessoa ON pagini_usuario.pessoaid = pagini_pessoa.id WHERE username = :user")
+                    .bind("user", user)
                     .mapTo<Avaliador>()
                     .findOne()
                     .orElse(null)
@@ -168,6 +178,16 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
         return jdbi.withHandleUnchecked {
             it.createQuery("SELECT * FROM sisins_participante WHERE id = :id")
                     .bind("id", id)
+                    .mapTo<Participante>()
+                    .findOne()
+                    .orElse(null)
+        }
+    }
+
+    override fun getParticipantebyEmail(email: String): Participante? {
+        return jdbi.withHandleUnchecked {
+            it.createQuery("SELECT * FROM sisins_participante WHERE email = :email")
+                    .bind("email", email)
                     .mapTo<Participante>()
                     .findOne()
                     .orElse(null)
@@ -268,7 +288,7 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
         val hash = DataAccessObject.hashPassword(password)
 
         val id = jdbi.withHandleUnchecked {
-            it.createUpdate("INSERT INTO sisins_participante (categoria, nome, data_nascimento, telefone, email, senha, tipo_sem_vinculo, vinculo_ufscar, escola, edital, onde_conheceu, esteve_ufscar, local_aulas, disponibilidade, objetivo, cursou_share, desistencia, redacao_entrada, curso1_id, data_inscricao_c1, resposta1_c1, resposta2_c1, resposta3_c1, resposta4_c1, resposta5_c1, resposta6_c1, avaliador_id_c1, resultado_c1, curso2_id, data_inscricao_c2, resposta1_c2, resposta2_c2, resposta3_c2, resposta4_c2, resposta5_c2, resposta6_c2, avaliador_id_c2, resultado_c2) VALUES (:c, :nome, :d, :tel, :email, :senha, :tipo_sem_vinculo, :vinculo_ufscar, :escola, :edital, :onde_conheceu, :esteve_ufscar, :local_aulas, :disponibilidade, :objetivo, :cursou_share, :desistencia, :redacao_entrada, :curso1_id, :data_inscricao_c1, :resposta1_c1, :resposta2_c1, :resposta3_c1, :resposta4_c1, :resposta5_c1, :resposta6_c1, :avaliador_id_c1, :resultado_c1, :curso2_id, :data_inscricao_c2, :resposta1_c2, :resposta2_c2, :resposta3_c2, :resposta4_c2, :resposta5_c2, :resposta6_c2, :avaliador_id_c2, :resultado_c2)")
+            it.createUpdate("INSERT INTO sisins_participante (categoria, nome, data_nascimento, telefone, email, hash, tipo_sem_vinculo, vinculo_ufscar, escola, edital, onde_conheceu, esteve_ufscar, local_aulas, disponibilidade, objetivo, cursou_share, desistencia, redacao_entrada, curso1_id, data_inscricao_c1, resposta1_c1, resposta2_c1, resposta3_c1, resposta4_c1, resposta5_c1, resposta6_c1, avaliador_id_c1, resultado_c1, curso2_id, data_inscricao_c2, resposta1_c2, resposta2_c2, resposta3_c2, resposta4_c2, resposta5_c2, resposta6_c2, avaliador_id_c2, resultado_c2) VALUES (:c, :nome, :d, :tel, :email, :senha, :tipo_sem_vinculo, :vinculo_ufscar, :escola, :edital, :onde_conheceu, :esteve_ufscar, :local_aulas, :disponibilidade, :objetivo, :cursou_share, :desistencia, :redacao_entrada, :curso1_id, :data_inscricao_c1, :resposta1_c1, :resposta2_c1, :resposta3_c1, :resposta4_c1, :resposta5_c1, :resposta6_c1, :avaliador_id_c1, :resultado_c1, :curso2_id, :data_inscricao_c2, :resposta1_c2, :resposta2_c2, :resposta3_c2, :resposta4_c2, :resposta5_c2, :resposta6_c2, :avaliador_id_c2, :resultado_c2)")
                     .bind("c", categoria)
                     .bind("nome", nome)
                     .bind("d", data_nascimento)
@@ -372,13 +392,13 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
         val hash = DataAccessObject.hashPassword(password)
 
         val id = jdbi.withHandleUnchecked {
-            it.createUpdate("INSERT INTO sisins_participante (categoria, nome, data_nascimento, telefone, email, senha, tipo_sem_vinculo, vinculo_ufscar, escola, edital, onde_conheceu, esteve_ufscar, local_aulas, disponibilidade, objetivo, cursou_share, desistencia, redacao_entrada, curso1_id, data_inscricao_c1, resposta1_c1, resposta2_c1, resposta3_c1, resposta4_c1, resposta5_c1, resposta6_c1, avaliador_id_c1, resultado_c1, curso2_id, data_inscricao_c2, resposta1_c2, resposta2_c2, resposta3_c2, resposta4_c2, resposta5_c2, resposta6_c2, avaliador_id_c2, resultado_c2) VALUES (:c, :nome, :d, :tel, :email, :senha, :tipo_sem_vinculo, :vinculo_ufscar, :escola, :edital, :onde_conheceu, :esteve_ufscar, :local_aulas, :disponibilidade, :objetivo, :cursou_share, :desistencia, :redacao_entrada, :curso1_id, :data_inscricao_c1, :resposta1_c1, :resposta2_c1, :resposta3_c1, :resposta4_c1, :resposta5_c1, :resposta6_c1, :avaliador_id_c1, :resultado_c1, :curso2_id, :data_inscricao_c2, :resposta1_c2, :resposta2_c2, :resposta3_c2, :resposta4_c2, :resposta5_c2, :resposta6_c2, :avaliador_id_c2, :resultado_c2)")
+            it.createUpdate("INSERT INTO sisins_participante (categoria, nome, data_nascimento, telefone, email, hash, tipo_sem_vinculo, vinculo_ufscar, escola, edital, onde_conheceu, esteve_ufscar, local_aulas, disponibilidade, objetivo, cursou_share, desistencia, redacao_entrada, curso1_id, data_inscricao_c1, resposta1_c1, resposta2_c1, resposta3_c1, resposta4_c1, resposta5_c1, resposta6_c1, avaliador_id_c1, resultado_c1, curso2_id, data_inscricao_c2, resposta1_c2, resposta2_c2, resposta3_c2, resposta4_c2, resposta5_c2, resposta6_c2, avaliador_id_c2, resultado_c2) VALUES (:c, :nome, :d, :tel, :email, :hash, :tipo_sem_vinculo, :vinculo_ufscar, :escola, :edital, :onde_conheceu, :esteve_ufscar, :local_aulas, :disponibilidade, :objetivo, :cursou_share, :desistencia, :redacao_entrada, :curso1_id, :data_inscricao_c1, :resposta1_c1, :resposta2_c1, :resposta3_c1, :resposta4_c1, :resposta5_c1, :resposta6_c1, :avaliador_id_c1, :resultado_c1, :curso2_id, :data_inscricao_c2, :resposta1_c2, :resposta2_c2, :resposta3_c2, :resposta4_c2, :resposta5_c2, :resposta6_c2, :avaliador_id_c2, :resultado_c2)")
                     .bind("c", categoriaInt)
                     .bind("nome", if(nome.isNullOrEmpty()) null else nome)
                     .bind("d", dataNascimentoLD)
                     .bind("tel", if(telefone.isNullOrEmpty()) null else telefone)
                     .bind("email", if(email.isNullOrEmpty()) null else email)
-                    .bind("senha", if(password.isNullOrEmpty()) null else hash)
+                    .bind("hash", if(password.isNullOrEmpty()) null else hash)
                     .bind("tipo_sem_vinculo", tipoSemVinculoInt)
                     .bind("vinculo_ufscar", vinculoUfscarInt)
                     .bind("escola", if(escola.isNullOrEmpty()) null else escola)
@@ -548,19 +568,5 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
         jdbi.useHandleUnchecked {
             it.execute("DELETE FROM sisins_participante WHERE id = ?", id)
         }
-    }
-
-    /**
-     * Formata uma string de modo que seja aceito como um valor de um cookie
-     */
-    override fun asciitouni(ascii: String?) : String? {
-        return ascii?.replace('+', ' ')?.replace('#', 'á')?.replace('&', '"')
-    }
-
-    /**
-     * Recupera a formatação original da string
-     */
-    override fun unitoascii(uni: String?) : String? {
-        return uni?.replace(' ', '+')?.replace('á', '#')?.replace('"', '&')
     }
 }
