@@ -55,7 +55,6 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
         val errormsg = ctx.cookie("errorMsg")?.let{decode(it , UTF_8)}
         if (errormsg != null)
             ctx.cookie("errorMsg", "", 0)
-        println(participante)
         if(participante != null) {
             InscricoesAlunoView(errormsg).render(ctx)
         } else {

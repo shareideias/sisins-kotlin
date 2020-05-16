@@ -4,6 +4,7 @@ import br.com.associacaoshare.model.Avaliador
 import br.com.associacaoshare.model.Participante
 import br.com.associacaoshare.model.dao.DataAccessObject
 import br.com.associacaoshare.model.exception.CamposVaziosException
+import br.com.associacaoshare.model.exception.UsuarioNaoEncontrado
 import br.com.associacaoshare.view.alunos.*
 
 import io.javalin.apibuilder.ApiBuilder.path
@@ -80,16 +81,19 @@ class StubController(override val kodein: Kodein) : EndpointGroup, KodeinAware {
             if (p.hash == DataAccessObject.hashPassword(pass)) {
                 loginRoutine(ctx, p)
                 return
+            } else {
+                throw UsuarioNaoEncontrado()
             }
         }
 
-        /*
-        dao.getParticipantebyEmail(user)?.let { p ->
+        dao.getAvaliadorbyUsername(user)?.let { p ->
             if (p.hash == DataAccessObject.hashPassword(pass)) {
                 loginRoutine(ctx, p)
                 return
+            } else {
+                throw UsuarioNaoEncontrado()
             }
-        }*/
+        }
 
         ctx.redirect("/login")
     }
