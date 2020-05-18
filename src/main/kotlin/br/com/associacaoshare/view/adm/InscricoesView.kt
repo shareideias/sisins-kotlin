@@ -4,10 +4,18 @@ import br.com.associacaoshare.view.base.SisInsAdmView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class InscricoesView : SisInsAdmView() {
+class InscricoesView(private val errormsg: String?) : SisInsAdmView() {
     override val pageTitle: String = "Cursos"
 
     override fun MAIN.renderMain(ctx: Context) {
+        link(type = "text/css", rel = "stylesheet", href = "/css/alerts.css")
+        if (!errormsg.isNullOrEmpty()) {
+            div("materialert error") {
+                div("material-icons") { +"error_outline" }
+                +"$errormsg"
+            }
+        }
+
         h3("Inscrições")
         h4("Violão")
         h5("Básico A - Quinta-feira, das 12:00 às 13:00")
