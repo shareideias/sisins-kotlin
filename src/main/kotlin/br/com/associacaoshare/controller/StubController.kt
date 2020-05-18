@@ -101,7 +101,7 @@ class StubController(override val kodein: Kodein) : EndpointGroup, KodeinAware {
     private fun loginRoutine(ctx: Context, obj: Avaliador) {
         ctx.sessionAttribute("ROLE", "AVALIADOR")
         ctx.sessionAttribute("ID", obj.id)
-        ctx.redirect("/admin")
+        ctx.redirect("/adm")
     }
 
     private fun loginRoutine(ctx: Context, obj: Participante) {
