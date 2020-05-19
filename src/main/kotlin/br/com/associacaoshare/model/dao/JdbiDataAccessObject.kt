@@ -194,6 +194,15 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
         }
     }
 
+    override fun getParticipantesbyCurso(curso: Int): List<Participante> {
+        return jdbi.withHandleUnchecked {
+            it.createQuery("SELECT * FROM sisins_participante WHERE (curso1_id = :id OR curso2_id = :id)")
+                    .bind("id", curso)
+                    .mapTo<Participante>()
+                    .list()
+        }.sortedBy { it.nome }
+    }
+
     override fun allAvaliador(): List<Avaliador> {
         return jdbi.withHandleUnchecked {
             it.createQuery("SELECT * FROM sisins_avaliador")

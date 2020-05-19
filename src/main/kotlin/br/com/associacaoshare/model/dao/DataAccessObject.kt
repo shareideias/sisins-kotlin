@@ -13,6 +13,7 @@ interface DataAccessObject {
     fun getCurso(id: Int): Curso?
     fun getParticipante(id: Int): Participante?
     fun getParticipantebyEmail(email: String): Participante?
+    fun getParticipantesbyCurso(curso: Int): List<Participante>
 
     fun allAvaliador(): List<Avaliador>
     fun allCurso(): List<Curso>
