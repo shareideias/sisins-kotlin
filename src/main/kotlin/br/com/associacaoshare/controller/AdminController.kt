@@ -37,6 +37,12 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
         val errormsg = ctx.cookie("errorMsg")?.let{ URLDecoder.decode(it, Charsets.UTF_8) }
         if (errormsg != null)
             ctx.cookie("errorMsg", "", 0)
-        InscricoesView(errormsg).render(ctx)
+        val curso = ctx.queryParam("id")?.toInt()?.let{dao.getCurso(it)}
+        if (curso == null) {
+            ctx.redirect("/adm")
+            return
+        }
+        val inscritos = dao.getParticipantesbyCurso(curso.id)
+        InscricoesView(errormsg, curso, inscritos).render(ctx)
     }
 }
