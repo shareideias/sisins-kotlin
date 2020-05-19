@@ -1,10 +1,12 @@
 package br.com.associacaoshare.view.adm
 
+import br.com.associacaoshare.model.Curso
+import br.com.associacaoshare.model.Participante
 import br.com.associacaoshare.view.base.SisInsAdmView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class InscricoesView(private val errormsg: String?) : SisInsAdmView() {
+class InscricoesView(private val errormsg: String?, private val curso: Curso, private val inscritos: List<Participante>?) : SisInsAdmView() {
     override val pageTitle: String = "Cursos"
 
     override fun MAIN.renderMain(ctx: Context) {
@@ -17,216 +19,116 @@ class InscricoesView(private val errormsg: String?) : SisInsAdmView() {
         }
 
         h3("Inscrições")
-        h4("Violão")
-        h5("Básico A - Quinta-feira, das 12:00 às 13:00")
+        h4(curso.nome)
+        h5("${curso.categoria} - ${curso.horario}")
 
         div("row") {
             div("col 14 m3 s12")
             div("col 14 m6 s12") {
-                ul("collection") {
-                    li("collection-item avatar") {
-                        i("material-icons circle green") {
-                            +"account_circle"
-                        }
-                        span("title") {
-                            +"João Victor Montefusco"
-                        }
-                        p {
-                            +"Aprovado"
-                        }
-                        a("candidato.html", classes = "secondary-content") {
-                            i("material-icons") {
-                                +"edit"
+                inscritos?.forEach {
+                    when(if(it.curso1_id == curso.id) it.resultado_c1 else it.resultado_c2) {
+                        1 -> {
+                            ul("collection") {
+                                li("collection-item avatar") {
+                                    i("material-icons circle green") {
+                                        +"account_circle"
+                                    }
+                                    span("title") {
+                                        +it.nome
+                                    }
+                                    p {
+                                        +"Aprovado"
+                                    }
+                                    a("candidato.html", classes = "secondary-content") {
+                                        i("material-icons") {
+                                            +"edit"
+                                        }
+                                    }
+                                }
                             }
                         }
-                    }
-                }
 
-                ul("collection") {
-                    li("collection-item avatar") {
-                        i("material-icons circle green") {
-                            +"account_circle"
-                        }
-                        span("title") {
-                            +"João Victor Montefusco"
-                        }
-                        p {
-                            +"Aprovado"
-                        }
-                        a("candidato_prova.html", classes = "secondary-content") {
-                            i("material-icons") {
-                                +"edit"
+                        2 -> {
+                            ul("collection") {
+                                li("collection-item avatar") {
+                                    i("material-icons circle yellow") {
+                                        +"account_circle"
+                                    }
+                                    span("title") {
+                                        +it.nome
+                                    }
+                                    p {
+                                        +"Lista de espera"
+                                    }
+                                    a("#!", classes = "secondary-content") {
+                                        i("material-icons") {
+                                            +"edit"
+                                        }
+                                    }
+                                }
                             }
                         }
-                    }
-                }
 
-                ul("collection") {
-                    li("collection-item avatar") {
-                        i("material-icons circle green") {
-                            +"account_circle"
-                        }
-                        span("title") {
-                            +"João Victor Montefusco"
-                        }
-                        p {
-                            +"Aprovado"
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") {
-                                +"edit"
+                        3 -> {
+                            ul("collection") {
+                                li("collection-item avatar") {
+                                    i("material-icons circle blue") {
+                                        +"account_circle"
+                                    }
+                                    span("title") {
+                                        +it.nome
+                                    }
+                                    p {
+                                        +"Desistiu"
+                                    }
+                                    a("#!", classes = "secondary-content") {
+                                        i("material-icons") {
+                                            +"edit"
+                                        }
+                                    }
+                                }
                             }
                         }
-                    }
-                }
 
-                ul("collection") {
-                    li("collection-item avatar") {
-                        i("material-icons circle yellow") {
-                            +"account_circle"
-                        }
-                        span("title") {
-                            +"João Victor Montefusco"
-                        }
-                        p {
-                            +"Lista de espera"
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") {
-                                +"edit"
+                        4 -> {
+                            ul("collection") {
+                                li("collection-item avatar") {
+                                    i("material-icons circle red") {
+                                        +"account_circle"
+                                    }
+                                    span("title") {
+                                        +it.nome
+                                    }
+                                    p {
+                                        +"Reprovado"
+                                    }
+                                    a("#!", classes = "secondary-content") {
+                                        i("material-icons") {
+                                            +"edit"
+                                        }
+                                    }
+                                }
                             }
                         }
-                    }
-                }
 
-                ul("collection") {
-                    li("collection-item avatar") {
-                        i("material-icons circle yellow") {
-                            +"account_circle"
-                        }
-                        span("title") {
-                            +"João Victor Montefusco"
-                        }
-                        p {
-                            +"Lista de espera"
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") {
-                                +"edit"
-                            }
-                        }
-                    }
-                }
-
-                ul("collection") {
-                    li("collection-item avatar") {
-                        i("material-icons circle blue") {
-                            +"account_circle"
-                        }
-                        span("title") {
-                            +"João Victor Montefusco"
-                        }
-                        p {
-                            +"Desistiu"
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") {
-                                +"edit"
-                            }
-                        }
-                    }
-                }
-
-                ul("collection") {
-                    li("collection-item avatar") {
-                        i("material-icons circle red") {
-                            +"account_circle"
-                        }
-                        span("title") {
-                            +"João Victor Montefusco"
-                        }
-                        p {
-                            +"Reprovado"
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") {
-                                +"edit"
-                            }
-                        }
-                    }
-                }
-
-                ul("collection") {
-                    li("collection-item avatar") {
-                        i("material-icons circle red") {
-                            +"account_circle"
-                        }
-                        span("title") {
-                            +"João Victor Montefusco"
-                        }
-                        p {
-                            +"Reprovado"
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") {
-                                +"edit"
-                            }
-                        }
-                    }
-                }
-
-                ul("collection") {
-                    li("collection-item avatar") {
-                        i("material-icons circle gray") {
-                            +"account_circle"
-                        }
-                        span("title") {
-                            +"João Victor Montefusco"
-                        }
-                        p {
-                            +"Não avalidado"
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") {
-                                +"edit"
-                            }
-                        }
-                    }
-                }
-
-                ul("collection") {
-                    li("collection-item avatar") {
-                        i("material-icons circle gray") {
-                            +"account_circle"
-                        }
-                        span("title") {
-                            +"João Victor Montefusco"
-                        }
-                        p {
-                            +"Não avalidado"
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") {
-                                +"edit"
-                            }
-                        }
-                    }
-                }
-
-                ul("collection") {
-                    li("collection-item avatar") {
-                        i("material-icons circle gray") {
-                            +"account_circle"
-                        }
-                        span("title") {
-                            +"João Victor Montefusco"
-                        }
-                        p {
-                            +"Não avalidado"
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") {
-                                +"edit"
+                        -1 -> {
+                            ul("collection") {
+                                li("collection-item avatar") {
+                                    i("material-icons circle gray") {
+                                        +"account_circle"
+                                    }
+                                    span("title") {
+                                        +it.nome
+                                    }
+                                    p {
+                                        +"Não avaliado"
+                                    }
+                                    a("#!", classes = "secondary-content") {
+                                        i("material-icons") {
+                                            +"edit"
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
