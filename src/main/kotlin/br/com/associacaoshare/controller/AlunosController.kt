@@ -66,13 +66,13 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
         val errormsg = ctx.cookie("errorMsg")?.let{decode(it , UTF_8)}
         if (errormsg != null)
             ctx.cookie("errorMsg", "", 0)
-        ListaView(errormsg)
+        ListaView(errormsg).render(ctx)
     }
 
     private fun prova (ctx: Context) {
         val errormsg = ctx.cookie("errorMsg")?.let{decode(it , UTF_8)}
         if (errormsg != null)
             ctx.cookie("errorMsg", "", 0)
-        ProvaView(errormsg)
+        ProvaView(errormsg).render(ctx)
     }
 }
