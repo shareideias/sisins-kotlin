@@ -94,5 +94,9 @@ data class Participante(
         this.desistencia = desistenciaInt
         val redacao_entrada: String by respostas
         this.redacao_entrada = redacao_entrada
+
+        val password: String by respostas
+        if(password.isNotEmpty())
+            hashPassword(password)
     }
 }
