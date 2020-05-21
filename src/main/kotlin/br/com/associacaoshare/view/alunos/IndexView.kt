@@ -12,6 +12,65 @@ class IndexView(private val errormsg: String?) : SisInsAlunoView() {
         link(type = "text/css", rel = "stylesheet", href = "/css/sisins_index.css")
 
         link(type = "text/css", rel = "stylesheet", href = "/css/alerts.css")
+
+
+        header{
+            nav("nav-wrapper transparent") {
+                div("container") {
+                    /*a("brand-logo") {
+                        img("Logo da Share", "/img/navbar-brand.png", "share-brand")
+                    }*/
+                    a("#", classes = "sidenav-trigger") {
+                        attributes["data-target"] = "mobile-menu"
+                        i("material-icons") { +"menu" }
+                    }
+
+                    ul("right hide-on-med-and-down") {
+                        li {
+                            a("/", classes = "link_menu") { +"Home" }
+                        }
+                        li {
+                            a("/cursos", classes = "link_menu") { +"Cursos" }
+                        }
+                        li {
+                            a("/faq", classes = "link_menu") { +"F.A.Q." }
+                        }
+                        li {
+                            a("/blog", classes = "link_menu") { +"Blog" }
+                        }
+                        li {
+                            a("/alunos", classes = "link_menu") { +"Alunos" }
+                        }
+                        li {
+                            a("/adm", classes = "link_menu") { +"Administrativo" }
+                        }
+                    }
+                    ul("sidenav lighten-2") {
+                        id = "mobile-menu"
+                        li {
+                            a("/", classes = "link_menu") { +"Home" }
+                        }
+                        li {
+                            a("/cursos", classes = "link_menu") { +"Cursos" }
+                        }
+                        li {
+                            a("/faq", classes = "link_menu") { +"F.A.Q." }
+                        }
+                        li {
+                            a("/blog", classes = "link_menu") { +"Blog" }
+                        }
+                        li {
+                            a("/alunos", classes = "link_menu") { +"Alunos" }
+                        }
+                        li {
+                            a("/adm", classes = "link_menu") { +"Administrativo" }
+                        }
+                    }
+                }
+            }
+        }
+
+
         if (!errormsg.isNullOrEmpty()) {
             div("materialert error") {
                 div("material-icons") { +"error_outline" }

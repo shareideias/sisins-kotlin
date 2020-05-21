@@ -29,6 +29,7 @@ class StubController(override val kodein: Kodein) : EndpointGroup, KodeinAware {
 
         get("login", ::login)
         post("dologin", ::doLogin)
+        get("logout", ::doLogout)
 
         path("adm") {
             AdminController(kodein).addEndpoints()
@@ -108,5 +109,10 @@ class StubController(override val kodein: Kodein) : EndpointGroup, KodeinAware {
         ctx.sessionAttribute("ROLE", "PARTICIPANTE")
         ctx.sessionAttribute("ID", obj.id)
         ctx.redirect("/alunos")
+    }
+
+    private fun doLogout(ctx: Context) {
+        ctx.sessionAttribute("ROLE", null)
+        ctx.redirect("/")
     }
 }

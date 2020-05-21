@@ -501,7 +501,7 @@ class EdicaoView(private val errormsg: String?, private val participante: Partic
                 }
                 button(type = ButtonType.submit, classes = "entrar waves-effect waves-light btn") {
                     id = "btnParte4Cadastrar"
-                    +"Cadastrar"
+                    +"Editar"
                 }
             }
         }

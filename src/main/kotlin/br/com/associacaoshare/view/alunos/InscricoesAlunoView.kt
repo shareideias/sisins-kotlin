@@ -12,6 +12,34 @@ class InscricoesAlunoView(private val errormsg: String?)  : SisInsAlunoView() {
         link(type = "text/css", rel = "stylesheet", href = "/css/sisins_inscricoes.css")
 
         link(type = "text/css", rel = "stylesheet", href = "/css/alerts.css")
+
+        header{
+            nav("nav-wrapper transparent") {
+                div("container") {
+                    /*a("brand-logo") {
+                        img("Logo da Share", "/img/navbar-brand.png", "share-brand")
+                    }*/
+                    a("#", classes = "sidenav-trigger") {
+                        attributes["data-target"] = "mobile-menu"
+                        i("material-icons") { +"menu" }
+                    }
+
+                    ul("right hide-on-med-and-down") {
+                        li {
+                            a("/logout", classes = "link_menu") { +"Logout" }
+                        }
+                    }
+                    ul("sidenav lighten-2") {
+                        id = "mobile-menu"
+                        li {
+                            a("/", classes = "link_menu") { +"Logout" }
+                        }
+                    }
+                }
+            }
+        }
+
+
         if (!errormsg.isNullOrEmpty()) {
             div("materialert error") {
                 div("material-icons") { +"error_outline" }

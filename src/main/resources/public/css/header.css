@@ -1,0 +1,8 @@
+header {
+    background-image: linear-gradient(to right, #81BEF7, #F78181, #F781F3);
+}
+
+.share-brand {
+    height: 56px;
+    padding: .2em;
+}
