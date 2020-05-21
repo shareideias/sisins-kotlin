@@ -113,6 +113,17 @@ class EdicaoView(private val errormsg: String?, private val participante: Partic
                 }
 
                 div("input-field col s12 mb-0") {
+                    label("perguntas"){
+                        htmlFor = "inputPassword"
+                        +"Senha"
+                    }
+                    input(InputType.password, classes = "validate") {
+                        id = "inputPassword"
+                        name = "password"
+                    }
+                }
+
+                div("input-field col s12 mb-0") {
                     +"Você é estudante? E/ou trabalha?"
                     label {
                         htmlFor = "selectTipoSemVinculo"
