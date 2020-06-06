@@ -17,7 +17,7 @@ class CursosView(private val errormsg: String?, private val cursos: List<Curso>)
             }
         }
 
-        h3("Cursos")
+        h3{+"Cursos"}
 
         div("container cards_recente") {
             div("row") {

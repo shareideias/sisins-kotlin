@@ -18,9 +18,9 @@ class InscricoesView(private val errormsg: String?, private val curso: Curso, pr
             }
         }
 
-        h3("Inscrições")
-        h4(curso.nome)
-        h5("${curso.categoria} - ${curso.horario}")
+        h3{+"Inscrições"}
+        h4{+curso.nome}
+        h5{+"${curso.categoria} - ${curso.horario}"}
 
         div("row") {
             div("col 14 m3 s12")
