@@ -18,7 +18,6 @@ class SisinsAccessManager : AccessManager {
         }
     }
 
-    //Muitos acessos ao BD ou sobrecarga de cookie?
     private fun getRole(ctx: Context): Roles {
         val role = ctx.sessionAttribute<String>("ROLE")
         ctx.sessionAttribute<Int>("ID") ?: return Roles.ANYONE
