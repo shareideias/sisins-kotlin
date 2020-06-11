@@ -45,7 +45,12 @@ class CursosView(private val errormsg: String?, private val cursos: List<Curso>)
                                     a("#?id=${it.id}") {
                                         +"Excluir curso"
                                     }
+                                    br{}
+                                    a("#?id=${it.id}") {
+                                        +"Gerar certificados"
+                                    }
                                 }
+
                             }
                         }
                     }
