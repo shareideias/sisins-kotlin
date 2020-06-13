@@ -101,4 +101,11 @@ data class Participante(
         if(password.isNotEmpty())
             hashPassword(password)
     }
+
+    fun atualizaSenha(respostasPack: Map<String, List<String>>) {
+        val respostas : Map<String, String> = respostasPack.mapValues {(key, value) -> (value[0])}
+        val password: String by respostas
+        if(password.isNotEmpty())
+            hashPassword(password)
+    }
 }

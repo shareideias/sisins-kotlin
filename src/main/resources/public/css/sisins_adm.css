@@ -13,7 +13,7 @@ header {
 }
 
 .link_menu {
-    color: black;
+    color: white !important;
 }
 
 .imagem_logo {
@@ -114,6 +114,10 @@ h3, h4, h5 {
 
 .rowzeras{
     width: 80ch;
+}
+
+.invisible{
+    display: none;
 }
 
 @media screen and (max-width: 776px){

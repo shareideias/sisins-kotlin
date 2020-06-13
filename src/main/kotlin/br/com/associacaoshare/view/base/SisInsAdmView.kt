@@ -43,15 +43,27 @@ abstract class SisInsAdmView : HtmlBuilderView() {
                 val links = emptyArray<L>() //TODO Change
 
                 ul(classes = "right hide-on-med-and-down") {
-                    for (link in links) {
-                        li { a(classes = "link_menu", href = link.href) { +link.nome } }
+                    li {
+                        a(classes = "link_menu", href = "/adm") { +"Cursos" }
+                    }
+                    li {
+                        a(classes = "link_menu", href = "/adm/inscricoesgerais") { +"Inscrições" }
+                    }
+                    li {
+                        a("/logout", classes = "link_menu") { +"Logout" }
                     }
                 }
                 ul(classes = "sidenav lighten-2") {
                     id = "mobile-menu"
 
-                    for (link in links) {
-                        li { a(href = link.href) { +link.nome } }
+                    li {
+                        a(classes = "link_menu", href = "/adm") { +"Cursos" }
+                    }
+                    li {
+                        a(classes = "link_menu", href = "/adm/inscricoesgerais") { +"Inscrições" }
+                    }
+                    li {
+                        a("/logout", classes = "link_menu") { +"Logout" }
                     }
                 }
             }

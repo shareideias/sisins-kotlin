@@ -24,6 +24,12 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
 
         get(::cursos, roles(AVALIADOR))
         get("inscricoes", ::inscricoes, roles(AVALIADOR))
+
+        get("inscricoesgerais", ::inscricoesgerais, roles(AVALIADOR))
+
+        get("perfildocandidato", ::perfildocandidato, roles(AVALIADOR))
+        post("EdicaoSenha", ::EdicaoSenha, roles(AVALIADOR))
+
     }
 
     private fun cursos(ctx: Context) {
@@ -44,5 +50,39 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
         }
         val inscritos = dao.getParticipantesbyCurso(curso.id)
         InscricoesView(errormsg, curso, inscritos).render(ctx)
+    }
+
+    private fun inscricoesgerais(ctx: Context) {
+        val errormsg = ctx.cookie("errorMsg")?.let{ URLDecoder.decode(it, Charsets.UTF_8) }
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+
+        val inscritos = dao.allParticipante()
+        InscricoesGeraisView(errormsg, inscritos).render(ctx)
+    }
+
+    private fun perfildocandidato(ctx: Context) {
+        val errormsg = ctx.cookie("errorMsg")?.let{ URLDecoder.decode(it, Charsets.UTF_8) }
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+        val participante = ctx.queryParam("id")?.toInt()?.let{dao.getParticipante(it)}
+        if (participante == null) {
+            ctx.redirect("/adm")
+            return
+        }
+        PerfilCandidatoView(errormsg, participante).render(ctx)
+    }
+
+    private fun EdicaoSenha (ctx: Context) {
+        val resp = ctx.formParamMap()
+        val id = ctx.formParam("id") ?: ""
+        val participante = ctx.sessionAttribute<Int?>("ID")?.let { dao.getParticipante(id.toInt()) }
+
+        if (participante != null) {
+            participante.atualizaSenha(resp)
+            dao.updateParticipante(participante)
+        }
+
+        ctx.redirect("inscricoesgerais")
     }
 }

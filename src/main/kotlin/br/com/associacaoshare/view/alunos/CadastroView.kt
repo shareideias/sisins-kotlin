@@ -43,11 +43,11 @@ class CadastroView (private val errormsg: String?) : SisInsAlunoView() {
                         }
                         option {
                             value = "2"
-                            +"Alunos do terceiro ano do ensino médio (tendo no mínimo 16 anos)"
+                            +"Alunos do terceiro ano do ensino médio (tendo no mínimo 16 anos)."
                         }
                         option {
                             value = "3"
-                            +"Pessoas que não possuem vínculo com a UFSCar"
+                            +"Pessoas que não possuem vínculo com a UFSCar."
                         }
                     }
                 }
@@ -175,6 +175,10 @@ class CadastroView (private val errormsg: String?) : SisInsAlunoView() {
                         option {
                             value = "5"
                             +"Outro"
+                        }
+                        option {
+                            value = "6"
+                            +"Nenhum"
                         }
                     }
                 }

@@ -32,7 +32,7 @@ class InscricoesAlunoView(private val errormsg: String?)  : SisInsAlunoView() {
                     ul("sidenav lighten-2") {
                         id = "mobile-menu"
                         li {
-                            a("/", classes = "link_menu") { +"Logout" }
+                            a("/logout", classes = "link_menu") { +"Logout" }
                         }
                     }
                 }
