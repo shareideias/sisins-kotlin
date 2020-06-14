@@ -2,6 +2,8 @@ package br.com.associacaoshare.controller
 
 import br.com.associacaoshare.view.adm.*
 import br.com.associacaoshare.controller.SisinsAccessManager.Roles.*
+import br.com.associacaoshare.model.Curso
+import br.com.associacaoshare.model.Participante
 import br.com.associacaoshare.model.dao.DataAccessObject
 import io.javalin.apibuilder.ApiBuilder.get
 import io.javalin.apibuilder.ApiBuilder.post
@@ -17,7 +19,6 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
     val dao: DataAccessObject by instance()
 
     override fun addEndpoints() {
-        get("CadastrarCursoView", CadastroCursoView()::render, roles(AVALIADOR))
         get("CadastrarProvaView", CadastrarProvaView()::render, roles(AVALIADOR))
         get("CandidatoProvaView", CandidatoProvaView()::render, roles(AVALIADOR))
         get("CandidatoView", CandidatoView()::render, roles(AVALIADOR))
@@ -29,6 +30,11 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
 
         get("perfildocandidato", ::perfildocandidato, roles(AVALIADOR))
         post("EdicaoSenha", ::EdicaoSenha, roles(AVALIADOR))
+
+        get("addCurso", ::addCurso, roles(AVALIADOR))
+        post("adicionaCurso", ::adicionaCurso, roles(AVALIADOR))
+
+        post("excluicurso", ::excluicurso, roles(AVALIADOR))
 
     }
 
@@ -84,5 +90,29 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
         }
 
         ctx.redirect("inscricoesgerais")
+    }
+
+    private fun addCurso(ctx: Context) {
+        val errormsg = ctx.cookie("errorMsg")?.let{ URLDecoder.decode(it, Charsets.UTF_8) }
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+
+        CadastroCursoView(errormsg).render(ctx)
+    }
+
+    private fun adicionaCurso(ctx: Context){
+        val resp = ctx.formParamMap()
+        val novoCurso: Curso = dao.insertCurso(resp)
+        ctx.redirect("/adm")
+    }
+
+    private fun excluicurso(ctx: Context){
+        val curso = ctx.sessionAttribute<Int?>("ID")?.let { dao.getCurso(it) }
+
+        if (curso != null) {
+            dao.removeCurso(curso.id)
+        }
+
+        ctx.redirect("/adm")
     }
 }

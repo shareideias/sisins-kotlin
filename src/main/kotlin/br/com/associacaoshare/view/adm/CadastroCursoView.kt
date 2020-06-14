@@ -1,70 +1,94 @@
 package br.com.associacaoshare.view.adm
 
+import br.com.associacaoshare.model.Curso
 import br.com.associacaoshare.view.base.SisInsAdmView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class CadastroCursoView : SisInsAdmView() {
+class CadastroCursoView(private val errormsg: String?) : SisInsAdmView() {
     override val pageTitle: String = "Cadastro de curso"
 
     override fun MAIN.renderMain(ctx: Context) {
         h3 { +"Cadastrar curso" }
 
         div("row rowzeras") {
-            form(classes = "col s12") {
+            form("adicionaCurso", classes = "col s12", method = FormMethod.post) {
 
                 div(classes = "row") {
-                    div(classes = "input-field col s12") {
-                        input(classes = "validate") {
-                            id = "inputNome"
-                        }
-                        label {
+                    div("input-field col s12 mb-0") {
+                        label("perguntas"){
                             htmlFor = "inputNome"
                             +"Nome do curso"
+
+                        }
+                        input(InputType.text, classes = "validate") {
+                            id = "inputNome"
+                            name = "nome"
                         }
                     }
                 }
 
                 div(classes = "row") {
-                    div(classes = "input-field col s12") {
-                        input(classes = "validate") {
-                            id = "inputHorario"
-                        }
-                        label {
+                    div("input-field col s12 mb-0") {
+                        label("perguntas"){
                             htmlFor = "inputHorario"
                             +"Horário"
+
+                        }
+                        input(InputType.text, classes = "validate") {
+                            id = "inputHorario"
+                            name = "horario"
                         }
                     }
                 }
 
 
-                h6{
+                div("input-field col s12 mb-0") {
                     +"Precisa de prova de nivelamento?"
-                }
-                form("#") {
-                    p {
-                        label {
-                            input(InputType.radio, name = "group1", classes = "with-gap")
-                            span { +"Sim" }
-                        }
+                    label {
+                        htmlFor = "selectCategoria"
                     }
-                    p {
-                        label {
-                            input(InputType.radio, name = "group1", classes = "with-gap")
-                            span { +"Não" }
+                    select {
+                        id = "selectCategoria"
+                        name = "categoria"
+                        option {
+                            disabled = true
+                            selected = true
+                            value = ""
+
+                        }
+                        option {
+                            value = "1"
+                            +"Sim"
+                        }
+                        option {
+                            value = "2"
+                            +"Não"
                         }
                     }
                 }
 
-                div(classes = "row") {
-                    a("#", classes = "entrar waves-effect waves-light btn") {
-                        +"Cadastrar"
-                    }
+                button(type = ButtonType.submit, classes = "entrar waves-effect waves-light btn") {
+                    id = "btnParte4Cadastrar"
+                    +"Cadastrar"
                 }
 
             }
         }
 
+        script {
+            unsafe {
+                +"""
+                document.addEventListener('DOMContentLoaded', function() {
+                    M.Datepicker.init(document.querySelectorAll('.datepicker'), { format: 'dd/mm/yyyy' });
+                });
+                """.trimIndent()
+            }
+        }
+        script("text/javascript", "/js/materialize.min.js") {}
+        script("text/javascript", "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js") {}
+        script("text/javascript", "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js") {}
+        script("text/javascript", "/js/selector.js") {}
 
     }
 }

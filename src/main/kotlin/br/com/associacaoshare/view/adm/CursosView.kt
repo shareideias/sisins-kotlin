@@ -29,7 +29,7 @@ class CursosView(private val errormsg: String?, private val cursos: List<Curso>)
                                     span("card-title") {
                                         +it.nome
                                         p("par_news") {
-                                            +"${it.categoria} - ${it.horario}"
+                                            +"${it.horario}"
                                         }
                                     }
                                 }
@@ -42,7 +42,7 @@ class CursosView(private val errormsg: String?, private val cursos: List<Curso>)
                                         +"Editar curso"
                                     }
                                     br{}
-                                    a("#?id=${it.id}") {
+                                    a("/adm/excluicurso?id=${it.id}") {
                                         +"Excluir curso"
                                     }
                                     br{}
@@ -60,7 +60,7 @@ class CursosView(private val errormsg: String?, private val cursos: List<Curso>)
                     div("col m4 s12") {
                         div("card") {
                             div("card-action mais") {
-                                a("#") {
+                                a("adm/addCurso") {
                                     +"+"
                                 }
                             }

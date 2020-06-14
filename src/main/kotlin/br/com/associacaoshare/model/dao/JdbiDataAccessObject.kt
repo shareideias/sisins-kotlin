@@ -293,6 +293,101 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
         return Curso(id, nome, categoria, horario, pergunta1, pergunta2, pergunta3, pergunta4, pergunta5, pergunta6, alternativa11, alternativa12, alternativa13, alternativa14, alternativa15, alternativa21, alternativa22, alternativa23, alternativa24, alternativa25, alternativa31, alternativa32, alternativa33, alternativa34, alternativa35, alternativa41, alternativa42, alternativa43, alternativa44, alternativa45, alternativa51, alternativa52, alternativa53, alternativa54, alternativa55, alternativa61, alternativa62, alternativa63, alternativa64, alternativa65)
     }
 
+    override fun insertCurso(respostasPack: Map<String, List<String>>): Curso {
+        val respostas : Map<String, String> = respostasPack.mapValues {(key, value) -> (value[0])}
+        val nome: String by respostas
+        val categoria: String by respostas
+        val horario: String by respostas
+
+        val pergunta1: String? = ""
+        val pergunta2: String? = ""
+        val pergunta3: String? = ""
+        val pergunta4: String? = ""
+        val pergunta5: String? = ""
+        val pergunta6: String? = ""
+
+        val alternativa11: String? = ""
+        val alternativa12: String? = ""
+        val alternativa13: String? = ""
+        val alternativa14: String? = ""
+        val alternativa15: String? = ""
+        val alternativa21: String? = ""
+        val alternativa22: String? = ""
+        val alternativa23: String? = ""
+        val alternativa24: String? = ""
+        val alternativa25: String? = ""
+        val alternativa31: String? = ""
+        val alternativa32: String? = ""
+        val alternativa33: String? = ""
+        val alternativa34: String? = ""
+        val alternativa35: String? = ""
+        val alternativa41: String? = ""
+        val alternativa42: String? = ""
+        val alternativa43: String? = ""
+        val alternativa44: String? = ""
+        val alternativa45: String? = ""
+        val alternativa51: String? = ""
+        val alternativa52: String? = ""
+        val alternativa53: String? = ""
+        val alternativa54: String? = ""
+        val alternativa55: String? = ""
+        val alternativa61: String? = ""
+        val alternativa62: String? = ""
+        val alternativa63: String? = ""
+        val alternativa64: String? = ""
+        val alternativa65: String? = ""
+
+
+
+        val id = jdbi.withHandleUnchecked {
+            it.createUpdate("INSERT INTO sisins_curso (nome, categoria, horario, pergunta1, pergunta2, pergunta3, pergunta4, pergunta5, pergunta6, alternativa11, alternativa12, alternativa13, alternativa14, alternativa15, alternativa21, alternativa22, alternativa23, alternativa24, alternativa25, alternativa31, alternativa32, alternativa33, alternativa34, alternativa35, alternativa41, alternativa42, alternativa43, alternativa44, alternativa45, alternativa51, alternativa52, alternativa53, alternativa54, alternativa55, alternativa61, alternativa62, alternativa63, alternativa64, alternativa65) VALUES (:nome, :c, :hr, :pergunta1, :pergunta2, :pergunta3, :pergunta4, :pergunta5, :pergunta6, :alternativa11, :alternativa12, :alternativa13, :alternativa14, :alternativa15, :alternativa21, :alternativa22, :alternativa23, :alternativa24, :alternativa25, :alternativa31, :alternativa32, :alternativa33, :alternativa34, :alternativa35, :alternativa41, :alternativa42, :alternativa43, :alternativa44, :alternativa45, :alternativa51, :alternativa52, :alternativa53, :alternativa54, :alternativa55, :alternativa61, :alternativa62, :alternativa63, :alternativa64, :alternativa65)")
+                    .bind("nome", nome)
+                    .bind("c", categoria)
+                    .bind("hr", horario)
+                    .bind("pergunta1", pergunta1)
+                    .bind("pergunta2", pergunta2)
+                    .bind("pergunta3", pergunta3)
+                    .bind("pergunta4", pergunta4)
+                    .bind("pergunta5", pergunta5)
+                    .bind("pergunta6", pergunta6)
+                    .bind("alternativa11", alternativa11)
+                    .bind("alternativa12", alternativa12)
+                    .bind("alternativa13", alternativa13)
+                    .bind("alternativa14", alternativa14)
+                    .bind("alternativa15", alternativa15)
+                    .bind("alternativa21", alternativa21)
+                    .bind("alternativa22", alternativa22)
+                    .bind("alternativa23", alternativa23)
+                    .bind("alternativa24", alternativa24)
+                    .bind("alternativa25", alternativa25)
+                    .bind("alternativa31", alternativa31)
+                    .bind("alternativa32", alternativa32)
+                    .bind("alternativa33", alternativa33)
+                    .bind("alternativa34", alternativa34)
+                    .bind("alternativa35", alternativa35)
+                    .bind("alternativa41", alternativa41)
+                    .bind("alternativa42", alternativa42)
+                    .bind("alternativa43", alternativa43)
+                    .bind("alternativa44", alternativa44)
+                    .bind("alternativa45", alternativa45)
+                    .bind("alternativa51", alternativa51)
+                    .bind("alternativa52", alternativa52)
+                    .bind("alternativa53", alternativa53)
+                    .bind("alternativa54", alternativa54)
+                    .bind("alternativa55", alternativa55)
+                    .bind("alternativa61", alternativa61)
+                    .bind("alternativa62", alternativa62)
+                    .bind("alternativa63", alternativa63)
+                    .bind("alternativa64", alternativa64)
+                    .bind("alternativa65", alternativa65)
+                    .executeAndReturnGeneratedKeys()
+                    .mapTo<Int>()
+                    .one()
+        }
+
+        return Curso(id, nome, categoria, horario, pergunta1, pergunta2, pergunta3, pergunta4, pergunta5, pergunta6, alternativa11, alternativa12, alternativa13, alternativa14, alternativa15, alternativa21, alternativa22, alternativa23, alternativa24, alternativa25, alternativa31, alternativa32, alternativa33, alternativa34, alternativa35, alternativa41, alternativa42, alternativa43, alternativa44, alternativa45, alternativa51, alternativa52, alternativa53, alternativa54, alternativa55, alternativa61, alternativa62, alternativa63, alternativa64, alternativa65)
+    }
+
     override fun insertParticipante(categoria: Int, nome: String, data_nascimento: LocalDate, telefone: String, email: String, password: String, tipo_sem_vinculo: Int, vinculo_ufscar: Int, escola: String, edital: Int, onde_conheceu: Int, esteve_ufscar: Int, local_aulas: Int, disponibilidade: String, objetivo: Int, cursou_share: Int, desistencia: Int, redacao_entrada: String, curso1_id: Int, data_inscricao_c1: LocalDate, resposta1_c1: Int, resposta2_c1: Int, resposta3_c1: Int, resposta4_c1: Int, resposta5_c1: Int, resposta6_c1: Int, avaliador_id_c1: Int, resultado_c1: Int, curso2_id: Int, data_inscricao_c2: LocalDate, resposta1_c2: Int, resposta2_c2: Int, resposta3_c2: Int, resposta4_c2: Int, resposta5_c2: Int, resposta6_c2: Int, avaliador_id_c2: Int, resultado_c2: Int): Participante {
         val hash = DataAccessObject.hashPassword(password)
 
