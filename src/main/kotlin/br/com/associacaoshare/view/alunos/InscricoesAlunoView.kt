@@ -74,7 +74,7 @@ class InscricoesAlunoView(private val errormsg: String?)  : SisInsAlunoView() {
                     li("collection-item"){
                         div {
                             i { +"Curso não selecionado" }
-                            a("#!", classes = "secondary-content") {
+                            a("/alunos/ListaView/", classes = "secondary-content") {
                                 i("material-icons") { +"add" }
                             }
                         }

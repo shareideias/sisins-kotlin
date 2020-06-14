@@ -1,10 +1,11 @@
 package br.com.associacaoshare.view.alunos
 
+import br.com.associacaoshare.model.page.ListaViewModel
 import br.com.associacaoshare.view.base.SisInsAlunoView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class ListaView(private val errormsg: String?) : SisInsAlunoView() {
+class ListaView(private val errormsg: String?, private val model: ListaViewModel) : SisInsAlunoView() {
     override val pageTitle = "Lista de Inscrições"
 
     override fun BODY.renderBody(ctx: Context) {
@@ -30,289 +31,27 @@ class ListaView(private val errormsg: String?) : SisInsAlunoView() {
 
                 h5 { +"Seus cursos:" }
 
-                div(classes="board"){
-                ul("collection with-header") {
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("inscricoes2.html", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
+                div(classes = "board") {
+                    ul("collection with-header") {
+                        for (curso in model.cursos)
+                            li("collection-item") {
+                                span("title") {
+                                    b { +curso.nome }
+                                }
+
+                                a("inscricoes2.html", classes = "secondary-content") {
+                                    i("material-icons") { +"add" }
+                                }
+
+                                p {
+                                    +curso.categoria
+                                    +" - "
+                                    +curso.horario
+                                }
+                            }
                     }
 
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("prova.html", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
-
-                    li("collection-item") {
-                        span("title") {
-                            b { +"Violão" }
-                        }
-                        a("#!", classes = "secondary-content") {
-                            i("material-icons") { +"add" }
-                        }
-                        p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
-                    }
                 }
-            }
             }
         }
 

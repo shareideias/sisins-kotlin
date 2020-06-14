@@ -3,6 +3,7 @@ package br.com.associacaoshare.controller
 import br.com.associacaoshare.controller.SisinsAccessManager.Roles.*
 import br.com.associacaoshare.model.dao.DataAccessObject
 import br.com.associacaoshare.model.exception.FalhaSessaoException
+import br.com.associacaoshare.model.page.ListaViewModel
 import br.com.associacaoshare.view.alunos.*
 import io.javalin.apibuilder.EndpointGroup
 import org.kodein.di.Kodein
@@ -63,10 +64,11 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
     }
 
     private fun lista (ctx: Context) {
+        val cursos = dao.allCurso()
         val errormsg = ctx.cookie("errorMsg")?.let{decode(it , UTF_8)}
         if (errormsg != null)
             ctx.cookie("errorMsg", "", 0)
-        ListaView(errormsg).render(ctx)
+        ListaView(errormsg,ListaViewModel(cursos)).render(ctx)
     }
 
     private fun prova (ctx: Context) {
