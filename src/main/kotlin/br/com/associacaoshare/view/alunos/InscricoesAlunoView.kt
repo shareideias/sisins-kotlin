@@ -1,11 +1,12 @@
 package br.com.associacaoshare.view.alunos
 
-import br.com.associacaoshare.view.base.HtmlBuilderView
+import br.com.associacaoshare.model.Curso
+import br.com.associacaoshare.model.Participante
 import br.com.associacaoshare.view.base.SisInsAlunoView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class InscricoesAlunoView(private val errormsg: String?)  : SisInsAlunoView() {
+class InscricoesAlunoView(private val errormsg: String?, private val participante: Participante, private val curso1: Curso?, private val curso2: Curso?)  : SisInsAlunoView() {
     override val pageTitle: String
         get() = "Inscrição Share"
     override fun BODY.renderBody(ctx: Context) {
@@ -62,26 +63,91 @@ class InscricoesAlunoView(private val errormsg: String?)  : SisInsAlunoView() {
                 }
                 h5 { +"Seus cursos:" }
                 ul("collection with-header"){
-                    li("collection-item"){
-                        span("title") {
-                            b { +"Violão" }
-                            a("inscricoes.html", classes = "secondary-content") {
-                                i("material-icons") { +"delete" }
+
+                    if(participante.curso1_id == null){
+                        li("collection-item") {
+                            div {
+                                i { +"Curso não selecionado" }
+                                a("/alunos/curso1", classes = "secondary-content") {
+                                    i("material-icons") { +"add" }
+                                }
                             }
-                            p { +"Básico A - Quinta-feira, das 12:00 ás 13:00" }
                         }
                     }
-                    li("collection-item"){
-                        div {
-                            i { +"Curso não selecionado" }
-                            a("/alunos/ListaView/", classes = "secondary-content") {
-                                i("material-icons") { +"add" }
+                    else{
+                        li("collection-item bigitem") {
+                            span("title") {
+                                b {
+                                    if (curso1 != null) {
+                                        +"${curso1.nome}"
+                                    }
+                                }
+                            }
+
+                            form("alunos/DeleteCurso1", classes = "col s12 addform secondary-content", method = FormMethod.post) {
+                                input(InputType.number, classes = "validate invisible") {
+                                    id = "inputId"
+                                    name = "id"
+                                    if (curso1 != null) {
+                                        value = curso1.id.toString()
+                                    }
+                                }
+                                button(type = ButtonType.submit, classes = "secondary-content") {
+                                    i("material-icons") { +"delete" }
+                                }
+                            }
+
+                            br {}
+                            p("horario") {
+                                if (curso1 != null) {
+                                    +"${curso1.horario}"
+                                }
+                            }
+                        }
+                    }
+                    if(participante.curso2_id == null){
+                        li("collection-item") {
+                            div {
+                                i { +"Curso não selecionado" }
+                                a("/alunos/curso2", classes = "secondary-content") {
+                                    i("material-icons") { +"add" }
+                                }
+                            }
+                        }
+                    }
+                    else{
+                        li("collection-item bigitem") {
+                            span("title") {
+                                b {
+                                    if (curso2 != null) {
+                                        +"${curso2.nome}"
+                                    }
+                                }
+                            }
+
+                            form("alunos/DeleteCurso2", classes = "col s12 addform secondary-content", method = FormMethod.post) {
+                                input(InputType.number, classes = "validate invisible") {
+                                    id = "inputId"
+                                    name = "id"
+                                    if (curso2 != null) {
+                                        value = curso2.id.toString()
+                                    }
+                                }
+                                button(type = ButtonType.submit, classes = "secondary-content") {
+                                    i("material-icons") { +"delete" }
+                                }
+                            }
+
+                            br {}
+                            p("horario") {
+                                if (curso2 != null) {
+                                    +"${curso2.horario}"
+                                }
                             }
                         }
                     }
                 }
             }
-            div("col s12 m0 l3")
         }
     }
 }

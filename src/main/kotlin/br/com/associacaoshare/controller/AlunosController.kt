@@ -3,7 +3,6 @@ package br.com.associacaoshare.controller
 import br.com.associacaoshare.controller.SisinsAccessManager.Roles.*
 import br.com.associacaoshare.model.dao.DataAccessObject
 import br.com.associacaoshare.model.exception.FalhaSessaoException
-import br.com.associacaoshare.model.page.ListaViewModel
 import br.com.associacaoshare.view.alunos.*
 import io.javalin.apibuilder.EndpointGroup
 import org.kodein.di.Kodein
@@ -20,13 +19,34 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
     val dao: DataAccessObject by instance()
 
     override fun addEndpoints() {
+        get(::inscricoes, roles(PARTICIPANTE))
+
         get("editar", ::edicao, roles(PARTICIPANTE))
         post("EditaProc", ::edicaoProc, roles(PARTICIPANTE))
 
-        get(::inscricoes, roles(PARTICIPANTE))
+        get("curso1", ::listacurso1, roles(PARTICIPANTE))
+        post("CadastraCurso1", ::cadastraCurso1, roles(PARTICIPANTE))
+        post("DeleteCurso1", ::DeleteCurso1, roles(PARTICIPANTE))
 
-        get("ListaView", ::lista, roles(PARTICIPANTE))
+        get("curso2", ::listacurso2, roles(PARTICIPANTE))
+        post("CadastraCurso2", ::cadastraCurso2, roles(PARTICIPANTE))
+        post("DeleteCurso2", ::DeleteCurso2, roles(PARTICIPANTE))
+
         get("ProvaView", ::prova, roles(PARTICIPANTE))
+    }
+
+    private fun inscricoes (ctx: Context) {
+        val participante = ctx.sessionAttribute<Int?>("ID")?.let { dao.getParticipante(it) }
+        val curso1 = ctx.sessionAttribute<Int?>("ID")?.let { dao.getCurso(participante!!.curso1_id) }
+        val curso2 = ctx.sessionAttribute<Int?>("ID")?.let { dao.getCurso(participante!!.curso2_id) }
+        val errormsg = ctx.cookie("errorMsg")?.let{decode(it , UTF_8)}
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+        if(participante != null) {
+            InscricoesAlunoView(errormsg, participante, curso1, curso2).render(ctx)
+        } else {
+            throw FalhaSessaoException()
+        }
     }
 
     private fun edicao (ctx: Context) {
@@ -51,24 +71,66 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
         ctx.redirect("/alunos")
     }
 
-    private fun inscricoes (ctx: Context) {
+    private fun listacurso1 (ctx: Context) {
         val participante = ctx.sessionAttribute<Int?>("ID")?.let { dao.getParticipante(it) }
         val errormsg = ctx.cookie("errorMsg")?.let{decode(it , UTF_8)}
         if (errormsg != null)
             ctx.cookie("errorMsg", "", 0)
         if(participante != null) {
-            InscricoesAlunoView(errormsg).render(ctx)
+            Lista1View(errormsg, participante, dao.allCurso()).render(ctx)
         } else {
             throw FalhaSessaoException()
         }
     }
 
-    private fun lista (ctx: Context) {
-        val cursos = dao.allCurso()
+    private fun cadastraCurso1 (ctx: Context) {
+        val participante = ctx.sessionAttribute<Int?>("ID")?.let { dao.getParticipante(it) }
+        val id = ctx.formParam("id") ?: ""
+
+        if (participante != null) {
+            dao.updateCurso1inParticipante(participante, id.toInt())
+        }
+
+        ctx.redirect("/alunos")
+    }
+
+    private fun DeleteCurso1 (ctx: Context) {
+        val participante = ctx.sessionAttribute<Int?>("ID")?.let { dao.getParticipante(it) }
+        if (participante != null) {
+            dao.updateCurso1inParticipante(participante, null)
+        }
+        ctx.redirect("/alunos")
+    }
+
+    private fun listacurso2 (ctx: Context) {
+        val participante = ctx.sessionAttribute<Int?>("ID")?.let { dao.getParticipante(it) }
         val errormsg = ctx.cookie("errorMsg")?.let{decode(it , UTF_8)}
         if (errormsg != null)
             ctx.cookie("errorMsg", "", 0)
-        ListaView(errormsg,ListaViewModel(cursos)).render(ctx)
+        if(participante != null) {
+            Lista2View(errormsg, participante, dao.allCurso()).render(ctx)
+        } else {
+            throw FalhaSessaoException()
+        }
+    }
+
+    private fun cadastraCurso2 (ctx: Context) {
+        val participante = ctx.sessionAttribute<Int?>("ID")?.let { dao.getParticipante(it) }
+        val id = ctx.formParam("id") ?: ""
+
+        if (participante != null) {
+            dao.updateCurso2inParticipante(participante, id.toInt())
+        }
+
+        ctx.redirect("/alunos")
+    }
+
+    private fun DeleteCurso2 (ctx: Context) {
+        val participante = ctx.sessionAttribute<Int?>("ID")?.let { dao.getParticipante(it) }
+        if (participante != null) {
+            dao.updateCurso2inParticipante(participante, null)
+        }
+        ctx.redirect("/alunos")
     }
 
     private fun prova (ctx: Context) {

@@ -3,7 +3,6 @@ package br.com.associacaoshare.controller
 import br.com.associacaoshare.view.adm.*
 import br.com.associacaoshare.controller.SisinsAccessManager.Roles.*
 import br.com.associacaoshare.model.Curso
-import br.com.associacaoshare.model.Participante
 import br.com.associacaoshare.model.dao.DataAccessObject
 import io.javalin.apibuilder.ApiBuilder.get
 import io.javalin.apibuilder.ApiBuilder.post

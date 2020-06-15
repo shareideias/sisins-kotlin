@@ -10,7 +10,7 @@ import java.util.*
 interface DataAccessObject {
     fun getAvaliador(id: Int): Avaliador?
     fun getAvaliadorbyUsername(user: String): Avaliador?
-    fun getCurso(id: Int): Curso?
+    fun getCurso(id: Int?): Curso?
     fun getParticipante(id: Int): Participante?
     fun getParticipantebyEmail(email: String): Participante?
     fun getParticipantesbyCurso(curso: Int): List<Participante>
@@ -36,6 +36,9 @@ interface DataAccessObject {
                            curso1_id: Int, data_inscricao_c1: LocalDate, resposta1_c1: Int, resposta2_c1: Int, resposta3_c1: Int, resposta4_c1: Int, resposta5_c1: Int, resposta6_c1: Int, avaliador_id_c1: Int, resultado_c1: Int,
                            curso2_id: Int, data_inscricao_c2: LocalDate, resposta1_c2: Int, resposta2_c2: Int, resposta3_c2: Int, resposta4_c2: Int, resposta5_c2: Int, resposta6_c2: Int, avaliador_id_c2: Int, resultado_c2: Int): Participante
     fun insertParticipante(respostas: Map<String, List<String>>): Participante
+
+    fun updateCurso1inParticipante(participante: Participante, id: Int?)
+    fun updateCurso2inParticipante(participante: Participante, id: Int?)
 
     fun updateAvaliador(avaliador: Avaliador)
     fun updateCurso(curso: Curso)

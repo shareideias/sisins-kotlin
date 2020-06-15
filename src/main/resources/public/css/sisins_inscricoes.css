@@ -10,6 +10,29 @@ h5{
     margin-top: 5em;
 }
 
+.bigitem{
+    height: 100px;
+}
+
+.title{
+    float: left;
+}
+
+.addform{
+    float: left;
+    width: 30% !important;
+    margin-bottom: 0;
+}
+
+.invisible{
+    display: none;
+}
+
+.horario{
+    text-align: start;
+    width: 100%;
+}
+
 .card{
     background-color: #FAFAFA;
     border: 0 solid #FAFAFA;

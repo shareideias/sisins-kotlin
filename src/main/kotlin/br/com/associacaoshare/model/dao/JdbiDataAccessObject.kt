@@ -164,7 +164,7 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
         }
     }
 
-    override fun getCurso(id: Int): Curso? {
+    override fun getCurso(id: Int?): Curso? {
         return jdbi.withHandleUnchecked {
             it.createQuery("SELECT * FROM sisins_curso WHERE id = :id")
                     .bind("id", id)
@@ -541,6 +541,28 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
         }
 
         return Participante(id, categoriaInt, nome, dataNascimentoLD, telefone, email, hash, tipoSemVinculoInt, vinculoUfscarInt, escola, editalInt, ondeConheceuInt, esteveUfscarInt, localAulasInt, disponibilidade, objetivoInt, cursouShareInt, desistenciaInt, redacao_entrada, curso1_id, data_inscricao_c1, resposta1_c1, resposta2_c1, resposta3_c1, resposta4_c1, resposta5_c1, resposta6_c1, avaliador_id_c1, resultado_c1, curso2_id, data_inscricao_c2, resposta1_c2, resposta2_c2, resposta3_c2, resposta4_c2, resposta5_c2, resposta6_c2, avaliador_id_c2, resultado_c2)
+    }
+
+    override fun updateCurso1inParticipante(participante: Participante, id: Int?){
+        jdbi.useHandleUnchecked {
+            it.createUpdate("UPDATE sisins_participante SET curso1_id = :c1 WHERE id = :idPart")
+                    .bind("c1", id)
+                    .bind("idPart", participante.id)
+                    .executeAndReturnGeneratedKeys()
+                    .mapTo<Int>()
+                    .one()
+        }
+    }
+
+    override fun updateCurso2inParticipante(participante: Participante, id: Int?){
+        jdbi.useHandleUnchecked {
+            it.createUpdate("UPDATE sisins_participante SET curso2_id = :c2 WHERE id = :idPart")
+                    .bind("c2", id)
+                    .bind("idPart", participante.id)
+                    .executeAndReturnGeneratedKeys()
+                    .mapTo<Int>()
+                    .one()
+        }
     }
 
     override fun updateAvaliador(avaliador: Avaliador) {
