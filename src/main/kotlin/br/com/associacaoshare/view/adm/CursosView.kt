@@ -23,7 +23,7 @@ class CursosView(private val errormsg: String?, private val cursos: List<Curso>)
             div("row") {
                 cursos.forEach {
                     article("borda-curso") {
-                        div("col m4 s12") {
+                        div("col m4 s12 coursecard") {
                             div("card") {
                                 div("card-content") {
                                     span("card-title") {
@@ -42,7 +42,7 @@ class CursosView(private val errormsg: String?, private val cursos: List<Curso>)
                                         +"Editar curso"
                                     }
                                     br{}
-                                    a("/adm/excluicurso?id=${it.id}") {
+                                    a("/adm/excluircurso?id=${it.id}") {
                                         +"Excluir curso"
                                     }
                                     br{}

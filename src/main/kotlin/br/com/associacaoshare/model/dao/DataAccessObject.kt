@@ -44,6 +44,8 @@ interface DataAccessObject {
     fun updateCurso(curso: Curso)
     fun updateParticipante(participante: Participante)
 
+
+
     fun removeAvaliador(id: Int)
     fun removeCurso(id: Int)
     fun removeParticipante(id: Int)

@@ -18,7 +18,6 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
     val dao: DataAccessObject by instance()
 
     override fun addEndpoints() {
-        get("CadastrarProvaView", CadastrarProvaView()::render, roles(AVALIADOR))
         get("CandidatoProvaView", CandidatoProvaView()::render, roles(AVALIADOR))
         get("CandidatoView", CandidatoView()::render, roles(AVALIADOR))
 
@@ -32,8 +31,12 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
 
         get("addCurso", ::addCurso, roles(AVALIADOR))
         post("adicionaCurso", ::adicionaCurso, roles(AVALIADOR))
+        get("addProva", ::addProva, roles(AVALIADOR))
+        post("adicionaProva", ::adicionaProva, roles(AVALIADOR))
 
-        post("excluicurso", ::excluicurso, roles(AVALIADOR))
+        get("excluircurso", ::excluircurso, roles(AVALIADOR))
+        get("cursoexcluido", ::cursoexcluido, roles(AVALIADOR))
+
 
     }
 
@@ -100,13 +103,60 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
     }
 
     private fun adicionaCurso(ctx: Context){
+        val errormsg = ctx.cookie("errorMsg")?.let{ URLDecoder.decode(it, Charsets.UTF_8) }
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+
         val resp = ctx.formParamMap()
         val novoCurso: Curso = dao.insertCurso(resp)
-        ctx.redirect("/adm")
+
+        if(novoCurso.categoria == "1")
+            ctx.redirect("addProva?id=${novoCurso.id}")
+        else
+            ctx.redirect("/adm")
     }
 
-    private fun excluicurso(ctx: Context){
-        val curso = ctx.sessionAttribute<Int?>("ID")?.let { dao.getCurso(it) }
+    private fun addProva(ctx: Context){
+        val errormsg = ctx.cookie("errorMsg")?.let{ URLDecoder.decode(it, Charsets.UTF_8) }
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+
+        val curso = ctx.queryParam("id")?.toInt()?.let{dao.getCurso(it)}
+
+        CadastrarProvaView(errormsg, curso).render(ctx)
+    }
+
+    private fun adicionaProva(ctx: Context){
+        val errormsg = ctx.cookie("errorMsg")?.let{ URLDecoder.decode(it, Charsets.UTF_8) }
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+        val curso = ctx.queryParam("id")?.toInt()?.let{dao.getCurso(it)}
+        val resp = ctx.formParamMap()
+
+        if (curso != null) {
+            curso.atualizaProva(resp)
+            dao.updateCurso(curso)
+        }
+
+        ctx.redirect("/adm")
+
+    }
+
+    private fun excluircurso(ctx: Context){
+        val errormsg = ctx.cookie("errorMsg")?.let{ URLDecoder.decode(it, Charsets.UTF_8) }
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+        val curso = ctx.queryParam("id")?.toInt()?.let{dao.getCurso(it)}
+        if (curso != null) {
+            ExcluirCursoView(errormsg, curso).render(ctx)
+        }
+    }
+
+    private fun cursoexcluido(ctx: Context){
+        val errormsg = ctx.cookie("errorMsg")?.let{ URLDecoder.decode(it, Charsets.UTF_8) }
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+        val curso = ctx.queryParam("id")?.toInt()?.let{dao.getCurso(it)}
 
         if (curso != null) {
             dao.removeCurso(curso.id)

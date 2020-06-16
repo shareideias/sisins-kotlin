@@ -47,6 +47,17 @@ article {
     margin-top: 10px;
 }
 
+.formexclusao{
+    width: 100%;
+}
+
+.botoesexclusao{
+    width: 200px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .botao {
     float: left;
     margin: 5px;
@@ -118,6 +129,10 @@ h3, h4, h5 {
 
 .invisible{
     display: none;
+}
+
+.coursecard{
+    height: 425px;
 }
 
 @media screen and (max-width: 776px){

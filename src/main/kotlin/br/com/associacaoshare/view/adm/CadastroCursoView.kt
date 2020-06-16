@@ -52,16 +52,11 @@ class CadastroCursoView(private val errormsg: String?) : SisInsAdmView() {
                         id = "selectCategoria"
                         name = "categoria"
                         option {
-                            disabled = true
-                            selected = true
-                            value = ""
-
-                        }
-                        option {
                             value = "1"
                             +"Sim"
                         }
                         option {
+                            selected = true
                             value = "2"
                             +"Não"
                         }
