@@ -5,7 +5,7 @@ import br.com.associacaoshare.view.base.SisInsAlunoView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class ProvaView(private val errormsg: String?, private val participante: Participante) : SisInsAlunoView() {
+class Prova2View(private val errormsg: String?, private val participante: Participante) : SisInsAlunoView() {
     override val pageTitle: String
         get() = "Prova"
 
@@ -34,7 +34,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
             }
         }
 
-        form("ProvaProc", method = FormMethod.post) {
+        form("ProvaProc2", method = FormMethod.post) {
             h6 {
                 +"1 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et "
                 +"dolore magna aliqua."
@@ -43,7 +43,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt1"
-                        name = "resposta1_c1"
+                        name = "resposta1_c2"
                         value = "1"
                     }
                     span { +"Alternativa 1" }
@@ -53,7 +53,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt2"
-                        name = "resposta1_c1"
+                        name = "resposta1_c2"
                         value = "2"
                     }
                     span { +"Alternativa 2" }
@@ -63,7 +63,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt3"
-                        name = "resposta1_c1"
+                        name = "resposta1_c2"
                         value = "3"
                     }
                     span { +"Alternativa 3" }
@@ -73,7 +73,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt4"
-                        name = "resposta1_c1"
+                        name = "resposta1_c2"
                         value = "4"
                     }
                     span { +"Alternativa 4" }
@@ -83,28 +83,12 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt5"
-                        name = "resposta1_c1"
+                        name = "resposta1_c2"
                         value = "5"
                     }
                     span { +"Alternativa 5" }
                 }
             }
-            /*// teste
-            p {
-                label {
-                    input(InputType.radio, name = "resposta6_c1", classes = "with-gap") {
-                        id = "alt6"
-                        name = "resposta6_c1"
-                        value = "6"
-                    }
-                    span { +"Alternativa 6" }
-                }
-            }
-            button(type = ButtonType.submit, classes = "entrar waves-effect waves-light btn") {
-                +"Editar"
-            }
-            // fim teste*/
-
 
             h6 {
                 +"2 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et "
@@ -115,7 +99,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt1"
-                        name = "resposta2_c1"
+                        name = "resposta2_c2"
                         value = "1"
                     }
                     span { +"Alternativa 1" }
@@ -125,7 +109,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt2"
-                        name = "resposta2_c1"
+                        name = "resposta2_c2"
                         value = "2"
                     }
                     span { +"Alternativa 2" }
@@ -135,7 +119,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt3"
-                        name = "resposta2_c1"
+                        name = "resposta2_c2"
                         value = "3"
                     }
                     span { +"Alternativa 3" }
@@ -145,7 +129,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt4"
-                        name = "resposta2_c1"
+                        name = "resposta2_c2"
                         value = "4"
                     }
                     span { +"Alternativa 4" }
@@ -155,7 +139,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt5"
-                        name = "resposta2_c1"
+                        name = "resposta2_c2"
                         value = "5"
                     }
                     span { +"Alternativa 5" }
@@ -172,7 +156,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt1"
-                        name = "resposta3_c1"
+                        name = "resposta3_c2"
                         value = "1"
                     }
                     span { +"Alternativa 1" }
@@ -182,7 +166,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt2"
-                        name = "resposta3_c1"
+                        name = "resposta3_c2"
                         value = "2"
                     }
                     span { +"Alternativa 2" }
@@ -192,7 +176,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt3"
-                        name = "resposta3_c1"
+                        name = "resposta3_c2"
                         value = "3"
                     }
                     span { +"Alternativa 3" }
@@ -202,7 +186,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt4"
-                        name = "resposta3_c1"
+                        name = "resposta3_c2"
                         value = "4"
                     }
                     span { +"Alternativa 4" }
@@ -212,7 +196,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt5"
-                        name = "resposta3_c1"
+                        name = "resposta3_c2"
                         value = "5"
                     }
                     span { +"Alternativa 5" }
@@ -229,7 +213,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt1"
-                        name = "resposta4_c1"
+                        name = "resposta4_c2"
                         value = "1"
                     }
                     span { +"Alternativa 1" }
@@ -239,7 +223,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt2"
-                        name = "resposta4_c1"
+                        name = "resposta4_c2"
                         value = "2"
                     }
                     span { +"Alternativa 2" }
@@ -249,7 +233,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt3"
-                        name = "resposta4_c1"
+                        name = "resposta4_c2"
                         value = "3"
                     }
                     span { +"Alternativa 3" }
@@ -259,7 +243,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt4"
-                        name = "resposta4_c1"
+                        name = "resposta4_c2"
                         value = "4"
                     }
                     span { +"Alternativa 4" }
@@ -269,7 +253,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt5"
-                        name = "resposta4_c1"
+                        name = "resposta4_c2"
                         value = "5"
                     }
                     span { +"Alternativa 5" }
@@ -286,7 +270,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt1"
-                        name = "resposta5_c1"
+                        name = "resposta5_c2"
                         value = "1"
                     }
                     span { +"Alternativa 1" }
@@ -296,7 +280,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt2"
-                        name = "resposta5_c1"
+                        name = "resposta5_c2"
                         value = "2"
                     }
                     span { +"Alternativa 2" }
@@ -306,7 +290,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt3"
-                        name = "resposta5_c1"
+                        name = "resposta5_c2"
                         value = "3"
                     }
                     span { +"Alternativa 3" }
@@ -316,7 +300,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt4"
-                        name = "resposta5_c1"
+                        name = "resposta5_c2"
                         value = "4"
                     }
                     span { +"Alternativa 4" }
@@ -326,7 +310,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt5"
-                        name = "resposta5_c1"
+                        name = "resposta5_c2"
                         value = "5"
                     }
                     span { +"Alternativa 5" }
@@ -343,7 +327,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt1"
-                        name = "resposta6_c1"
+                        name = "resposta6_c2"
                         value = "1"
                     }
                     span { +"Alternativa 1" }
@@ -353,7 +337,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt2"
-                        name = "resposta6_c1"
+                        name = "resposta6_c2"
                         value = "2"
                     }
                     span { +"Alternativa 2" }
@@ -363,7 +347,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt3"
-                        name = "resposta6_c1"
+                        name = "resposta6_c2"
                         value = "3"
                     }
                     span { +"Alternativa 3" }
@@ -373,7 +357,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt4"
-                        name = "resposta6_c1"
+                        name = "resposta6_c2"
                         value = "4"
                     }
                     span { +"Alternativa 4" }
@@ -383,7 +367,7 @@ class ProvaView(private val errormsg: String?, private val participante: Partici
                 label {
                     input(InputType.radio, classes = "with-gap") {
                         id = "alt5"
-                        name = "resposta6_c1"
+                        name = "resposta6_c2"
                         value = "5"
                     }
                     span { +"Alternativa 5" }

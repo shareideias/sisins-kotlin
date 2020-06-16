@@ -73,6 +73,11 @@ class Lista2View(private val errormsg: String?, private val participante: Partic
                                         name = "id"
                                         value = it.id.toString()
                                     }
+                                    input(InputType.number, classes = "validate invisible") {
+                                        id = "inputCategoria"
+                                        name = "categoria"
+                                        value = it.categoria
+                                    }
                                     button(type = ButtonType.submit, classes = "secondary-content") {
                                         i("material-icons") { +"add" }
                                     }

@@ -108,4 +108,36 @@ data class Participante(
         if(password.isNotEmpty())
             hashPassword(password)
     }
+
+    fun atualizaProva(respostasPack: Map<String, List<String>>){
+        val respostas : Map<String, String> = respostasPack.mapValues {(key, value) -> (value[0])}
+        val resposta1_c1: String by respostas
+        this.resposta1_c1 = resposta1_c1.toInt()
+        val resposta2_c1: String by respostas
+        this.resposta2_c1 = resposta2_c1.toInt()
+        val resposta3_c1: String by respostas
+        this.resposta3_c1 = resposta3_c1.toInt()
+        val resposta4_c1: String by respostas
+        this.resposta4_c1 = resposta4_c1.toInt()
+        val resposta5_c1: String by respostas
+        this.resposta5_c1 = resposta5_c1.toInt()
+        val resposta6_c1: String by respostas
+        this.resposta6_c1 = resposta6_c1.toInt()
+    }
+
+    fun atualizaProva2(respostasPack: Map<String, List<String>>){
+        val respostas : Map<String, String> = respostasPack.mapValues {(key, value) -> (value[0])}
+        val resposta1_c2: String by respostas
+        this.resposta1_c2 = resposta1_c2.toInt()
+        val resposta2_c2: String by respostas
+        this.resposta2_c2 = resposta2_c2.toInt()
+        val resposta3_c2: String by respostas
+        this.resposta3_c2 = resposta3_c2.toInt()
+        val resposta4_c2: String by respostas
+        this.resposta4_c2 = resposta4_c2.toInt()
+        val resposta5_c2: String by respostas
+        this.resposta5_c2 = resposta5_c2.toInt()
+        val resposta6_c2: String by respostas
+        this.resposta6_c2 = resposta6_c2.toInt()
+    }
 }
