@@ -28,11 +28,15 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
         post("CadastraCurso1", ::cadastraCurso1, roles(PARTICIPANTE))
         post("DeleteCurso1", ::DeleteCurso1, roles(PARTICIPANTE))
 
+        get("prova", ::prova, roles(PARTICIPANTE))
+        post("ProvaProc", ::provaProc, roles(PARTICIPANTE))
+
         get("curso2", ::listacurso2, roles(PARTICIPANTE))
         post("CadastraCurso2", ::cadastraCurso2, roles(PARTICIPANTE))
         post("DeleteCurso2", ::DeleteCurso2, roles(PARTICIPANTE))
 
-        get("ProvaView", ::prova, roles(PARTICIPANTE))
+        get("prova2", ::prova2, roles(PARTICIPANTE))
+        post("ProvaProc2", ::provaProc2, roles(PARTICIPANTE))
     }
 
     private fun inscricoes (ctx: Context) {
@@ -86,18 +90,44 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
     private fun cadastraCurso1 (ctx: Context) {
         val participante = ctx.sessionAttribute<Int?>("ID")?.let { dao.getParticipante(it) }
         val id = ctx.formParam("id") ?: ""
+        val categoria = ctx.formParam("categoria") ?:""
 
         if (participante != null) {
             dao.updateCurso1inParticipante(participante, id.toInt())
         }
-
-        ctx.redirect("/alunos")
+        if (categoria == "1"){
+            ctx.redirect("/alunos/prova")
+        }else{
+            ctx.redirect("/alunos")
+        }
     }
 
     private fun DeleteCurso1 (ctx: Context) {
         val participante = ctx.sessionAttribute<Int?>("ID")?.let { dao.getParticipante(it) }
         if (participante != null) {
             dao.updateCurso1inParticipante(participante, null)
+        }
+        ctx.redirect("/alunos")
+    }
+
+    private fun prova (ctx: Context) {
+        val participante = ctx.sessionAttribute<Int?>("ID")?.let { dao.getParticipante(it) }
+        val errormsg = ctx.cookie("errorMsg")?.let{decode(it , UTF_8)}
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+        if(participante != null) {
+            ProvaView(errormsg, participante).render(ctx)
+        } else {
+            throw FalhaSessaoException()
+        }
+    }
+
+    private fun provaProc (ctx: Context) {
+        val resp = ctx.formParamMap()
+        val participante = ctx.sessionAttribute<Int?>("ID")?.let { dao.getParticipante(it) }
+        if(participante != null) {
+            participante.atualizaProva(resp)
+            dao.updateProva1inParticipante(participante)
         }
         ctx.redirect("/alunos")
     }
@@ -117,12 +147,16 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
     private fun cadastraCurso2 (ctx: Context) {
         val participante = ctx.sessionAttribute<Int?>("ID")?.let { dao.getParticipante(it) }
         val id = ctx.formParam("id") ?: ""
+        val categoria = ctx.formParam("categoria") ?:""
 
         if (participante != null) {
             dao.updateCurso2inParticipante(participante, id.toInt())
         }
-
-        ctx.redirect("/alunos")
+        if (categoria == "1"){
+            ctx.redirect("/alunos/prova2")
+        }else{
+            ctx.redirect("/alunos")
+        }
     }
 
     private fun DeleteCurso2 (ctx: Context) {
@@ -133,10 +167,25 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
         ctx.redirect("/alunos")
     }
 
-    private fun prova (ctx: Context) {
+    private fun prova2 (ctx: Context) {
+        val participante = ctx.sessionAttribute<Int?>("ID")?.let { dao.getParticipante(it) }
         val errormsg = ctx.cookie("errorMsg")?.let{decode(it , UTF_8)}
         if (errormsg != null)
             ctx.cookie("errorMsg", "", 0)
-        ProvaView(errormsg).render(ctx)
+        if(participante != null) {
+            Prova2View(errormsg, participante).render(ctx)
+        } else {
+            throw FalhaSessaoException()
+        }
+    }
+
+    private fun provaProc2 (ctx: Context) {
+        val resp = ctx.formParamMap()
+        val participante = ctx.sessionAttribute<Int?>("ID")?.let { dao.getParticipante(it) }
+        if(participante != null) {
+            participante.atualizaProva2(resp)
+            dao.updateProva2inParticipante(participante)
+        }
+        ctx.redirect("/alunos")
     }
 }

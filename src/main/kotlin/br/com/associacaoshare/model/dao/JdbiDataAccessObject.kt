@@ -136,7 +136,7 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
                 DROP TRIGGER IF EXISTS verificaEmail ON sisins_participante;
                 CREATE TRIGGER verificaEmail BEFORE INSERT OR UPDATE ON sisins_participante
                 FOR EACH ROW EXECUTE PROCEDURE verificaEmail();
-            """. trimIndent())
+            """.trimIndent())
 
             if (it.createQuery("SELECT COUNT(id) FROM sisins_avaliador").mapTo<Int>().one() < 1) {
                 val adminId = insertAvaliador("admin", "admin", "Avaliador1")
@@ -294,7 +294,7 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
     }
 
     override fun insertCurso(respostasPack: Map<String, List<String>>): Curso {
-        val respostas : Map<String, String> = respostasPack.mapValues {(key, value) -> (value[0])}
+        val respostas: Map<String, String> = respostasPack.mapValues { (key, value) -> (value[0]) }
         val nome: String by respostas
         val categoria: String by respostas
         val horario: String by respostas
@@ -336,7 +336,6 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
         val alternativa63: String? = ""
         val alternativa64: String? = ""
         val alternativa65: String? = ""
-
 
 
         val id = jdbi.withHandleUnchecked {
@@ -438,8 +437,9 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
 
         return Participante(id, categoria, nome, data_nascimento, telefone, email, hash, tipo_sem_vinculo, vinculo_ufscar, escola, edital, onde_conheceu, esteve_ufscar, local_aulas, disponibilidade, objetivo, cursou_share, desistencia, redacao_entrada, curso1_id, data_inscricao_c1, resposta1_c1, resposta2_c1, resposta3_c1, resposta4_c1, resposta5_c1, resposta6_c1, avaliador_id_c1, resultado_c1, curso2_id, data_inscricao_c2, resposta1_c2, resposta2_c2, resposta3_c2, resposta4_c2, resposta5_c2, resposta6_c2, avaliador_id_c2, resultado_c2)
     }
-    override fun insertParticipante(respostasPack: Map<String, List<String>>) : Participante {
-        val respostas : Map<String, String> = respostasPack.mapValues {(key, value) -> (value[0])}
+
+    override fun insertParticipante(respostasPack: Map<String, List<String>>): Participante {
+        val respostas: Map<String, String> = respostasPack.mapValues { (key, value) -> (value[0]) }
         val categoria: String by respostas
         val categoriaInt: Int = categoria.toInt()
         val nome: String by respostas
@@ -498,23 +498,23 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
         val id = jdbi.withHandleUnchecked {
             it.createUpdate("INSERT INTO sisins_participante (categoria, nome, data_nascimento, telefone, email, hash, tipo_sem_vinculo, vinculo_ufscar, escola, edital, onde_conheceu, esteve_ufscar, local_aulas, disponibilidade, objetivo, cursou_share, desistencia, redacao_entrada, curso1_id, data_inscricao_c1, resposta1_c1, resposta2_c1, resposta3_c1, resposta4_c1, resposta5_c1, resposta6_c1, avaliador_id_c1, resultado_c1, curso2_id, data_inscricao_c2, resposta1_c2, resposta2_c2, resposta3_c2, resposta4_c2, resposta5_c2, resposta6_c2, avaliador_id_c2, resultado_c2) VALUES (:c, :nome, :d, :tel, :email, :hash, :tipo_sem_vinculo, :vinculo_ufscar, :escola, :edital, :onde_conheceu, :esteve_ufscar, :local_aulas, :disponibilidade, :objetivo, :cursou_share, :desistencia, :redacao_entrada, :curso1_id, :data_inscricao_c1, :resposta1_c1, :resposta2_c1, :resposta3_c1, :resposta4_c1, :resposta5_c1, :resposta6_c1, :avaliador_id_c1, :resultado_c1, :curso2_id, :data_inscricao_c2, :resposta1_c2, :resposta2_c2, :resposta3_c2, :resposta4_c2, :resposta5_c2, :resposta6_c2, :avaliador_id_c2, :resultado_c2)")
                     .bind("c", categoriaInt)
-                    .bind("nome", if(nome.isNullOrEmpty()) null else nome)
+                    .bind("nome", if (nome.isNullOrEmpty()) null else nome)
                     .bind("d", dataNascimentoLD)
-                    .bind("tel", if(telefone.isNullOrEmpty()) null else telefone)
-                    .bind("email", if(email.isNullOrEmpty()) null else email)
-                    .bind("hash", if(password.isNullOrEmpty()) null else hash)
+                    .bind("tel", if (telefone.isNullOrEmpty()) null else telefone)
+                    .bind("email", if (email.isNullOrEmpty()) null else email)
+                    .bind("hash", if (password.isNullOrEmpty()) null else hash)
                     .bind("tipo_sem_vinculo", tipoSemVinculoInt)
                     .bind("vinculo_ufscar", vinculoUfscarInt)
-                    .bind("escola", if(escola.isNullOrEmpty()) null else escola)
+                    .bind("escola", if (escola.isNullOrEmpty()) null else escola)
                     .bind("edital", editalInt)
                     .bind("onde_conheceu", ondeConheceuInt)
                     .bind("esteve_ufscar", esteveUfscarInt)
                     .bind("local_aulas", localAulasInt)
-                    .bind("disponibilidade", if(disponibilidade.isNullOrEmpty()) null else disponibilidade)
+                    .bind("disponibilidade", if (disponibilidade.isNullOrEmpty()) null else disponibilidade)
                     .bind("objetivo", objetivoInt)
                     .bind("cursou_share", cursouShareInt)
                     .bind("desistencia", desistenciaInt)
-                    .bind("redacao_entrada", if(redacao_entrada.isNullOrEmpty()) null else redacao_entrada)
+                    .bind("redacao_entrada", if (redacao_entrada.isNullOrEmpty()) null else redacao_entrada)
                     .bind("curso1_id", curso1_id)
                     .bind("data_inscricao_c1", OffsetDateTime.now())
                     .bind("resposta1_c1", resposta1_c1)
@@ -543,7 +543,7 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
         return Participante(id, categoriaInt, nome, dataNascimentoLD, telefone, email, hash, tipoSemVinculoInt, vinculoUfscarInt, escola, editalInt, ondeConheceuInt, esteveUfscarInt, localAulasInt, disponibilidade, objetivoInt, cursouShareInt, desistenciaInt, redacao_entrada, curso1_id, data_inscricao_c1, resposta1_c1, resposta2_c1, resposta3_c1, resposta4_c1, resposta5_c1, resposta6_c1, avaliador_id_c1, resultado_c1, curso2_id, data_inscricao_c2, resposta1_c2, resposta2_c2, resposta3_c2, resposta4_c2, resposta5_c2, resposta6_c2, avaliador_id_c2, resultado_c2)
     }
 
-    override fun updateCurso1inParticipante(participante: Participante, id: Int?){
+    override fun updateCurso1inParticipante(participante: Participante, id: Int?) {
         jdbi.useHandleUnchecked {
             it.createUpdate("UPDATE sisins_participante SET curso1_id = :c1 WHERE id = :idPart")
                     .bind("c1", id)
@@ -554,7 +554,7 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
         }
     }
 
-    override fun updateCurso2inParticipante(participante: Participante, id: Int?){
+    override fun updateCurso2inParticipante(participante: Participante, id: Int?) {
         jdbi.useHandleUnchecked {
             it.createUpdate("UPDATE sisins_participante SET curso2_id = :c2 WHERE id = :idPart")
                     .bind("c2", id)
@@ -562,6 +562,40 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
                     .executeAndReturnGeneratedKeys()
                     .mapTo<Int>()
                     .one()
+        }
+    }
+
+    override fun updateProva1inParticipante(participante: Participante ) {
+        jdbi.useHandleUnchecked {
+            it.createUpdate("""
+                UPDATE sisins_participante SET
+                    resposta1_c1 = :resposta1_c1,
+                    resposta2_c1 = :resposta2_c1,
+                    resposta3_c1 = :resposta3_c1,
+                    resposta4_c1 = :resposta4_c1,
+                    resposta5_c1 = :resposta5_c1,
+                    resposta6_c1 = :resposta6_c1
+                WHERE id = :id
+                """.trimIndent())
+                    .bindKotlin(participante)
+                    .execute()
+        }
+    }
+
+    override fun updateProva2inParticipante(participante: Participante ) {
+        jdbi.useHandleUnchecked {
+            it.createUpdate("""
+                UPDATE sisins_participante SET
+                    resposta1_c2 = :resposta1_c2,
+                    resposta2_c2 = :resposta2_c2,
+                    resposta3_c2 = :resposta3_c2,
+                    resposta4_c2 = :resposta4_c2,
+                    resposta5_c2 = :resposta5_c2,
+                    resposta6_c2 = :resposta6_c2
+                WHERE id = :id
+                """.trimIndent())
+                    .bindKotlin(participante)
+                    .execute()
         }
     }
 
