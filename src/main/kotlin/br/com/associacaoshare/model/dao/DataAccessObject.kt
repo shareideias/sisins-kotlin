@@ -37,6 +37,8 @@ interface DataAccessObject {
                            curso2_id: Int, data_inscricao_c2: LocalDate, resposta1_c2: Int, resposta2_c2: Int, resposta3_c2: Int, resposta4_c2: Int, resposta5_c2: Int, resposta6_c2: Int, avaliador_id_c2: Int, resultado_c2: Int): Participante
     fun insertParticipante(respostas: Map<String, List<String>>): Participante
 
+    fun updateAvaliacaoParticipante(participante: Participante, c1Id: Int?, c2Id: Int?)
+
     fun updateCurso1inParticipante(participante: Participante, id: Int?)
     fun updateCurso2inParticipante(participante: Participante, id: Int?)
 

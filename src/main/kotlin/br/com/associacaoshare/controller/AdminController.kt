@@ -19,12 +19,15 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
 
     override fun addEndpoints() {
         get("CandidatoProvaView", CandidatoProvaView()::render, roles(AVALIADOR))
-        get("CandidatoView", CandidatoView()::render, roles(AVALIADOR))
+
 
         get(::cursos, roles(AVALIADOR))
         get("inscricoes", ::inscricoes, roles(AVALIADOR))
 
         get("inscricoesgerais", ::inscricoesgerais, roles(AVALIADOR))
+
+        get("candidato", ::candidato, roles(AVALIADOR))
+        post("CandidatoProc", ::candidatoProc, roles(AVALIADOR))
 
         get("perfildocandidato", ::perfildocandidato, roles(AVALIADOR))
         post("EdicaoSenha", ::EdicaoSenha, roles(AVALIADOR))
@@ -69,6 +72,30 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
         InscricoesGeraisView(errormsg, inscritos).render(ctx)
     }
 
+    private fun candidato(ctx: Context){
+        val errormsg = ctx.cookie("errorMsg")?.let{ URLDecoder.decode(it, Charsets.UTF_8) }
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+        val candidato = ctx.queryParam("id")?.toInt()?.let{dao.getParticipante(it)}
+
+        val curso = ctx.queryParam("idC")?.toInt()?.let{dao.getCurso(it)}
+        /*if (curso == null) {
+            ctx.redirect("/adm")
+            return
+        }*/
+        CandidatoView(errormsg, candidato, curso).render(ctx)
+    }
+
+    private fun candidatoProc(ctx: Context){
+        val r1 = ctx.formParam("resultado_c1")
+        val r2 = ctx.formParam("resultado_c2")
+        val participante = ctx.sessionAttribute<Int?>("ID")?.let { dao.getParticipante(it) }
+        if(participante != null) {
+            dao.updateAvaliacaoParticipante(participante, r1?.toInt(), r2?.toInt())
+        }
+        ctx.redirect("/adm")
+    }
+
     private fun perfildocandidato(ctx: Context) {
         val errormsg = ctx.cookie("errorMsg")?.let{ URLDecoder.decode(it, Charsets.UTF_8) }
         if (errormsg != null)
@@ -80,6 +107,8 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
         }
         PerfilCandidatoView(errormsg, participante).render(ctx)
     }
+
+
 
     private fun EdicaoSenha (ctx: Context) {
         val resp = ctx.formParamMap()

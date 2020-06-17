@@ -39,7 +39,7 @@ class InscricoesView(private val errormsg: String?, private val curso: Curso, pr
                                     p {
                                         +"Aprovado"
                                     }
-                                    a("candidato.html", classes = "secondary-content") {
+                                    a("/adm/candidato?cursoId=${curso.id}&&insId${it.id}", classes = "secondary-content") {
                                         i("material-icons") {
                                             +"edit"
                                         }
@@ -60,7 +60,7 @@ class InscricoesView(private val errormsg: String?, private val curso: Curso, pr
                                     p {
                                         +"Lista de espera"
                                     }
-                                    a("#!", classes = "secondary-content") {
+                                    a("/adm/candidato?cursoId=${curso.id}&&insId${it.id}", classes = "secondary-content") {
                                         i("material-icons") {
                                             +"edit"
                                         }
@@ -81,7 +81,7 @@ class InscricoesView(private val errormsg: String?, private val curso: Curso, pr
                                     p {
                                         +"Desistiu"
                                     }
-                                    a("#!", classes = "secondary-content") {
+                                    a("/adm/candidato?cursoId=${curso.id}&&insId${it.id}", classes = "secondary-content") {
                                         i("material-icons") {
                                             +"edit"
                                         }
@@ -102,7 +102,7 @@ class InscricoesView(private val errormsg: String?, private val curso: Curso, pr
                                     p {
                                         +"Reprovado"
                                     }
-                                    a("#!", classes = "secondary-content") {
+                                    a("/adm/candidato?cursoId=${curso.id}&&insId${it.id}", classes = "secondary-content") {
                                         i("material-icons") {
                                             +"edit"
                                         }
@@ -123,7 +123,7 @@ class InscricoesView(private val errormsg: String?, private val curso: Curso, pr
                                     p {
                                         +"Não avaliado"
                                     }
-                                    a("#!", classes = "secondary-content") {
+                                    a("/adm/candidato?id=${it.id}&&idC=${curso.id}", classes = "secondary-content") {
                                         i("material-icons") {
                                             +"edit"
                                         }
