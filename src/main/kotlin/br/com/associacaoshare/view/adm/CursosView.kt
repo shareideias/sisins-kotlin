@@ -38,7 +38,7 @@ class CursosView(private val errormsg: String?, private val cursos: List<Curso>)
                                         +"Inscrições"
                                     }
                                     br{}
-                                    a("#?id=${it.id}") {
+                                    a("/adm/editarcurso?id=${it.id}") {
                                         +"Editar curso"
                                     }
                                     br{}

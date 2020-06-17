@@ -44,6 +44,18 @@ data class Curso(
     var alternativa64: String?,
     var alternativa65: String?
 ) {
+
+    fun atualizaDados(respostasPack: Map<String, List<String>>) {
+        val respostas : Map<String, String> = respostasPack.mapValues {(key, value) -> (value[0])}
+
+        val nome: String by respostas
+        this.nome = nome
+        val horario: String by respostas
+        this.horario = horario
+        val categoria: String by respostas
+        this.categoria = categoria
+    }
+
     fun atualizaProva(respostasPack: Map<String, List<String>>) {
         val respostas : Map<String, String> = respostasPack.mapValues {(key, value) -> (value[0])}
 

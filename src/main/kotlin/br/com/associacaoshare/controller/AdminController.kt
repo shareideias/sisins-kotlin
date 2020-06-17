@@ -37,7 +37,10 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
         get("excluircurso", ::excluircurso, roles(AVALIADOR))
         get("cursoexcluido", ::cursoexcluido, roles(AVALIADOR))
 
-
+        get("editarcurso", ::editarcurso, roles(AVALIADOR))
+        post("cursoeditado", ::cursoeditado, roles(AVALIADOR))
+        get("editarprova", ::editarprova, roles(AVALIADOR))
+        post("provaeditada", ::provaeditada, roles(AVALIADOR))
     }
 
     private fun cursos(ctx: Context) {
@@ -160,6 +163,64 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
 
         if (curso != null) {
             dao.removeCurso(curso.id)
+        }
+
+        ctx.redirect("/adm")
+    }
+
+    private fun editarcurso(ctx: Context){
+        val errormsg = ctx.cookie("errorMsg")?.let{ URLDecoder.decode(it, Charsets.UTF_8) }
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+        val curso = ctx.queryParam("id")?.toInt()?.let{dao.getCurso(it)}
+        if (curso != null) {
+            EdicaoCursoView(errormsg, curso).render(ctx)
+        }
+    }
+
+    private fun cursoeditado(ctx: Context){
+        val errormsg = ctx.cookie("errorMsg")?.let{ URLDecoder.decode(it, Charsets.UTF_8) }
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+
+        val resp = ctx.formParamMap()
+        val curso = ctx.queryParam("id")?.toInt()?.let{dao.getCurso(it)}
+
+        if (curso != null) {
+            curso.atualizaDados(resp)
+            dao.updateCurso(curso)
+        }
+
+        if (curso != null) {
+            if(curso.categoria == "1"){
+                ctx.redirect("editarprova?id=${curso?.id}")
+            } else if(curso.categoria == "2"){
+                ctx.redirect("/adm")
+            }
+        }
+    }
+
+    private fun editarprova(ctx: Context){
+        val errormsg = ctx.cookie("errorMsg")?.let{ URLDecoder.decode(it, Charsets.UTF_8) }
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+        val curso = ctx.queryParam("id")?.toInt()?.let{dao.getCurso(it)}
+        if (curso != null) {
+            EdicaoProvaView(errormsg, curso).render(ctx)
+        }
+    }
+
+    private fun provaeditada(ctx: Context){
+        val errormsg = ctx.cookie("errorMsg")?.let{ URLDecoder.decode(it, Charsets.UTF_8) }
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+
+        val resp = ctx.formParamMap()
+        val curso = ctx.queryParam("id")?.toInt()?.let{dao.getCurso(it)}
+
+        if (curso != null) {
+            curso.atualizaProva(resp)
+            dao.updateCurso(curso)
         }
 
         ctx.redirect("/adm")
