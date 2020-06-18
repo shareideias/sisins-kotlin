@@ -97,7 +97,7 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
                     desistencia INT NOT NULL,
                     redacao_entrada TEXT NOT NULL,
                     
-                    curso1_id INT REFERENCES sisins_curso(id),
+                    curso1_id INT,
                     data_inscricao_c1 TIMESTAMP,
                     resposta1_c1 INT,
                     resposta2_c1 INT,
@@ -105,10 +105,10 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
                     resposta4_c1 INT,
                     resposta5_c1 INT,
                     resposta6_c1 INT,
-                    avaliador_id_c1 INT REFERENCES sisins_avaliador(id),
+                    avaliador_id_c1 INT,
                     resultado_c1 INT,
                     
-                    curso2_id INT REFERENCES sisins_curso(id),
+                    curso2_id INT,
                     data_inscricao_c2 TIMESTAMP,
                     resposta1_c2 INT,
                     resposta2_c2 INT,
@@ -116,7 +116,7 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
                     resposta4_c2 INT,
                     resposta5_c2 INT,
                     resposta6_c2 INT,
-                    avaliador_id_c2 INT REFERENCES sisins_avaliador(id),
+                    avaliador_id_c2 INT,
                     resultado_c2 INT
                 )
                 """.trimIndent())

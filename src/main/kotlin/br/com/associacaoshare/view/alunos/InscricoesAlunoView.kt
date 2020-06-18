@@ -64,17 +64,7 @@ class InscricoesAlunoView(private val errormsg: String?, private val participant
                 h5 { +"Seus cursos:" }
                 ul("collection with-header"){
 
-                    if(participante.curso1_id == null){
-                        li("collection-item") {
-                            div {
-                                i { +"Curso não selecionado" }
-                                a("/alunos/curso1", classes = "secondary-content") {
-                                    i("material-icons") { +"add" }
-                                }
-                            }
-                        }
-                    }
-                    else{
+                    if(participante.curso1_id == curso1?.id && participante.curso1_id != null){
                         li("collection-item bigitem") {
                             span("title") {
                                 b {
@@ -104,18 +94,19 @@ class InscricoesAlunoView(private val errormsg: String?, private val participant
                                 }
                             }
                         }
-                    }
-                    if(participante.curso2_id == null){
+
+                    } else{
                         li("collection-item") {
                             div {
                                 i { +"Curso não selecionado" }
-                                a("/alunos/curso2", classes = "secondary-content") {
+                                a("/alunos/curso1", classes = "secondary-content") {
                                     i("material-icons") { +"add" }
                                 }
                             }
                         }
                     }
-                    else{
+
+                    if(participante.curso2_id == curso2?.id && participante.curso2_id != null){
                         li("collection-item bigitem") {
                             span("title") {
                                 b {
@@ -142,6 +133,15 @@ class InscricoesAlunoView(private val errormsg: String?, private val participant
                             p("horario") {
                                 if (curso2 != null) {
                                     +"${curso2.horario}"
+                                }
+                            }
+                        }
+                    } else{
+                        li("collection-item") {
+                            div {
+                                i { +"Curso não selecionado" }
+                                a("/alunos/curso2", classes = "secondary-content") {
+                                    i("material-icons") { +"add" }
                                 }
                             }
                         }
