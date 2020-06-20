@@ -6,7 +6,7 @@ import br.com.associacaoshare.view.base.SisInsAlunoView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class Lista1View(private val errormsg: String?, private val participante: Participante, private val cursos: List<Curso>) : SisInsAlunoView() {
+class Lista1View(private val errormsg: String?, private val participante: Participante, private val cursos: List<Curso>, private var interruptor: Int) : SisInsAlunoView() {
     override val pageTitle = "Lista de Inscrições"
 
     override fun BODY.renderBody(ctx: Context) {
@@ -80,9 +80,10 @@ class Lista1View(private val errormsg: String?, private val participante: Partic
                                         name = "categoria"
                                         value = it.categoria
                                     }
-
-                                    button(type = ButtonType.submit, classes = "secondary-content") {
-                                        i("material-icons") { +"add" }
+                                    if (interruptor == 1){
+                                        button(type = ButtonType.submit, classes = "secondary-content") {
+                                            i("material-icons") { +"add" }
+                                        }
                                     }
                                 }
 

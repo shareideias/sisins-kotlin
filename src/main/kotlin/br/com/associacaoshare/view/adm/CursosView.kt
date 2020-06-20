@@ -5,7 +5,7 @@ import br.com.associacaoshare.view.base.SisInsAdmView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class CursosView(private val errormsg: String?, private val cursos: List<Curso>) : SisInsAdmView() {
+class CursosView(private val errormsg: String?, private val cursos: List<Curso>, private var interruptor: Int) : SisInsAdmView() {
     override val pageTitle: String = "Cursos"
 
     override fun MAIN.renderMain(ctx: Context) {
@@ -18,6 +18,21 @@ class CursosView(private val errormsg: String?, private val cursos: List<Curso>)
         }
 
         h3{+"Cursos"}
+
+        if(interruptor == 0) {
+            div("botaoabrir") {
+                a("/adm/abreinscricoes", classes = "entrar waves-effect waves-light btn") {
+                    +"Abrir inscrições"
+                }
+            }
+        }
+        else if(interruptor == 1) {
+            div("botaofechar") {
+                a("/adm/fechainscricoes", classes = "entrar waves-effect waves-light btn") {
+                    +"Fechar inscrições"
+                }
+            }
+        }
 
         div("container cards_recente") {
             div("row") {

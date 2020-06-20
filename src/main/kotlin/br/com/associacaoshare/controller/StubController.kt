@@ -43,14 +43,16 @@ class StubController(override val kodein: Kodein) : EndpointGroup, KodeinAware {
         val errormsg = ctx.cookie("errorMsg")?.let{decode(it , UTF_8)}
         if(errormsg != null)
             ctx.cookie("errorMsg", "", 0)
-        IndexView(errormsg).render(ctx)
+        var interruptor = dao.getInterruptor()
+        IndexView(errormsg, interruptor).render(ctx)
     }
 
     private fun cadastro (ctx: Context) {
         val errormsg = ctx.cookie("errorMsg")?.let{decode(it , UTF_8)}
         if(errormsg != null)
             ctx.cookie("errorMsg", "", 0)
-        CadastroView(errormsg).render(ctx)
+        var interruptor = dao.getInterruptor()
+        CadastroView(errormsg, interruptor).render(ctx)
     }
 
     private fun cadastroProc (ctx: Context) {

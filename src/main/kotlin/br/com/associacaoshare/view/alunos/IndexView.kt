@@ -5,7 +5,7 @@ import br.com.associacaoshare.view.base.SisInsAlunoView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class IndexView(private val errormsg: String?) : SisInsAlunoView() {
+class IndexView(private val errormsg: String?, private var interruptor: Int) : SisInsAlunoView() {
     override val pageTitle: String
         get() = "Início"
     override fun BODY.renderBody(ctx: Context){
@@ -87,8 +87,15 @@ class IndexView(private val errormsg: String?) : SisInsAlunoView() {
                 }
             }
             div("center col s12 m12 l3"){
-                a("cadastro", classes = "center cadastro waves-effect waves-light btn"){
-                    +"Fazer cadastro"
+                if(interruptor == 1) {
+                    a("cadastro", classes = "center cadastro waves-effect waves-light btn") {
+                        +"Fazer cadastro"
+                    }
+                } else if(interruptor == 0){
+                    p{+"As inscrições estão fechadas no momento. Confira as datas do próximo processo seletivo para alunos."}
+                    a(classes = "disabled center cadastro waves-effect waves-light btn") {
+                        +"Fazer cadastro"
+                    }
                 }
                 br {
                     a("login", classes = "center login waves-effect waves-light btn"){

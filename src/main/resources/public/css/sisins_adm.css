@@ -47,6 +47,22 @@ article {
     margin-top: 10px;
 }
 
+.botaoabrir{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 158px;
+    margin-bottom: 17px;
+}
+
+.botaofechar{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 171px;
+    margin-bottom: 17px;
+}
+
 .formexclusao{
     width: 100%;
 }

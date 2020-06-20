@@ -44,10 +44,11 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
         val curso1 = ctx.sessionAttribute<Int?>("ID")?.let { dao.getCurso(participante!!.curso1_id) }
         val curso2 = ctx.sessionAttribute<Int?>("ID")?.let { dao.getCurso(participante!!.curso2_id) }
         val errormsg = ctx.cookie("errorMsg")?.let{decode(it , UTF_8)}
+        var interruptor = dao.getInterruptor()
         if (errormsg != null)
             ctx.cookie("errorMsg", "", 0)
         if(participante != null) {
-            InscricoesAlunoView(errormsg, participante, curso1, curso2).render(ctx)
+            InscricoesAlunoView(errormsg, participante, curso1, curso2, interruptor).render(ctx)
         } else {
             throw FalhaSessaoException()
         }
@@ -80,8 +81,9 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
         val errormsg = ctx.cookie("errorMsg")?.let{decode(it , UTF_8)}
         if (errormsg != null)
             ctx.cookie("errorMsg", "", 0)
+        var interruptor = dao.getInterruptor()
         if(participante != null) {
-            Lista1View(errormsg, participante, dao.allCurso()).render(ctx)
+            Lista1View(errormsg, participante, dao.allCurso(), interruptor).render(ctx)
         } else {
             throw FalhaSessaoException()
         }
@@ -137,8 +139,9 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
         val errormsg = ctx.cookie("errorMsg")?.let{decode(it , UTF_8)}
         if (errormsg != null)
             ctx.cookie("errorMsg", "", 0)
+        var interruptor = dao.getInterruptor()
         if(participante != null) {
-            Lista2View(errormsg, participante, dao.allCurso()).render(ctx)
+            Lista2View(errormsg, participante, dao.allCurso(), interruptor).render(ctx)
         } else {
             throw FalhaSessaoException()
         }

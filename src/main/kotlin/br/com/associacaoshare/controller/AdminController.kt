@@ -20,7 +20,6 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
     override fun addEndpoints() {
         get("CandidatoProvaView", CandidatoProvaView()::render, roles(AVALIADOR))
 
-
         get(::cursos, roles(AVALIADOR))
         get("inscricoes", ::inscricoes, roles(AVALIADOR))
 
@@ -44,13 +43,17 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
         post("cursoeditado", ::cursoeditado, roles(AVALIADOR))
         get("editarprova", ::editarprova, roles(AVALIADOR))
         post("provaeditada", ::provaeditada, roles(AVALIADOR))
+
+        get("abreinscricoes", ::abreinscricoes, roles(AVALIADOR))
+        get("fechainscricoes", ::fechainscricoes, roles(AVALIADOR))
     }
 
     private fun cursos(ctx: Context) {
         val errormsg = ctx.cookie("errorMsg")?.let{ URLDecoder.decode(it, Charsets.UTF_8) }
         if (errormsg != null)
             ctx.cookie("errorMsg", "", 0)
-        CursosView(errormsg, dao.allCurso()).render(ctx)
+        var interruptor = dao.getInterruptor()
+        CursosView(errormsg, dao.allCurso(), interruptor).render(ctx)
     }
 
     private fun inscricoes(ctx: Context) {
@@ -252,6 +255,16 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
             dao.updateCurso(curso)
         }
 
+        ctx.redirect("/adm")
+    }
+
+    private fun abreinscricoes(ctx: Context) {
+        dao.updateInterruptor(1)
+        ctx.redirect("/adm")
+    }
+
+    private fun fechainscricoes(ctx: Context) {
+        dao.updateInterruptor(0)
         ctx.redirect("/adm")
     }
 }

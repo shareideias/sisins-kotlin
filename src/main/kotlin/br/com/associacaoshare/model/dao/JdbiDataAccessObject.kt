@@ -122,6 +122,13 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
                 """.trimIndent())
 
             it.execute("""
+                CREATE TABLE IF NOT EXISTS sisins_inscricoes(
+                    id INT,
+                    open INT
+                )
+                """.trimIndent())
+
+            it.execute("""
                 CREATE OR REPLACE FUNCTION verificaEmail() RETURNS trigger AS ${"\$"}verificaEmail$
                 BEGIN
                 IF EXISTS (SELECT 1 FROM sisins_participante WHERE email = NEW.email AND id != NEW.id) THEN
@@ -140,6 +147,10 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
 
             if (it.createQuery("SELECT COUNT(id) FROM sisins_avaliador").mapTo<Int>().one() < 1) {
                 val adminId = insertAvaliador("admin", "admin", "Avaliador1")
+            }
+
+            if (it.createQuery("SELECT COUNT(open) FROM sisins_inscricoes").mapTo<Int>().one() < 1) {
+                insertInterruptor()
             }
         }
     }
@@ -203,6 +214,14 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
         }.sortedBy { it.nome }
     }
 
+    override fun getInterruptor(): Int {
+        return jdbi.withHandleUnchecked {
+            it.createQuery("SELECT open FROM sisins_inscricoes WHERE (id = 1)")
+                    .mapTo<Int>()
+                    .one()
+        }
+    }
+
     override fun allAvaliador(): List<Avaliador> {
         return jdbi.withHandleUnchecked {
             it.createQuery("SELECT * FROM sisins_avaliador")
@@ -225,6 +244,16 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
                     .mapTo<Participante>()
                     .list()
         }.sortedBy { it.nome }
+    }
+
+    override fun insertInterruptor() {
+
+        jdbi.withHandleUnchecked {
+            it.createUpdate("INSERT INTO sisins_inscricoes (id, open) VALUES (1, 0)")
+                    .executeAndReturnGeneratedKeys()
+                    .mapTo<Int>()
+                    .one()
+        }
     }
 
     override fun insertAvaliador(username: String, password: String, nome: String): Avaliador {
@@ -721,6 +750,16 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
                 """.trimIndent())
                     .bindKotlin(participante)
                     .execute()
+        }
+    }
+
+    override fun updateInterruptor(valor: Int) {
+        jdbi.useHandleUnchecked {
+            it.createUpdate("UPDATE sisins_inscricoes SET open = :v WHERE id = '1'")
+                    .bind("v", valor)
+                    .executeAndReturnGeneratedKeys()
+                    .mapTo<Int>()
+                    .one()
         }
     }
 

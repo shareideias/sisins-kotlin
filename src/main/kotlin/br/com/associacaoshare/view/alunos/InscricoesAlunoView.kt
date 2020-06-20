@@ -6,7 +6,7 @@ import br.com.associacaoshare.view.base.SisInsAlunoView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class InscricoesAlunoView(private val errormsg: String?, private val participante: Participante, private val curso1: Curso?, private val curso2: Curso?)  : SisInsAlunoView() {
+class InscricoesAlunoView(private val errormsg: String?, private val participante: Participante, private val curso1: Curso?, private val curso2: Curso?, private var interruptor: Int)  : SisInsAlunoView() {
     override val pageTitle: String
         get() = "Inscrição Share"
     override fun BODY.renderBody(ctx: Context) {
@@ -62,6 +62,7 @@ class InscricoesAlunoView(private val errormsg: String?, private val participant
                     +"Atualizar perfil"
                 }
                 h5 { +"Seus cursos:" }
+                h6{+"As inscrições estão fechadas no momento."}
                 ul("collection with-header"){
 
                     if(participante.curso1_id == curso1?.id && participante.curso1_id != null){
@@ -82,8 +83,10 @@ class InscricoesAlunoView(private val errormsg: String?, private val participant
                                         value = curso1.id.toString()
                                     }
                                 }
-                                button(type = ButtonType.submit, classes = "secondary-content") {
-                                    i("material-icons") { +"delete" }
+                                if(interruptor == 1) {
+                                    button(type = ButtonType.submit, classes = "secondary-content") {
+                                        i("material-icons") { +"delete" }
+                                    }
                                 }
                             }
 
@@ -99,8 +102,10 @@ class InscricoesAlunoView(private val errormsg: String?, private val participant
                         li("collection-item") {
                             div {
                                 i { +"Curso não selecionado" }
-                                a("/alunos/curso1", classes = "secondary-content") {
-                                    i("material-icons") { +"add" }
+                                if(interruptor == 1) {
+                                    a("/alunos/curso1", classes = "secondary-content") {
+                                        i("material-icons") { +"add" }
+                                    }
                                 }
                             }
                         }
@@ -124,8 +129,10 @@ class InscricoesAlunoView(private val errormsg: String?, private val participant
                                         value = curso2.id.toString()
                                     }
                                 }
-                                button(type = ButtonType.submit, classes = "secondary-content") {
-                                    i("material-icons") { +"delete" }
+                                if(interruptor == 1) {
+                                    button(type = ButtonType.submit, classes = "secondary-content") {
+                                        i("material-icons") { +"delete" }
+                                    }
                                 }
                             }
 
@@ -140,8 +147,10 @@ class InscricoesAlunoView(private val errormsg: String?, private val participant
                         li("collection-item") {
                             div {
                                 i { +"Curso não selecionado" }
-                                a("/alunos/curso2", classes = "secondary-content") {
-                                    i("material-icons") { +"add" }
+                                if(interruptor == 1) {
+                                    a("/alunos/curso2", classes = "secondary-content") {
+                                        i("material-icons") { +"add" }
+                                    }
                                 }
                             }
                         }
