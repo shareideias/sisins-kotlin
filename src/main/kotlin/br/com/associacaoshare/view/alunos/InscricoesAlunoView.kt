@@ -62,7 +62,10 @@ class InscricoesAlunoView(private val errormsg: String?, private val participant
                     +"Atualizar perfil"
                 }
                 h5 { +"Seus cursos:" }
-                h6{+"As inscrições estão fechadas no momento."}
+
+                if(interruptor == 0)
+                    h6{+"As inscrições estão fechadas no momento."}
+
                 ul("collection with-header"){
 
                     if(participante.curso1_id == curso1?.id && participante.curso1_id != null){

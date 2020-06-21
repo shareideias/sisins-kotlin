@@ -20,13 +20,37 @@ class InscricoesView(private val errormsg: String?, private val curso: Curso, pr
 
         h3{+"Inscrições (${qtdParticipantes})"}
         h4{+curso.nome}
-        h5{+"${curso.categoria} - ${curso.horario}"}
+        h5{+"${curso.horario}"}
 
         div("row") {
             div("col 14 m3 s12")
             div("col 14 m6 s12") {
                 inscritos?.forEach {
-                    when(if(it.curso1_id == curso.id) it.resultado_c1 else it.resultado_c2) {
+                    when (if (it.curso1_id == curso.id) it.resultado_c1 else it.resultado_c2) {
+                        -1 -> {
+                            ul("collection") {
+                                li("collection-item avatar") {
+                                    i("material-icons circle gray") {
+                                        +"account_circle"
+                                    }
+                                    span("title") {
+                                        +it.nome
+                                    }
+                                    p {
+                                        +"Não avaliado"
+                                    }
+                                    a("/adm/candidato?id=${it.id}&&idC=${curso.id}", classes = "secondary-content") {
+                                        i("material-icons") {
+                                            +"edit"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                inscritos?.forEach {
+                    when (if (it.curso1_id == curso.id) it.resultado_c1 else it.resultado_c2) {
                         1 -> {
                             ul("collection") {
                                 li("collection-item avatar") {
@@ -47,7 +71,10 @@ class InscricoesView(private val errormsg: String?, private val curso: Curso, pr
                                 }
                             }
                         }
-
+                    }
+                }
+                inscritos?.forEach {
+                    when (if (it.curso1_id == curso.id) it.resultado_c1 else it.resultado_c2) {
                         2 -> {
                             ul("collection") {
                                 li("collection-item avatar") {
@@ -68,7 +95,10 @@ class InscricoesView(private val errormsg: String?, private val curso: Curso, pr
                                 }
                             }
                         }
-
+                    }
+                }
+                inscritos?.forEach {
+                    when (if (it.curso1_id == curso.id) it.resultado_c1 else it.resultado_c2) {
                         3 -> {
                             ul("collection") {
                                 li("collection-item avatar") {
@@ -89,6 +119,11 @@ class InscricoesView(private val errormsg: String?, private val curso: Curso, pr
                                 }
                             }
                         }
+                    }
+                }
+
+                inscritos?.forEach {
+                    when (if (it.curso1_id == curso.id) it.resultado_c1 else it.resultado_c2) {
 
                         4 -> {
                             ul("collection") {
@@ -101,27 +136,6 @@ class InscricoesView(private val errormsg: String?, private val curso: Curso, pr
                                     }
                                     p {
                                         +"Reprovado"
-                                    }
-                                    a("/adm/candidato?id=${it.id}&&idC=${curso.id}", classes = "secondary-content") {
-                                        i("material-icons") {
-                                            +"edit"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-                        -1 -> {
-                            ul("collection") {
-                                li("collection-item avatar") {
-                                    i("material-icons circle gray") {
-                                        +"account_circle"
-                                    }
-                                    span("title") {
-                                        +it.nome
-                                    }
-                                    p {
-                                        +"Não avaliado"
                                     }
                                     a("/adm/candidato?id=${it.id}&&idC=${curso.id}", classes = "secondary-content") {
                                         i("material-icons") {
