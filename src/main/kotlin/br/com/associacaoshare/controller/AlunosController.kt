@@ -1,6 +1,7 @@
 package br.com.associacaoshare.controller
 
 import br.com.associacaoshare.controller.SisinsAccessManager.Roles.*
+import br.com.associacaoshare.model.Participante
 import br.com.associacaoshare.model.dao.DataAccessObject
 import br.com.associacaoshare.model.exception.FalhaSessaoException
 import br.com.associacaoshare.view.alunos.*
@@ -13,6 +14,7 @@ import io.javalin.core.security.SecurityUtil.roles
 import io.javalin.http.Context
 import org.kodein.di.generic.instance
 import java.net.URLDecoder.decode
+import java.time.OffsetDateTime
 import kotlin.text.Charsets.UTF_8
 
 class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAware {
@@ -96,8 +98,9 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
 
         if (participante != null) {
             dao.updateCurso1inParticipante(participante, id.toInt())
-            participante.id.let { dao.updateResultado1(it, -1) }
+            preselecao1(participante)
         }
+
         if (categoria == "1"){
             ctx.redirect("/alunos/prova")
         }else{
@@ -155,7 +158,7 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
 
         if (participante != null) {
             dao.updateCurso2inParticipante(participante, id.toInt())
-            participante.id.let { dao.updateResultado2(it, -1) }
+            preselecao2(participante)
         }
         if (categoria == "1"){
             ctx.redirect("/alunos/prova2")
@@ -192,5 +195,60 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
             dao.updateProva2inParticipante(participante)
         }
         ctx.redirect("/alunos")
+    }
+
+    private fun preselecao1(participante: Participante){
+        if(!maior16(participante)){
+            participante.id.let { dao.updateResultado1(it, 4) }
+        }
+        else if(participante.desistencia == 2){
+            participante.id.let { dao.updateResultado1(it, 4) }
+        }
+        else if(participante.edital == 2){
+            participante.id.let { dao.updateResultado1(it, 4) }
+        }
+        else if(participante.tipo_sem_vinculo == 4){
+            participante.id.let { dao.updateResultado1(it, 2) }
+        }
+        else if(participante.local_aulas == 2){
+            participante.id.let { dao.updateResultado1(it, 2) }
+        }
+        else{
+            participante.id.let { dao.updateResultado1(it, -1) }
+        }
+    }
+
+    private fun preselecao2(participante: Participante){
+        if(!maior16(participante)){
+            participante.id.let { dao.updateResultado2(it, 4) }
+        }
+        else if(participante.desistencia == 2){
+            participante.id.let { dao.updateResultado2(it, 4) }
+        }
+        else if(participante.edital == 2){
+            participante.id.let { dao.updateResultado2(it, 4) }
+        }
+        else if(participante.tipo_sem_vinculo == 4){
+            participante.id.let { dao.updateResultado2(it, 2) }
+        }
+        else if(participante.local_aulas == 2){
+            participante.id.let { dao.updateResultado2(it, 2) }
+        }
+        else{
+            participante.id.let { dao.updateResultado2(it, -1) }
+        }
+    }
+
+    private fun maior16(participante: Participante): Boolean{
+        if((OffsetDateTime.now().year - participante.data_nascimento.year) > 16){
+            return true
+        } else if((OffsetDateTime.now().year - participante.data_nascimento.year) < 16){
+            return false
+        } else if((OffsetDateTime.now().year - participante.data_nascimento.year) == 16){
+            if((OffsetDateTime.now().dayOfYear - participante.data_nascimento.dayOfYear) > 0 ){
+                return true
+            }
+        }
+        return false
     }
 }
