@@ -6,7 +6,7 @@ import br.com.associacaoshare.view.base.SisInsAdmView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class InscricoesView(private val errormsg: String?, private val curso: Curso, private val inscritos: List<Participante>?) : SisInsAdmView() {
+class InscricoesView(private val errormsg: String?, private val curso: Curso, private val inscritos: List<Participante>?, private var qtdParticipantes: Int) : SisInsAdmView() {
     override val pageTitle: String = "Cursos"
 
     override fun MAIN.renderMain(ctx: Context) {
@@ -18,7 +18,7 @@ class InscricoesView(private val errormsg: String?, private val curso: Curso, pr
             }
         }
 
-        h3{+"Inscrições"}
+        h3{+"Inscrições (${qtdParticipantes})"}
         h4{+curso.nome}
         h5{+"${curso.categoria} - ${curso.horario}"}
 

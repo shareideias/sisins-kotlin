@@ -222,6 +222,23 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
         }
     }
 
+    override fun countParticipante(): Int {
+        return jdbi.withHandleUnchecked {
+            it.createQuery("SELECT COUNT(id) FROM sisins_participante")
+                    .mapTo<Int>()
+                    .one()
+        }
+    }
+
+    override fun countParticipantebyCurso(curso: Int): Int {
+        return jdbi.withHandleUnchecked {
+            it.createQuery("SELECT COUNT(id) FROM sisins_participante WHERE (curso1_id = :id OR curso2_id = :id)")
+                    .bind("id", curso)
+                    .mapTo<Int>()
+                    .one()
+        }
+    }
+
     override fun allAvaliador(): List<Avaliador> {
         return jdbi.withHandleUnchecked {
             it.createQuery("SELECT * FROM sisins_avaliador")

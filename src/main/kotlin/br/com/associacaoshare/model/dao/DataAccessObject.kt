@@ -14,6 +14,10 @@ interface DataAccessObject {
     fun getParticipante(id: Int): Participante?
     fun getParticipantebyEmail(email: String): Participante?
     fun getParticipantesbyCurso(curso: Int): List<Participante>
+    fun getInterruptor(): Int
+
+    fun countParticipante(): Int
+    fun countParticipantebyCurso(curso: Int): Int
 
     fun allAvaliador(): List<Avaliador>
     fun allCurso(): List<Curso>
@@ -62,6 +66,4 @@ interface DataAccessObject {
             )
         }
     }
-
-    fun getInterruptor(): Int
 }

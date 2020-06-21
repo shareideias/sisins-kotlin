@@ -66,7 +66,8 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
             return
         }
         val inscritos = dao.getParticipantesbyCurso(curso.id)
-        InscricoesView(errormsg, curso, inscritos).render(ctx)
+        var qtdParticipantes = dao.countParticipantebyCurso(curso.id)
+        InscricoesView(errormsg, curso, inscritos, qtdParticipantes).render(ctx)
     }
 
     private fun inscricoesgerais(ctx: Context) {
@@ -75,7 +76,8 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
             ctx.cookie("errorMsg", "", 0)
 
         val inscritos = dao.allParticipante()
-        InscricoesGeraisView(errormsg, inscritos).render(ctx)
+        var qtdParticipantes = dao.countParticipante()
+        InscricoesGeraisView(errormsg, inscritos, qtdParticipantes).render(ctx)
     }
 
     private fun candidato(ctx: Context){
