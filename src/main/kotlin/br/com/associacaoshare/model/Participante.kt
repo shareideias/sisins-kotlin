@@ -92,10 +92,8 @@ data class Participante(
         val desistencia: String by respostas
         val desistenciaInt: Int = desistencia.toInt()
         this.desistencia = desistenciaInt
-
         val redacao_entrada: String by respostas
-        if(redacao_entrada.isNotEmpty())
-            this.redacao_entrada = redacao_entrada
+        this.redacao_entrada = redacao_entrada
 
         val password: String by respostas
         if(password.isNotEmpty())

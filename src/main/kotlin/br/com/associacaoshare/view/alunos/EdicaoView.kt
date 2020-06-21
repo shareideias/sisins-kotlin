@@ -32,6 +32,7 @@ class EdicaoView(private val errormsg: String?, private val participante: Partic
                     select {
                         id = "selectCategoria"
                         name = "categoria"
+                        required = true
                         option {
                             value = "1"
                             if(participante.categoria == 1) {
@@ -65,6 +66,7 @@ class EdicaoView(private val errormsg: String?, private val participante: Partic
                     input(InputType.text, classes = "validate") {
                         id = "inputNome"
                         name = "nome"
+                        required = true
                         if(participante.nome.isNotEmpty()) {
                             value = participante.nome
                         }
@@ -80,6 +82,7 @@ class EdicaoView(private val errormsg: String?, private val participante: Partic
                     input(InputType.date , classes = "validate") {
                         id = "inputData_nascimento"
                         name = "data_nascimento"
+                        required = true
                         value = participante.data_nascimento.toString()
                     }
                 }
@@ -92,6 +95,7 @@ class EdicaoView(private val errormsg: String?, private val participante: Partic
                     input(InputType.tel, classes = "validate") {
                         id = "inputTelefone"
                         name = "telefone"
+                        required = true
                         if(participante.telefone.isNotEmpty()) {
                             value = participante.telefone
                         }
@@ -106,6 +110,7 @@ class EdicaoView(private val errormsg: String?, private val participante: Partic
                     input(InputType.email , classes = "validate") {
                         id = "inputEmail"
                         name = "email"
+                        required = true
                         if(participante.email.isNotEmpty()) {
                             value = participante.email
                         }
@@ -131,6 +136,7 @@ class EdicaoView(private val errormsg: String?, private val participante: Partic
                     select {
                         id = "selectTipoSemVinculo"
                         name = "tipo_sem_vinculo"
+                        required = true
                         option {
                             value = "1"
                             if(participante.tipo_sem_vinculo == 1) {
@@ -170,6 +176,7 @@ class EdicaoView(private val errormsg: String?, private val participante: Partic
                     select {
                         id = "selectVinculoUfscar"
                         name = "vinculo_ufscar"
+                        required = true
                         option {
                             value = "1"
                             if(participante.vinculo_ufscar == 1) {
@@ -217,6 +224,7 @@ class EdicaoView(private val errormsg: String?, private val participante: Partic
                     input(InputType.text , classes = "validate") {
                         id = "inputEscola"
                         name = "escola"
+                        required = true
                         if(participante.escola.isNotEmpty()) {
                             value = participante.escola
                         }
@@ -232,6 +240,7 @@ class EdicaoView(private val errormsg: String?, private val participante: Partic
                     select {
                         id = "selectEdital"
                         name = "edital"
+                        required = true
                         option {
                             value = "1"
                             if(participante.edital == 1) {
@@ -257,6 +266,7 @@ class EdicaoView(private val errormsg: String?, private val participante: Partic
                     select {
                         id = "selectOndeConheceu"
                         name = "onde_conheceu"
+                        required = true
                         option {
                             value = "1"
                             if(participante.onde_conheceu == 1) {
@@ -296,6 +306,7 @@ class EdicaoView(private val errormsg: String?, private val participante: Partic
                     select {
                         id = "selectEsteveUfscar"
                         name = "esteve_ufscar"
+                        required = true
                         option {
                             value = "1"
                             if(participante.esteve_ufscar == 1) {
@@ -322,6 +333,7 @@ class EdicaoView(private val errormsg: String?, private val participante: Partic
                     select {
                         id = "selectLocal_aulas"
                         name = "local_aulas"
+                        required = true
                         option {
                             value = "1"
                             if(participante.esteve_ufscar == 1) {
@@ -348,6 +360,7 @@ class EdicaoView(private val errormsg: String?, private val participante: Partic
                     input(InputType.text , classes = "validate") {
                         id = "inputDisponibilidade"
                         name = "disponibilidade"
+                        required = true
                         if(participante.disponibilidade.isNotEmpty()) {
                             value = participante.disponibilidade
                         }
@@ -362,6 +375,7 @@ class EdicaoView(private val errormsg: String?, private val participante: Partic
                     select {
                         id = "selectObjetivo"
                         name = "objetivo"
+                        required = true
                         option {
                             value = "1"
                             if(participante.objetivo == 1) {
@@ -429,6 +443,7 @@ class EdicaoView(private val errormsg: String?, private val participante: Partic
                     select {
                         id = "selectCursouShare"
                         name = "cursou_share"
+                        required = true
                         option {
                             value = "1"
                             if(participante.cursou_share == 1) {
@@ -468,6 +483,7 @@ class EdicaoView(private val errormsg: String?, private val participante: Partic
                     select {
                         id = "selectDesistencia"
                         name = "desistencia"
+                        required = true
                         option {
                             value = "1"
                             if(participante.desistencia == 1) {
@@ -486,17 +502,16 @@ class EdicaoView(private val errormsg: String?, private val participante: Partic
                 }
 
                 div("input-field col s12 mb-0 perguntas") {
-                    +"Para finalizar, pedimos para que você escreva entre 5 e 10 linhas por que gostaria de fazer um curso na Share. Lembre-se, esse é um dos critérios mais importantes para ser selecionado (exceto: curso português)."
-                    label{
-                        htmlFor = "inputRedacao_entrada"
+                    +"Para finalizar, pedimos para que você escreva entre 5 e 10 linhas por que gostaria de fazer um curso na Share. Lembre-se, esse é um dos critérios mais importantes para ser selecionado (exceto: curso português para estrangeiros)."
+                    label {
+                        htmlFor = "inputRedacao"
 
                     }
-                    input(InputType.text , classes = "validate") {
-                        id = "inputRedacao_entrada"
+                    input(InputType.text, classes = "validate") {
+                        id = "inputRedacao"
                         name = "redacao_entrada"
-                        if(participante.redacao_entrada.isNotEmpty()) {
-                            value = participante.redacao_entrada
-                        }
+                        value = participante.redacao_entrada
+                        required = true
                     }
                 }
                 button(type = ButtonType.submit, classes = "entrar waves-effect waves-light btn") {

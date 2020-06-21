@@ -24,7 +24,7 @@ class CadastroView (private val errormsg: String?, private var interruptor: Int)
         if (interruptor == 0) {
             h4 { +"As inscrições estão fechadas no momento. Confira as datas do próximo processo seletivo para alunos." }
         } else if (interruptor == 1){
-
+            p("obscadastro"){+"*preencha obrigatoriamente todos os campos."}
             div("row") {
                 form("CadastroProc", classes = "col s12", method = FormMethod.post) {
                     div("input-field col s12 mb-0") {
@@ -35,6 +35,7 @@ class CadastroView (private val errormsg: String?, private var interruptor: Int)
                         select {
                             id = "selectCategoria"
                             name = "categoria"
+                            required = true
                             option {
                                 disabled = true
                                 selected = true
@@ -66,6 +67,7 @@ class CadastroView (private val errormsg: String?, private var interruptor: Int)
                         input(InputType.text, classes = "validate") {
                             id = "inputNome"
                             name = "nome"
+                            required = true
                         }
                     }
 
@@ -78,6 +80,7 @@ class CadastroView (private val errormsg: String?, private var interruptor: Int)
                         input(InputType.date, classes = "validate") {
                             id = "inputData_nascimento"
                             name = "data_nascimento"
+                            required = true
                         }
                     }
 
@@ -89,6 +92,7 @@ class CadastroView (private val errormsg: String?, private var interruptor: Int)
                         input(InputType.tel, classes = "validate") {
                             id = "inputTelefone"
                             name = "telefone"
+                            required = true
                         }
                     }
 
@@ -100,6 +104,7 @@ class CadastroView (private val errormsg: String?, private var interruptor: Int)
                         input(InputType.email, classes = "validate") {
                             id = "inputEmail"
                             name = "email"
+                            required = true
                         }
                     }
 
@@ -112,6 +117,7 @@ class CadastroView (private val errormsg: String?, private var interruptor: Int)
                         input(InputType.password, classes = "validate") {
                             id = "inputPassword"
                             name = "password"
+                            required = true
                         }
                     }
 
@@ -123,6 +129,7 @@ class CadastroView (private val errormsg: String?, private var interruptor: Int)
                         select {
                             id = "selectTipoSemVinculo"
                             name = "tipo_sem_vinculo"
+                            required = true
                             option {
                                 disabled = true
                                 selected = true
@@ -155,6 +162,7 @@ class CadastroView (private val errormsg: String?, private var interruptor: Int)
                         select {
                             id = "selectVinculoUfscar"
                             name = "vinculo_ufscar"
+                            required = true
                             option {
                                 disabled = true
                                 selected = true
@@ -196,6 +204,7 @@ class CadastroView (private val errormsg: String?, private var interruptor: Int)
                         input(InputType.text, classes = "validate") {
                             id = "inputEscola"
                             name = "escola"
+                            required = true
                         }
                     }
 
@@ -209,6 +218,7 @@ class CadastroView (private val errormsg: String?, private var interruptor: Int)
                         select {
                             id = "selectEdital"
                             name = "edital"
+                            required = true
                             option {
                                 disabled = true
                                 selected = true
@@ -233,6 +243,7 @@ class CadastroView (private val errormsg: String?, private var interruptor: Int)
                         select {
                             id = "selectOndeConheceu"
                             name = "onde_conheceu"
+                            required = true
                             option {
                                 disabled = true
                                 selected = true
@@ -265,6 +276,7 @@ class CadastroView (private val errormsg: String?, private var interruptor: Int)
                         select {
                             id = "selectEsteveUfscar"
                             name = "esteve_ufscar"
+                            required = true
                             option {
                                 disabled = true
                                 selected = true
@@ -290,6 +302,7 @@ class CadastroView (private val errormsg: String?, private var interruptor: Int)
                         select {
                             id = "selectLocal_aulas"
                             name = "local_aulas"
+                            required = true
                             option {
                                 disabled = true
                                 selected = true
@@ -315,6 +328,7 @@ class CadastroView (private val errormsg: String?, private var interruptor: Int)
                         input(InputType.text, classes = "validate") {
                             id = "inputDisponibilidade"
                             name = "disponibilidade"
+                            required = true
                         }
                     }
 
@@ -326,6 +340,7 @@ class CadastroView (private val errormsg: String?, private var interruptor: Int)
                         select {
                             id = "selectObjetivo"
                             name = "objetivo"
+                            required = true
                             option {
                                 disabled = true
                                 selected = true
@@ -374,6 +389,7 @@ class CadastroView (private val errormsg: String?, private var interruptor: Int)
                         select {
                             id = "selectCursouShare"
                             name = "cursou_share"
+                            required = true
                             option {
                                 disabled = true
                                 selected = true
@@ -410,6 +426,7 @@ class CadastroView (private val errormsg: String?, private var interruptor: Int)
                         select {
                             id = "selectDesistencia"
                             name = "desistencia"
+                            required = true
                             option {
                                 disabled = true
                                 selected = true
@@ -435,6 +452,7 @@ class CadastroView (private val errormsg: String?, private var interruptor: Int)
                         textArea(classes = "validate materialize-textarea") {
                             id = "inputRedacao_entrada"
                             name = "redacao_entrada"
+                            required = true
                         }
                     }
                     button(type = ButtonType.submit, classes = "entrar waves-effect waves-light btn") {
