@@ -96,6 +96,7 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
 
         if (participante != null) {
             dao.updateCurso1inParticipante(participante, id.toInt())
+            participante.id.let { dao.updateResultado1(it, -1) }
         }
         if (categoria == "1"){
             ctx.redirect("/alunos/prova")
@@ -154,6 +155,7 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
 
         if (participante != null) {
             dao.updateCurso2inParticipante(participante, id.toInt())
+            participante.id.let { dao.updateResultado2(it, -1) }
         }
         if (categoria == "1"){
             ctx.redirect("/alunos/prova2")

@@ -657,6 +657,28 @@ class JdbiDataAccessObject(url: String) : DataAccessObject {
         }
     }
 
+    override fun updateResultado1(idParticipante: Int, valor: Int){
+        jdbi.useHandleUnchecked {
+            it.createUpdate("UPDATE sisins_participante SET resultado_c1 = :v WHERE id = :idPart")
+                    .bind("v", valor)
+                    .bind("idPart", idParticipante)
+                    .executeAndReturnGeneratedKeys()
+                    .mapTo<Int>()
+                    .one()
+        }
+    }
+
+    override fun updateResultado2(idParticipante: Int, valor: Int){
+        jdbi.useHandleUnchecked {
+            it.createUpdate("UPDATE sisins_participante SET resultado_c2 = :v WHERE id = :idPart")
+                    .bind("v", valor)
+                    .bind("idPart", idParticipante)
+                    .executeAndReturnGeneratedKeys()
+                    .mapTo<Int>()
+                    .one()
+        }
+    }
+
     override fun updateAvaliador(avaliador: Avaliador) {
         jdbi.useHandleUnchecked {
             it.createUpdate("""

@@ -18,8 +18,6 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
     val dao: DataAccessObject by instance()
 
     override fun addEndpoints() {
-        get("CandidatoProvaView", CandidatoProvaView()::render, roles(AVALIADOR))
-
         get(::cursos, roles(AVALIADOR))
         get("inscricoes", ::inscricoes, roles(AVALIADOR))
 
@@ -46,6 +44,11 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
 
         get("abreinscricoes", ::abreinscricoes, roles(AVALIADOR))
         get("fechainscricoes", ::fechainscricoes, roles(AVALIADOR))
+
+        get("aprova", ::aprova, roles(AVALIADOR))
+        get("listadeespera", ::listadeespera, roles(AVALIADOR))
+        get("desistencia", ::desistencia, roles(AVALIADOR))
+        get("reprova", ::reprova, roles(AVALIADOR))
     }
 
     private fun cursos(ctx: Context) {
@@ -268,5 +271,81 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
     private fun fechainscricoes(ctx: Context) {
         dao.updateInterruptor(0)
         ctx.redirect("/adm")
+    }
+
+    private fun aprova(ctx: Context){
+        val errormsg = ctx.cookie("errorMsg")?.let{ URLDecoder.decode(it, Charsets.UTF_8) }
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+
+        val participante = ctx.queryParam("id")?.toInt()?.let{dao.getParticipante(it)}
+        val curso = ctx.queryParam("idC")?.toInt()?.let{dao.getCurso(it)}
+
+        if (participante != null && curso != null) {
+            if(participante.curso1_id == curso.id)
+                participante.id.let { dao.updateResultado1(it, 1) }
+
+            if(participante.curso2_id == curso.id)
+                participante.id.let { dao.updateResultado2(it, 1) }
+
+            ctx.redirect("inscricoes?id=${curso.id}")
+        }
+    }
+
+    private fun listadeespera(ctx: Context){
+        val errormsg = ctx.cookie("errorMsg")?.let{ URLDecoder.decode(it, Charsets.UTF_8) }
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+
+        val participante = ctx.queryParam("id")?.toInt()?.let{dao.getParticipante(it)}
+        val curso = ctx.queryParam("idC")?.toInt()?.let{dao.getCurso(it)}
+
+        if (participante != null && curso != null) {
+            if(participante.curso1_id == curso.id)
+                participante.id.let { dao.updateResultado1(it, 2) }
+
+            if(participante.curso2_id == curso.id)
+                participante.id.let { dao.updateResultado2(it, 2) }
+
+            ctx.redirect("inscricoes?id=${curso.id}")
+        }
+    }
+
+    private fun desistencia(ctx: Context){
+        val errormsg = ctx.cookie("errorMsg")?.let{ URLDecoder.decode(it, Charsets.UTF_8) }
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+
+        val participante = ctx.queryParam("id")?.toInt()?.let{dao.getParticipante(it)}
+        val curso = ctx.queryParam("idC")?.toInt()?.let{dao.getCurso(it)}
+
+        if (participante != null && curso != null) {
+            if(participante.curso1_id == curso.id)
+                participante.id.let { dao.updateResultado1(it, 3) }
+
+            if(participante.curso2_id == curso.id)
+                participante.id.let { dao.updateResultado2(it, 3) }
+
+            ctx.redirect("inscricoes?id=${curso.id}")
+        }
+    }
+
+    private fun reprova(ctx: Context){
+        val errormsg = ctx.cookie("errorMsg")?.let{ URLDecoder.decode(it, Charsets.UTF_8) }
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+
+        val participante = ctx.queryParam("id")?.toInt()?.let{dao.getParticipante(it)}
+        val curso = ctx.queryParam("idC")?.toInt()?.let{dao.getCurso(it)}
+
+        if (participante != null && curso != null) {
+            if(participante.curso1_id == curso.id)
+                participante.id.let { dao.updateResultado1(it, 4) }
+
+            if(participante.curso2_id == curso.id)
+                participante.id.let { dao.updateResultado2(it, 4) }
+
+            ctx.redirect("inscricoes?id=${curso.id}")
+        }
     }
 }

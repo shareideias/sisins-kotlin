@@ -289,49 +289,17 @@ class CandidatoView(private val errormsg: String?, private val participante: Par
             }
         }
 
-
-
-        form(action = "CandidatoProc", classes = "botoes", method = FormMethod.post) {
-            button(type = ButtonType.button, classes = "botao waves-effect waves-light green btn-large") {
-                id = "buttonAprovar"
-                if (participante!!.curso1_id.toString().isNotEmpty()) {
-                    name = "resultado_c1"
-                } else {
-                    name = "resultado_c2"
-                }
-                value = "1"
-                +"Aprovar"
-            }
-            button(type = ButtonType.button, classes = "botao waves-effect waves-light yellow btn-large") {
-                id = "buttonEspera"
-                if (participante!!.curso1_id.toString().isNotEmpty()) {
-                    name = "resultado_c1"
-                } else {
-                    name = "resultado_c2"
-                }
-                value = "2"
-                +"Lista de espera"
-            }
-            button(type = ButtonType.button, classes = "botao waves-effect waves-light blue btn-large") {
-                id = "buttonDesistencia"
-                if (participante!!.curso1_id.toString().isNotEmpty()) {
-                    name = "resultado_c1"
-                } else {
-                    name = "resultado_c2"
-                }
-                value = "3"
-                +"Desistência"
-            }
-            button(type = ButtonType.button, classes = "botao waves-effect waves-light red btn-large") {
-                id = "buttonReprovar"
-                if (participante!!.curso1_id.toString().isNotEmpty()) {
-                    name = "resultado_c1"
-                } else {
-                    name = "resultado_c2"
-                }
-                value = "4"
-                +"Reprovar"
-            }
+        a("/adm/aprova?id=${participante?.id}&&idC=${curso.id}", classes = "botao waves-effect waves-light green btn-large") {
+            +"Aprovar"
+        }
+        a("/adm/listadeespera?id=${participante?.id}&&idC=${curso.id}", classes = "botao waves-effect waves-light yellow btn-large") {
+            +"Lista de espera"
+        }
+        a("/adm/desistencia?id=${participante?.id}&&idC=${curso.id}", classes = "botao waves-effect waves-light blue btn-large") {
+            +"Desistência"
+        }
+        a("/adm/reprova?id=${participante?.id}&&idC=${curso.id}", classes = "botao waves-effect waves-light red btn-large") {
+            +"Reprovar"
         }
     }
 }

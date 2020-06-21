@@ -39,7 +39,7 @@ class InscricoesView(private val errormsg: String?, private val curso: Curso, pr
                                     p {
                                         +"Aprovado"
                                     }
-                                    a("/adm/candidato?cursoId=${curso.id}&&insId${it.id}", classes = "secondary-content") {
+                                    a("/adm/candidato?id=${it.id}&&idC=${curso.id}", classes = "secondary-content") {
                                         i("material-icons") {
                                             +"edit"
                                         }
@@ -60,7 +60,7 @@ class InscricoesView(private val errormsg: String?, private val curso: Curso, pr
                                     p {
                                         +"Lista de espera"
                                     }
-                                    a("/adm/candidato?cursoId=${curso.id}&&insId${it.id}", classes = "secondary-content") {
+                                    a("/adm/candidato?id=${it.id}&&idC=${curso.id}", classes = "secondary-content") {
                                         i("material-icons") {
                                             +"edit"
                                         }
@@ -81,7 +81,7 @@ class InscricoesView(private val errormsg: String?, private val curso: Curso, pr
                                     p {
                                         +"Desistiu"
                                     }
-                                    a("/adm/candidato?cursoId=${curso.id}&&insId${it.id}", classes = "secondary-content") {
+                                    a("/adm/candidato?id=${it.id}&&idC=${curso.id}", classes = "secondary-content") {
                                         i("material-icons") {
                                             +"edit"
                                         }
@@ -102,7 +102,7 @@ class InscricoesView(private val errormsg: String?, private val curso: Curso, pr
                                     p {
                                         +"Reprovado"
                                     }
-                                    a("/adm/candidato?cursoId=${curso.id}&&insId${it.id}", classes = "secondary-content") {
+                                    a("/adm/candidato?id=${it.id}&&idC=${curso.id}", classes = "secondary-content") {
                                         i("material-icons") {
                                             +"edit"
                                         }
