@@ -7,12 +7,12 @@ body {
     background-color: white;
 }
 
-header {
+nav {
     /*background-image: linear-gradient(to right, #81F781, #81BEF7, #F781F3);*/ /*verde azul rosa*/
-    background-image: linear-gradient(to right, #81BEF7, #F78181, #F781F3); /*azul vermelho rosa*/
+    background-image: linear-gradient(to right, #81BEF7, #F78181, #a4e887); /*azul vermelho verde*/
 }
 
-.link_menu {
+.desknav {
     color: white !important;
 }
 
@@ -26,6 +26,10 @@ p {
     padding-bottom: 1em;
     margin: 0;
     padding-left: 2em;
+}
+
+.statusavaliacao{
+    padding-left: 0;
 }
 
 b {

@@ -33,7 +33,7 @@ class Lista1View(private val errormsg: String?, private val participante: Partic
 
                     ul("right hide-on-med-and-down") {
                         li {
-                            a("/logout", classes = "link_menu") { +"Logout" }
+                            a("/logout", classes = "link_menu desknav") { +"Logout" }
                         }
                     }
                     ul("sidenav lighten-2") {

@@ -27,22 +27,22 @@ class LoginView(private val errormsg: String?) : SisInsAlunoView() {
 
                     ul("right hide-on-med-and-down") {
                         li {
-                            a("/", classes = "link_menu") { +"Home" }
+                            a("/", classes = "link_menu desknav") { +"Home" }
                         }
                         li {
-                            a("/cursos", classes = "link_menu") { +"Cursos" }
+                            a("/cursos", classes = "link_menu desknav") { +"Cursos" }
                         }
                         li {
-                            a("/faq", classes = "link_menu") { +"F.A.Q." }
+                            a("/faq", classes = "link_menu desknav") { +"F.A.Q." }
                         }
                         li {
-                            a("/blog", classes = "link_menu") { +"Blog" }
+                            a("/blog", classes = "link_menu desknav") { +"Blog" }
                         }
                         li {
-                            a("/alunos", classes = "link_menu") { +"Alunos" }
+                            a("/alunos", classes = "link_menu desknav") { +"Alunos" }
                         }
                         li {
-                            a("/adm", classes = "link_menu") { +"Administrativo" }
+                            a("/adm", classes = "link_menu desknav") { +"Administrativo" }
                         }
                     }
                     ul("sidenav lighten-2") {

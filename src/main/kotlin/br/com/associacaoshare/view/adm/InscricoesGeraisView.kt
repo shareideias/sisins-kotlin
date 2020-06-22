@@ -25,7 +25,7 @@ class InscricoesGeraisView(private val errormsg: String?, private val inscritos:
             div("col 14 m6 s12") {
                 inscritos?.forEach {
                     ul("collection") {
-                        li("collection-item avatar") {
+                        li("collection-item") {
                             span("title") {
                                 +it.nome
                             }

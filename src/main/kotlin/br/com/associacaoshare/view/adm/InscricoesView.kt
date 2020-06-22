@@ -36,7 +36,7 @@ class InscricoesView(private val errormsg: String?, private val curso: Curso, pr
                                     span("title") {
                                         +it.nome
                                     }
-                                    p {
+                                    p("statusavaliacao") {
                                         +"Não avaliado"
                                     }
                                     a("/adm/candidato?id=${it.id}&&idC=${curso.id}", classes = "secondary-content") {
@@ -60,7 +60,7 @@ class InscricoesView(private val errormsg: String?, private val curso: Curso, pr
                                     span("title") {
                                         +it.nome
                                     }
-                                    p {
+                                    p("statusavaliacao") {
                                         +"Aprovado"
                                     }
                                     a("/adm/candidato?id=${it.id}&&idC=${curso.id}", classes = "secondary-content") {
@@ -84,7 +84,7 @@ class InscricoesView(private val errormsg: String?, private val curso: Curso, pr
                                     span("title") {
                                         +it.nome
                                     }
-                                    p {
+                                    p("statusavaliacao") {
                                         +"Lista de espera"
                                     }
                                     a("/adm/candidato?id=${it.id}&&idC=${curso.id}", classes = "secondary-content") {
@@ -108,7 +108,7 @@ class InscricoesView(private val errormsg: String?, private val curso: Curso, pr
                                     span("title") {
                                         +it.nome
                                     }
-                                    p {
+                                    p("statusavaliacao") {
                                         +"Desistiu"
                                     }
                                     a("/adm/candidato?id=${it.id}&&idC=${curso.id}", classes = "secondary-content") {
@@ -134,7 +134,7 @@ class InscricoesView(private val errormsg: String?, private val curso: Curso, pr
                                     span("title") {
                                         +it.nome
                                     }
-                                    p {
+                                    p("statusavaliacao") {
                                         +"Reprovado"
                                     }
                                     a("/adm/candidato?id=${it.id}&&idC=${curso.id}", classes = "secondary-content") {

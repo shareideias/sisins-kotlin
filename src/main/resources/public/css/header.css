@@ -1,5 +1,9 @@
 header {
-    background-image: linear-gradient(to right, #81BEF7, #F78181, #F781F3);
+    background-image: linear-gradient(to right, #81BEF7, #F78181, #a4e887); /*azul vermelho verde*/
+}
+
+.desknav{
+    color: white !important;
 }
 
 .share-brand {
