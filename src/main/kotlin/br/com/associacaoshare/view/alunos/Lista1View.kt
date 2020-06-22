@@ -63,33 +63,35 @@ class Lista1View(private val errormsg: String?, private val participante: Partic
                 div(classes = "board") {
                     ul("collection with-header") {
                         cursos.forEach {
-                            li("collection-item") {
-                                span("title") {
-                                    b { +"${it.nome}" }
-                                }
-
-                                form("CadastraCurso1", classes = "col s12 addform", method = FormMethod.post) {
-                                    input(InputType.number, classes = "validate invisible") {
-                                        id = "inputId"
-                                        name = "id"
-                                        value = it.id.toString()
+                            if(participante.curso2_id != it.id){
+                                li("collection-item") {
+                                    span("title") {
+                                        b { +"${it.nome}" }
                                     }
 
-                                    input(InputType.number, classes = "validate invisible") {
-                                        id = "inputCategoria"
-                                        name = "categoria"
-                                        value = it.categoria
-                                    }
-                                    if (interruptor == 1){
-                                        button(type = ButtonType.submit, classes = "secondary-content") {
-                                            i("material-icons") { +"add" }
+                                    form("CadastraCurso1", classes = "col s12 addform", method = FormMethod.post) {
+                                        input(InputType.number, classes = "validate invisible") {
+                                            id = "inputId"
+                                            name = "id"
+                                            value = it.id.toString()
+                                        }
+
+                                        input(InputType.number, classes = "validate invisible") {
+                                            id = "inputCategoria"
+                                            name = "categoria"
+                                            value = it.categoria
+                                        }
+                                        if (interruptor == 1){
+                                            button(type = ButtonType.submit, classes = "secondary-content") {
+                                                i("material-icons") { +"add" }
+                                            }
                                         }
                                     }
+
+
+                                    br {}
+                                    p("horario") { +"${it.horario}" }
                                 }
-
-
-                                br {}
-                                p("horario") { +"${it.horario}" }
                             }
                         }
                     }

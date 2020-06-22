@@ -102,7 +102,7 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
         }
 
         if (categoria == "1"){
-            ctx.redirect("/alunos/prova")
+            ctx.redirect("/alunos/prova?id=${id}")
         }else{
             ctx.redirect("/alunos")
         }
@@ -119,10 +119,11 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
     private fun prova (ctx: Context) {
         val participante = ctx.sessionAttribute<Int?>("ID")?.let { dao.getParticipante(it) }
         val errormsg = ctx.cookie("errorMsg")?.let{decode(it , UTF_8)}
+        val curso = ctx.queryParam("id")?.toInt().let { dao.getCurso(it) }
         if (errormsg != null)
             ctx.cookie("errorMsg", "", 0)
-        if(participante != null) {
-            ProvaView(errormsg, participante).render(ctx)
+        if(participante != null && curso != null) {
+            ProvaView(errormsg, participante, curso).render(ctx)
         } else {
             throw FalhaSessaoException()
         }
@@ -161,7 +162,7 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
             preselecao2(participante)
         }
         if (categoria == "1"){
-            ctx.redirect("/alunos/prova2")
+            ctx.redirect("/alunos/prova2?id=${id}")
         }else{
             ctx.redirect("/alunos")
         }
@@ -178,10 +179,11 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
     private fun prova2 (ctx: Context) {
         val participante = ctx.sessionAttribute<Int?>("ID")?.let { dao.getParticipante(it) }
         val errormsg = ctx.cookie("errorMsg")?.let{decode(it , UTF_8)}
+        val curso = ctx.queryParam("id")?.toInt().let { dao.getCurso(it) }
         if (errormsg != null)
             ctx.cookie("errorMsg", "", 0)
-        if(participante != null) {
-            Prova2View(errormsg, participante).render(ctx)
+        if(participante != null && curso != null) {
+            Prova2View(errormsg, participante, curso).render(ctx)
         } else {
             throw FalhaSessaoException()
         }

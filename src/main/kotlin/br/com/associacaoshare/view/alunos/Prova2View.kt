@@ -1,11 +1,12 @@
 package br.com.associacaoshare.view.alunos
 
+import br.com.associacaoshare.model.Curso
 import br.com.associacaoshare.model.Participante
 import br.com.associacaoshare.view.base.SisInsAlunoView
 import io.javalin.http.Context
 import kotlinx.html.*
 
-class Prova2View(private val errormsg: String?, private val participante: Participante) : SisInsAlunoView() {
+class Prova2View(private val errormsg: String?, private val participante: Participante, private val curso: Curso) : SisInsAlunoView() {
     override val pageTitle: String
         get() = "Prova"
 
@@ -33,11 +34,9 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                 +"pedimos para que realmente deixe em branco as questões que você não souber."
             }
         }
-
         form("ProvaProc2", method = FormMethod.post) {
             h6 {
-                +"1 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et "
-                +"dolore magna aliqua."
+                +"${curso.pergunta1}"
             }
             p {
                 label {
@@ -46,9 +45,12 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta1_c2"
                         value = "1"
                     }
-                    span { +"Alternativa 1" }
+                    span {
+                        +"${curso.alternativa11}"
+                    }
                 }
             }
+
             p {
                 label {
                     input(InputType.radio, classes = "with-gap") {
@@ -56,7 +58,7 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta1_c2"
                         value = "2"
                     }
-                    span { +"Alternativa 2" }
+                    span { +"${curso.alternativa12}" }
                 }
             }
             p {
@@ -66,7 +68,7 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta1_c2"
                         value = "3"
                     }
-                    span { +"Alternativa 3" }
+                    span { +"${curso.alternativa13}" }
                 }
             }
             p {
@@ -76,7 +78,7 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta1_c2"
                         value = "4"
                     }
-                    span { +"Alternativa 4" }
+                    span { +"${curso.alternativa14}" }
                 }
             }
             p {
@@ -86,13 +88,12 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta1_c2"
                         value = "5"
                     }
-                    span { +"Alternativa 5" }
+                    span { +"${curso.alternativa15}" }
                 }
             }
 
             h6 {
-                +"2 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et "
-                +"dolore magna aliqua."
+                +"${curso.pergunta2}"
             }
 
             p {
@@ -102,7 +103,7 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta2_c2"
                         value = "1"
                     }
-                    span { +"Alternativa 1" }
+                    span { +"${curso.alternativa21}" }
                 }
             }
             p {
@@ -112,7 +113,7 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta2_c2"
                         value = "2"
                     }
-                    span { +"Alternativa 2" }
+                    span { +"${curso.alternativa22}" }
                 }
             }
             p {
@@ -122,7 +123,7 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta2_c2"
                         value = "3"
                     }
-                    span { +"Alternativa 3" }
+                    span { +"${curso.alternativa23}" }
                 }
             }
             p {
@@ -132,7 +133,7 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta2_c2"
                         value = "4"
                     }
-                    span { +"Alternativa 4" }
+                    span { +"${curso.alternativa24}" }
                 }
             }
             p {
@@ -142,14 +143,13 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta2_c2"
                         value = "5"
                     }
-                    span { +"Alternativa 5" }
+                    span { +"${curso.alternativa25}" }
                 }
             }
 
 
             h6 {
-                +"3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et "
-                +"dolore magna aliqua."
+                span { +"${curso.pergunta3}" }
             }
 
             p {
@@ -159,7 +159,7 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta3_c2"
                         value = "1"
                     }
-                    span { +"Alternativa 1" }
+                    span { +"${curso.alternativa31}" }
                 }
             }
             p {
@@ -169,7 +169,7 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta3_c2"
                         value = "2"
                     }
-                    span { +"Alternativa 2" }
+                    span { +"${curso.alternativa32}" }
                 }
             }
             p {
@@ -179,7 +179,7 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta3_c2"
                         value = "3"
                     }
-                    span { +"Alternativa 3" }
+                    span { +"${curso.alternativa33}" }
                 }
             }
             p {
@@ -189,7 +189,7 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta3_c2"
                         value = "4"
                     }
-                    span { +"Alternativa 4" }
+                    span { +"${curso.alternativa34}" }
                 }
             }
             p {
@@ -199,14 +199,13 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta3_c2"
                         value = "5"
                     }
-                    span { +"Alternativa 5" }
+                    span { +"${curso.alternativa35}" }
                 }
             }
 
 
             h6 {
-                +"4 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et "
-                +"dolore magna aliqua."
+                +"${curso.pergunta4}"
             }
 
             p {
@@ -216,7 +215,7 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta4_c2"
                         value = "1"
                     }
-                    span { +"Alternativa 1" }
+                    span { +"${curso.alternativa41}" }
                 }
             }
             p {
@@ -226,7 +225,7 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta4_c2"
                         value = "2"
                     }
-                    span { +"Alternativa 2" }
+                    span { +"${curso.alternativa42}" }
                 }
             }
             p {
@@ -236,7 +235,7 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta4_c2"
                         value = "3"
                     }
-                    span { +"Alternativa 3" }
+                    span { +"${curso.alternativa43}" }
                 }
             }
             p {
@@ -246,7 +245,7 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta4_c2"
                         value = "4"
                     }
-                    span { +"Alternativa 4" }
+                    span { +"${curso.alternativa44}" }
                 }
             }
             p {
@@ -256,14 +255,13 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta4_c2"
                         value = "5"
                     }
-                    span { +"Alternativa 5" }
+                    span { +"${curso.alternativa45}" }
                 }
             }
 
 
             h6 {
-                +"5 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et "
-                +"dolore magna aliqua."
+                +"${curso.pergunta5}"
             }
 
             p {
@@ -273,7 +271,7 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta5_c2"
                         value = "1"
                     }
-                    span { +"Alternativa 1" }
+                    span { +"${curso.alternativa51}" }
                 }
             }
             p {
@@ -283,7 +281,7 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta5_c2"
                         value = "2"
                     }
-                    span { +"Alternativa 2" }
+                    span { +"${curso.alternativa52}" }
                 }
             }
             p {
@@ -293,7 +291,7 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta5_c2"
                         value = "3"
                     }
-                    span { +"Alternativa 3" }
+                    span { +"${curso.alternativa53}" }
                 }
             }
             p {
@@ -303,7 +301,7 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta5_c2"
                         value = "4"
                     }
-                    span { +"Alternativa 4" }
+                    span { +"${curso.alternativa54}" }
                 }
             }
             p {
@@ -313,14 +311,13 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta5_c2"
                         value = "5"
                     }
-                    span { +"Alternativa 5" }
+                    span { +"${curso.alternativa55}" }
                 }
             }
 
 
             h6 {
-                +"6 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et "
-                +"dolore magna aliqua."
+                +"${curso.pergunta6}"
             }
 
             p {
@@ -330,7 +327,7 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta6_c2"
                         value = "1"
                     }
-                    span { +"Alternativa 1" }
+                    span { +"${curso.alternativa61}" }
                 }
             }
             p {
@@ -340,7 +337,7 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta6_c2"
                         value = "2"
                     }
-                    span { +"Alternativa 2" }
+                    span { +"${curso.alternativa62}" }
                 }
             }
             p {
@@ -350,7 +347,7 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta6_c2"
                         value = "3"
                     }
-                    span { +"Alternativa 3" }
+                    span { +"${curso.alternativa63}" }
                 }
             }
             p {
@@ -360,7 +357,7 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta6_c2"
                         value = "4"
                     }
-                    span { +"Alternativa 4" }
+                    span { +"${curso.alternativa64}" }
                 }
             }
             p {
@@ -370,7 +367,7 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                         name = "resposta6_c2"
                         value = "5"
                     }
-                    span { +"Alternativa 5" }
+                    span { +"${curso.alternativa65}" }
                 }
             }
 
@@ -381,5 +378,6 @@ class Prova2View(private val errormsg: String?, private val participante: Partic
                 }
             }
         }
+
     }
 }
