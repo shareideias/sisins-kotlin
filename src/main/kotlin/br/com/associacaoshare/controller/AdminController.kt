@@ -49,6 +49,8 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
         get("listadeespera", ::listadeespera, roles(AVALIADOR))
         get("desistencia", ::desistencia, roles(AVALIADOR))
         get("reprova", ::reprova, roles(AVALIADOR))
+
+        get("deleteuser", ::deleteuser, roles(AVALIADOR))
     }
 
     private fun cursos(ctx: Context) {
@@ -347,5 +349,19 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
 
             ctx.redirect("inscricoes?id=${curso.id}")
         }
+    }
+
+    private fun deleteuser(ctx: Context){
+        val errormsg = ctx.cookie("errorMsg")?.let{ URLDecoder.decode(it, Charsets.UTF_8) }
+        if (errormsg != null)
+            ctx.cookie("errorMsg", "", 0)
+
+        val participante = ctx.queryParam("id")?.toInt()?.let{dao.getParticipante(it)}
+
+        if (participante != null) {
+            dao.removeParticipante(participante.id)
+        }
+
+        ctx.redirect("/inscricoes/adm/inscricoesgerais")
     }
 }

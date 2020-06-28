@@ -38,6 +38,12 @@ class InscricoesGeraisView(private val errormsg: String?, private val inscritos:
                                     +"pageview"
                                 }
                             }
+
+                            /*a("/inscricoes/adm/deleteuser?id=${it.id}", classes = "secondary-content") {
+                                i("material-icons") {
+                                    +"delete"
+                                }
+                            }*/
                         }
                     }
 
