@@ -88,7 +88,7 @@ class IndexView(private val errormsg: String?, private var interruptor: Int) : S
             }
             div("center col s12 m12 l3"){
                 if(interruptor == 1) {
-                    a("cadastro", classes = "center cadastro waves-effect waves-light btn") {
+                    a("inscricoes/cadastro", classes = "center cadastro waves-effect waves-light btn") {
                         +"Fazer cadastro"
                     }
                 } else if(interruptor == 0){
@@ -98,7 +98,7 @@ class IndexView(private val errormsg: String?, private var interruptor: Int) : S
                     }
                 }
                 br {
-                    a("login", classes = "center login waves-effect waves-light btn"){
+                    a("inscricoes/login", classes = "center login waves-effect waves-light btn"){
                         +"Já tenho cadastro"
                     }
                 }

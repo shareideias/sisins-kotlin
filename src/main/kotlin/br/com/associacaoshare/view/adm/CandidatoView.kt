@@ -289,16 +289,16 @@ class CandidatoView(private val errormsg: String?, private val participante: Par
             }
         }
 
-        a("/adm/aprova?id=${participante?.id}&&idC=${curso.id}", classes = "botao waves-effect waves-light green btn-large") {
+        a("/inscricoes/adm/aprova?id=${participante?.id}&&idC=${curso.id}", classes = "botao waves-effect waves-light green btn-large") {
             +"Aprovar"
         }
-        a("/adm/listadeespera?id=${participante?.id}&&idC=${curso.id}", classes = "botao waves-effect waves-light yellow btn-large") {
+        a("/inscricoes/adm/listadeespera?id=${participante?.id}&&idC=${curso.id}", classes = "botao waves-effect waves-light yellow btn-large") {
             +"Lista de espera"
         }
-        a("/adm/desistencia?id=${participante?.id}&&idC=${curso.id}", classes = "botao waves-effect waves-light blue btn-large") {
+        a("/inscricoes/adm/desistencia?id=${participante?.id}&&idC=${curso.id}", classes = "botao waves-effect waves-light blue btn-large") {
             +"Desistência"
         }
-        a("/adm/reprova?id=${participante?.id}&&idC=${curso.id}", classes = "botao waves-effect waves-light red btn-large") {
+        a("/inscricoes/adm/reprova?id=${participante?.id}&&idC=${curso.id}", classes = "botao waves-effect waves-light red btn-large") {
             +"Reprovar"
         }
     }

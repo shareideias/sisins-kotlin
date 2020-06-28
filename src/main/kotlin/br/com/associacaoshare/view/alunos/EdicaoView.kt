@@ -19,7 +19,7 @@ class EdicaoView(private val errormsg: String?, private val participante: Partic
             }
         }
 
-        img("Logo da Share", "../img/share-logo.png", "logo")
+        img("Logo da Share", "../../img/share-logo.png", "logo")
         h3 { +"Edição" }
 
         div("row") {

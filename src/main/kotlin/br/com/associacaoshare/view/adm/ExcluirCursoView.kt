@@ -21,10 +21,10 @@ class ExcluirCursoView(private val errormsg: String?, private val curso: Curso) 
 
         form(classes="formexclusao") {
             div("botoesexclusao"){
-                a("/adm", classes = "botao waves-effect waves-light btn-large") {
+                a("/inscricoes/adm", classes = "botao waves-effect waves-light btn-large") {
                     +"Não"
                 }
-                a("/adm/cursoexcluido?id=${curso.id}", classes = "botao waves-effect waves-light red btn-large") {
+                a("/inscricoes/adm/cursoexcluido?id=${curso.id}", classes = "botao waves-effect waves-light red btn-large") {
                     +"Sim"
                 }
             }

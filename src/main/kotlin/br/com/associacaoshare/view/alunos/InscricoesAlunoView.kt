@@ -27,13 +27,13 @@ class InscricoesAlunoView(private val errormsg: String?, private val participant
 
                     ul("right hide-on-med-and-down") {
                         li {
-                            a("/logout", classes = "link_menu desknav") { +"Logout" }
+                            a("/inscricoes/logout", classes = "link_menu desknav") { +"Logout" }
                         }
                     }
                     ul("sidenav lighten-2") {
                         id = "mobile-menu"
                         li {
-                            a("/logout", classes = "link_menu") { +"Logout" }
+                            a("/inscricoes/logout", classes = "link_menu") { +"Logout" }
                         }
                     }
                 }
@@ -58,7 +58,7 @@ class InscricoesAlunoView(private val errormsg: String?, private val participant
                 }
             }
             div("center col s12 m12 l3"){
-                a("/alunos/editar", classes = "center atualizar waves-effect waves-light btn"){
+                a("/inscricoes/alunos/editar", classes = "center atualizar waves-effect waves-light btn"){
                     +"Atualizar perfil"
                 }
                 h5 { +"Seus cursos:" }
@@ -78,7 +78,7 @@ class InscricoesAlunoView(private val errormsg: String?, private val participant
                                 }
                             }
 
-                            form("alunos/DeleteCurso1", classes = "col s12 addform secondary-content", method = FormMethod.post) {
+                            form("/inscricoes/alunos/DeleteCurso1", classes = "col s12 addform secondary-content", method = FormMethod.post) {
                                 input(InputType.number, classes = "validate invisible") {
                                     id = "inputId"
                                     name = "id"
@@ -106,7 +106,7 @@ class InscricoesAlunoView(private val errormsg: String?, private val participant
                             div {
                                 i { +"Curso não selecionado" }
                                 if(interruptor == 1) {
-                                    a("/alunos/curso1", classes = "secondary-content") {
+                                    a("/inscricoes/alunos/curso1", classes = "secondary-content") {
                                         i("material-icons") { +"add" }
                                     }
                                 }
@@ -124,7 +124,7 @@ class InscricoesAlunoView(private val errormsg: String?, private val participant
                                 }
                             }
 
-                            form("alunos/DeleteCurso2", classes = "col s12 addform secondary-content", method = FormMethod.post) {
+                            form("/inscricoes/alunos/DeleteCurso2", classes = "col s12 addform secondary-content", method = FormMethod.post) {
                                 input(InputType.number, classes = "validate invisible") {
                                     id = "inputId"
                                     name = "id"
@@ -151,7 +151,7 @@ class InscricoesAlunoView(private val errormsg: String?, private val participant
                             div {
                                 i { +"Curso não selecionado" }
                                 if(interruptor == 1) {
-                                    a("/alunos/curso2", classes = "secondary-content") {
+                                    a("/inscricoes/alunos/curso2", classes = "secondary-content") {
                                         i("material-icons") { +"add" }
                                     }
                                 }

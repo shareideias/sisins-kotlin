@@ -22,19 +22,19 @@ class StubController(override val kodein: Kodein) : EndpointGroup, KodeinAware {
     val dao: DataAccessObject by instance()
 
     override fun addEndpoints() {
-        get(::index)
+        get("inscricoes", ::index)
 
-        get("cadastro", ::cadastro)
-        post("CadastroProc", ::cadastroProc)
+        get("inscricoes/cadastro", ::cadastro)
+        post("inscricoes/CadastroProc", ::cadastroProc)
 
-        get("login", ::login)
-        post("dologin", ::doLogin)
-        get("logout", ::doLogout)
+        get("inscricoes/login", ::login)
+        post("inscricoes/dologin", ::doLogin)
+        get("inscricoes/logout", ::doLogout)
 
-        path("adm") {
+        path("inscricoes/adm") {
             AdminController(kodein).addEndpoints()
         }
-        path("alunos") {
+        path("inscricoes/alunos") {
             AlunosController(kodein).addEndpoints()
         }
     }
@@ -58,7 +58,7 @@ class StubController(override val kodein: Kodein) : EndpointGroup, KodeinAware {
     private fun cadastroProc (ctx: Context) {
         val resp = ctx.formParamMap()
         val novoParticipante: Participante = dao.insertParticipante(resp)
-        ctx.redirect("/login")
+        ctx.redirect("/inscricoes/login")
     }
 
     private fun login (ctx: Context) {
@@ -98,23 +98,23 @@ class StubController(override val kodein: Kodein) : EndpointGroup, KodeinAware {
             }
         }
 
-        ctx.redirect("/login")
+        ctx.redirect("/inscricoes/login")
     }
 
     private fun loginRoutine(ctx: Context, obj: Avaliador) {
         ctx.sessionAttribute("ROLE", "AVALIADOR")
         ctx.sessionAttribute("ID", obj.id)
-        ctx.redirect("/adm")
+        ctx.redirect("/inscricoes/adm")
     }
 
     private fun loginRoutine(ctx: Context, obj: Participante) {
         ctx.sessionAttribute("ROLE", "PARTICIPANTE")
         ctx.sessionAttribute("ID", obj.id)
-        ctx.redirect("/alunos")
+        ctx.redirect("/inscricoes/alunos")
     }
 
     private fun doLogout(ctx: Context) {
         ctx.sessionAttribute("ROLE", null)
-        ctx.redirect("/")
+        ctx.redirect("/inscricoes")
     }
 }

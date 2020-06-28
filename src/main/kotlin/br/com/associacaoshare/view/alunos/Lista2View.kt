@@ -33,13 +33,13 @@ class Lista2View(private val errormsg: String?, private val participante: Partic
 
                     ul("right hide-on-med-and-down") {
                         li {
-                            a("/logout", classes = "link_menu desknav") { +"Logout" }
+                            a("/inscricoes/logout", classes = "link_menu desknav") { +"Logout" }
                         }
                     }
                     ul("sidenav lighten-2") {
                         id = "mobile-menu"
                         li {
-                            a("/logout", classes = "link_menu") { +"Logout" }
+                            a("/inscricoes/logout", classes = "link_menu") { +"Logout" }
                         }
                     }
                 }
@@ -52,7 +52,7 @@ class Lista2View(private val errormsg: String?, private val participante: Partic
             div("col s12 m12 l3 offset-l3") {
                 div("card") {
                     div("card-image") {
-                        img("Logo da Share", "../img/share-logo.png", "logo")
+                        img("Logo da Share", "../../img/share-logo.png", "logo")
                     }
                 }
             }

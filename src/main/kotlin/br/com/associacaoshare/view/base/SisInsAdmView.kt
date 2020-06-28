@@ -44,26 +44,26 @@ abstract class SisInsAdmView : HtmlBuilderView() {
 
                 ul(classes = "right hide-on-med-and-down") {
                     li {
-                        a(classes = "link_menu desknav", href = "/adm") { +"Cursos" }
+                        a(classes = "link_menu desknav", href = "/inscricoes/adm") { +"Cursos" }
                     }
                     li {
-                        a(classes = "link_menu desknav", href = "/adm/inscricoesgerais") { +"Inscrições" }
+                        a(classes = "link_menu desknav", href = "/inscricoes/adm/inscricoesgerais") { +"Inscrições" }
                     }
                     li {
-                        a("/logout", classes = "link_menu desknav") { +"Logout" }
+                        a("/inscricoes/logout", classes = "link_menu desknav") { +"Logout" }
                     }
                 }
                 ul(classes = "sidenav lighten-2") {
                     id = "mobile-menu"
 
                     li {
-                        a(classes = "link_menu", href = "/adm") { +"Cursos" }
+                        a(classes = "link_menu", href = "/inscricoes/adm") { +"Cursos" }
                     }
                     li {
-                        a(classes = "link_menu", href = "/adm/inscricoesgerais") { +"Inscrições" }
+                        a(classes = "link_menu", href = "/inscricoes/adm/inscricoesgerais") { +"Inscrições" }
                     }
                     li {
-                        a("/logout", classes = "link_menu ") { +"Logout" }
+                        a("/inscricoes/logout", classes = "link_menu ") { +"Logout" }
                     }
                 }
             }

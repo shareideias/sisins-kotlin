@@ -21,14 +21,14 @@ class CursosView(private val errormsg: String?, private val cursos: List<Curso>,
 
         if(interruptor == 0) {
             div("botaoabrir") {
-                a("/adm/abreinscricoes", classes = "entrar waves-effect waves-light btn") {
+                a("/inscricoes/adm/abreinscricoes", classes = "entrar waves-effect waves-light btn") {
                     +"Abrir inscrições"
                 }
             }
         }
         else if(interruptor == 1) {
             div("botaofechar") {
-                a("/adm/fechainscricoes", classes = "entrar waves-effect waves-light btn") {
+                a("/inscricoes/adm/fechainscricoes", classes = "entrar waves-effect waves-light btn") {
                     +"Fechar inscrições"
                 }
             }
@@ -49,15 +49,15 @@ class CursosView(private val errormsg: String?, private val cursos: List<Curso>,
                                     }
                                 }
                                 div("card-action") {
-                                    a("/adm/inscricoes?id=${it.id}") {
+                                    a("/inscricoes/adm/inscricoes?id=${it.id}") {
                                         +"Inscrições"
                                     }
                                     br{}
-                                    a("/adm/editarcurso?id=${it.id}") {
+                                    a("/inscricoes/adm/editarcurso?id=${it.id}") {
                                         +"Editar curso"
                                     }
                                     br{}
-                                    a("/adm/excluircurso?id=${it.id}") {
+                                    a("/inscricoes/adm/excluircurso?id=${it.id}") {
                                         +"Excluir curso"
                                     }
                                     br{}
@@ -75,7 +75,7 @@ class CursosView(private val errormsg: String?, private val cursos: List<Curso>,
                     div("col m4 s12") {
                         div("card") {
                             div("card-action mais") {
-                                a("adm/addCurso") {
+                                a("/inscricoes/adm/addCurso") {
                                     +"+"
                                 }
                             }

@@ -33,7 +33,7 @@ class InscricoesGeraisView(private val errormsg: String?, private val inscritos:
                             span("title") {
                                 +it.email
                             }
-                            a("/adm/perfildocandidato?id=${it.id}", classes = "secondary-content") {
+                            a("/inscricoes/adm/perfildocandidato?id=${it.id}", classes = "secondary-content") {
                                 i("material-icons") {
                                     +"pageview"
                                 }

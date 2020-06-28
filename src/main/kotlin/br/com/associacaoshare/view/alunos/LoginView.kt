@@ -90,7 +90,7 @@ class LoginView(private val errormsg: String?) : SisInsAlunoView() {
             div("center col s12 m12 l3") {
                 div("caixa_login") {
                     div("lighten-4 row geral_login") {
-                        form("dologin", classes = "col s12", method = FormMethod.post) {
+                        form("/inscricoes/dologin", classes = "col s12", method = FormMethod.post) {
                             div("row") {
                                 div("input-field col s12") {
                                     input(InputType.text, classes = "validate", name = "user") {

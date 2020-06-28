@@ -75,7 +75,7 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
             participante.atualizaDados(resp)
             dao.updateParticipante(participante)
         }
-        ctx.redirect("/alunos")
+        ctx.redirect("/inscricoes/alunos")
     }
 
     private fun listacurso1 (ctx: Context) {
@@ -102,9 +102,9 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
         }
 
         if (categoria == "1"){
-            ctx.redirect("/alunos/prova?id=${id}")
+            ctx.redirect("/inscricoes/alunos/prova?id=${id}")
         }else{
-            ctx.redirect("/alunos")
+            ctx.redirect("/inscricoes/alunos")
         }
     }
 
@@ -113,7 +113,7 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
         if (participante != null) {
             dao.updateCurso1inParticipante(participante, null)
         }
-        ctx.redirect("/alunos")
+        ctx.redirect("/inscricoes/alunos")
     }
 
     private fun prova (ctx: Context) {
@@ -136,7 +136,7 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
             participante.atualizaProva(resp)
             dao.updateProva1inParticipante(participante)
         }
-        ctx.redirect("/alunos")
+        ctx.redirect("/inscricoes/alunos")
     }
 
     private fun listacurso2 (ctx: Context) {
@@ -162,9 +162,9 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
             preselecao2(participante)
         }
         if (categoria == "1"){
-            ctx.redirect("/alunos/prova2?id=${id}")
+            ctx.redirect("/inscricoes/alunos/prova2?id=${id}")
         }else{
-            ctx.redirect("/alunos")
+            ctx.redirect("/inscricoes/alunos")
         }
     }
 
@@ -173,7 +173,7 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
         if (participante != null) {
             dao.updateCurso2inParticipante(participante, null)
         }
-        ctx.redirect("/alunos")
+        ctx.redirect("/inscricoes/alunos")
     }
 
     private fun prova2 (ctx: Context) {
@@ -196,7 +196,7 @@ class AlunosController (override val kodein: Kodein) : EndpointGroup, KodeinAwar
             participante.atualizaProva2(resp)
             dao.updateProva2inParticipante(participante)
         }
-        ctx.redirect("/alunos")
+        ctx.redirect("/inscricoes/alunos")
     }
 
     private fun preselecao1(participante: Participante){

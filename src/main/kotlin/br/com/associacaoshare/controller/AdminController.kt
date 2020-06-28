@@ -65,7 +65,7 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
             ctx.cookie("errorMsg", "", 0)
         val curso = ctx.queryParam("id")?.toInt()?.let{dao.getCurso(it)}
         if (curso == null) {
-            ctx.redirect("/adm")
+            ctx.redirect("/inscricoes/adm")
             return
         }
         val inscritos = dao.getParticipantesbyCurso(curso.id)
@@ -104,7 +104,7 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
         if(participante != null) {
             dao.updateAvaliacaoParticipante(participante, r1?.toInt(), r2?.toInt())
         }
-        ctx.redirect("/adm")
+        ctx.redirect("/inscricoes/adm")
     }
 
     private fun perfildocandidato(ctx: Context) {
@@ -113,7 +113,7 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
             ctx.cookie("errorMsg", "", 0)
         val participante = ctx.queryParam("id")?.toInt()?.let{dao.getParticipante(it)}
         if (participante == null) {
-            ctx.redirect("/adm")
+            ctx.redirect("/inscricoes/adm")
             return
         }
         PerfilCandidatoView(errormsg, participante).render(ctx)
@@ -153,7 +153,7 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
         if(novoCurso.categoria == "1")
             ctx.redirect("addProva?id=${novoCurso.id}")
         else
-            ctx.redirect("/adm")
+            ctx.redirect("/inscricoes/adm")
     }
 
     private fun addProva(ctx: Context){
@@ -178,7 +178,7 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
             dao.updateCurso(curso)
         }
 
-        ctx.redirect("/adm")
+        ctx.redirect("/inscricoes/adm")
 
     }
 
@@ -202,7 +202,7 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
             dao.removeCurso(curso.id)
         }
 
-        ctx.redirect("/adm")
+        ctx.redirect("/inscricoes/adm")
     }
 
     private fun editarcurso(ctx: Context){
@@ -232,7 +232,7 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
             if(curso.categoria == "1"){
                 ctx.redirect("editarprova?id=${curso?.id}")
             } else if(curso.categoria == "2"){
-                ctx.redirect("/adm")
+                ctx.redirect("/inscricoes/adm")
             }
         }
     }
@@ -260,17 +260,17 @@ class AdminController(override val kodein: Kodein) : EndpointGroup, KodeinAware 
             dao.updateCurso(curso)
         }
 
-        ctx.redirect("/adm")
+        ctx.redirect("/inscricoes/adm")
     }
 
     private fun abreinscricoes(ctx: Context) {
         dao.updateInterruptor(1)
-        ctx.redirect("/adm")
+        ctx.redirect("/inscricoes/adm")
     }
 
     private fun fechainscricoes(ctx: Context) {
         dao.updateInterruptor(0)
-        ctx.redirect("/adm")
+        ctx.redirect("/inscricoes/adm")
     }
 
     private fun aprova(ctx: Context){
